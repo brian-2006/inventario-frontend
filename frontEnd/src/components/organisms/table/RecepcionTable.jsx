@@ -7,7 +7,7 @@ import {
   TableBody,
   Collapse
 } from "@mui/material";
-import Paper from '@mui/material/Paper';
+
 
 import TableCellAtom from '../../atoms/table/TableCell'
 import TableHeaderRow from '../../molecules/table/TableHeaderRow'

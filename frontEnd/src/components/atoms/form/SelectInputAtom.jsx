@@ -1,12 +1,12 @@
-// src/components/atoms/form/TextInputAtom.jsx
-import { TextField } from "@mui/material";
+// src/components/atoms/form/SelectInputAtom.jsx
+import { TextField, MenuItem } from "@mui/material";
 
-const TextInputAtom = ({
+const SelectInputAtom = ({
   name,
   label,
   value,
   onChange,
-  type = "text",
+  options = [],
   error = false,
   helperText = "",
   margin = "normal",
@@ -15,6 +15,7 @@ const TextInputAtom = ({
 }) => {
   return (
     <TextField
+      select
       fullWidth
       size="small"
       variant="outlined"
@@ -22,10 +23,9 @@ const TextInputAtom = ({
       label={label}
       value={value}
       onChange={onChange}
-      type={type}
       error={error}
       helperText={helperText}
-      margin ={margin}
+      margin = {margin}
       sx={{
         bgcolor: "background.paper",
         borderRadius: 2,
@@ -44,8 +44,14 @@ const TextInputAtom = ({
         ...sx,
       }}
       {...props}
-    />
+    >
+      {options.map((opt) => (
+        <MenuItem key={opt.value} value={opt.value}>
+          {opt.label}
+        </MenuItem>
+      ))}
+    </TextField>
   );
 };
 
-export default TextInputAtom;
+export default SelectInputAtom;

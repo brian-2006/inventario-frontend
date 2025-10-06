@@ -43,7 +43,7 @@ export const DownloadButton = ({ text, onClick, size }) => {
   );
 };
 
-export const CreateButton = ({ text, onClick, size}) => {
+export const CreateButton = ({ text, onClick, size, ...props}) => {
 
     return(
         <Button
@@ -52,6 +52,7 @@ export const CreateButton = ({ text, onClick, size}) => {
         size={size} 
         onClick={onClick}
         endIcon={<AddOutlinedIcon/>}
+        {...props}
         >
             {text}
         </Button>

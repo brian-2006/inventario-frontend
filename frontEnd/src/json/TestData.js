@@ -1,6 +1,7 @@
 
 
 export const MedicineMainInventoryColumns = ['','Nombre del medicamento', 'Cantidad disponible', 'Número de lotes', 'Valor total', 'acciones'] //desde el endpoint debe venir un array para iterar sobre ellos
+export const DmMainInventoryColumns = ['','Nombre dispositivo', 'Cantidad disponible', 'Número de lotes', 'Valor total', 'vida util', 'clasificacion riesgo', 'acciones'] //desde el endpoint debe venir un array para iterar sobre ellos
 
 export const MedicineMainInventoryItems =  [
   ["Paracetamol", 120, 3, "$480.000"],
@@ -18,7 +19,7 @@ export const TypeInventory = {
     Varios: 'varios'
 }
 
-export const LoteRowsColums = ["lote", "fecha de vencimiento", "cantidad", "precio unitario", "precio total" ];
+export const LoteRowsColums = ["lote", "cantidad total", "Fecha vencimiento", "Precio unitario", "Precio total", "Fabricante", "Registro Invima", "Fecha vencimiento invima" ];
 
 export const LoteRowsItems = [
 
@@ -366,12 +367,12 @@ export const RecepcionTencinaRows = {
     Medicamento: ['Fecha', 'Hora', 'Número de factura', 'Proveedor','Nombre generico', 
         'Presentacion comercial', 'concentracion', 'Formula Farmaceutica', 'Laboratorio', 'Lote', 'Fecha de vencimiento',
         'Registro Invima', 'Fecha vencimiento registro invima', 'Estado de registro invima', 'Cantidad', 
-        'Precio unitario', 'Estado de embalaje', 'Condiciones de transporte', 'Quien realiza', 'Observaciones'],
+        'Precio unitario', 'Estado de embalaje', 'Condiciones de transporte', 'Quien realiza', 'Observaciones', 'inventario', 'Tipo acta'],
     
     Dm: ['Fecha', 'Hora', 'Número de factura', 'Proveedor', 'Laboratorio', 'Nombre dm', 'vida util', 'Clasificacion riesgo',
         'Lote', 'Fecha de vencimiento','Registro Invima', 'Fecha vencimiento de registro invima', 
-        'Estado de registro invima', 'Cantidad', 'Precio unitario', 'Estado de embalaje', 
-        'Condiciones de transporte', 'Quien realiza', 'Observaciones']
+        'Cantidad', 'Precio unitario', 'Estado de embalaje', 
+        'Condiciones de transporte', 'Quien realiza', 'Observaciones', 'inventario', 'Tipo acta']
 }
 
 export const DataTest = [
