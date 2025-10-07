@@ -4,6 +4,7 @@ import {Routes, Route} from 'react-router-dom'
 import { useState } from 'react'
 
 import FormRecepcionMedicamentos from './components/organisms/form/RecepcionMedicamentos'
+import RecepcionDmForm from './components/organisms/form/RecepcionDmForm'
 
 function App() {
    
@@ -12,7 +13,8 @@ function App() {
     <>  
         <Routes>
                 <Route path='/test/*' element={<TestRoutes />} />
-                <Route path='/select' element={<FormRecepcionMedicamentos/>} />
+                <Route path='/RecepcionMedicamentos' element={<FormRecepcionMedicamentos/>} />
+                <Route path= '/recepcionDmForm' element = {<RecepcionDmForm/>}/>
         </Routes>
         {/*rutas de pruebas */}
       

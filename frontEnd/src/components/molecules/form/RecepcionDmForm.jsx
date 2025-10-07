@@ -3,14 +3,14 @@ import SelectInputAtom from '../../atoms/form/SelectInputAtom'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-const RecepcionMedicamentoForm = ({formData, handleChange}) => {
-    const [medicamentos, setMedicamentos] = useState([])
+const RecepcionDmForm = ({formData, handleChange}) => {
+    const [dms, setDms] = useState([])
 
     useEffect(() => {
         const fetchMedicamentos = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/insumo/medicamentos/')
-                setMedicamentos(response.data)
+                const response = await axios.get('http://127.0.0.1:8000/insumo/dm/')
+                setDms(response.data)
             } catch (error) {
                 console.error('Error al obtener medicamentos:', error)
             }
@@ -23,71 +23,32 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
     return (
         <>
             <SelectInputAtom
-                name="medicamento"
-                label="Nombre medicamento"
+                name="dispositivo medico"
+                label="Nombre del dispositivo medico"
                 // Mantén options como {value, label}
-                options={medicamentos.map(m => ({
-                    value: m.id,
-                    label: m.nombregenerico,
+                options={dms.map(dm => ({
+                    value: dm.id,
+                    label: dm.nombredm,
                 }))}
                 // El Select debe estar controlado por el id seleccionado
                 value={formData.id_insumo ?? ""}
                 // onChange actualiza id_insumo y nombregenerico
                 onChange={(e) => {
                     const id = e.target.value;
-                    const found = medicamentos.find(m => m.id === parseInt(id));
+                    const found = dms.find(dm => dm.id === parseInt(id));
                     handleChange('id_insumo', id);
-                    handleChange('nombre_generico', found?.nombregenerico ?? "");
+                    handleChange('nombre_generico', found?.nombredm ?? "");
                 }}
             />
 
-            <SelectInputAtom
-            name='concentracion'
-            label='Concentracion'
-            options={[
-                {value: '10mg', label: '10mg'},
-                {value: '20mg', label: '20mg'},
-                {value: '30mg', label: '30mg'},
-            ]}
-            value={formData.concentracion}
-            onChange={(e)=> handleChange('concentracion', e.target.value)}
-            />
-
-            <SelectInputAtom
-            name='presentacion'
-            label='Presentacion'
-            options={[
-                {value: 'x', label: 'x'},
-                {value: 'y', label: 'y'},
-                {value: 'z', label: 'z'},
-            ]}
-            value={formData.presentacion_comercial}
-            onChange={(e)=> handleChange('presentacion_comercial', e.target.value)}
-            />
-
-            <SelectInputAtom
-            name = 'formula farmaceutica'
-            label = 'Formula farmaceutica'
-            options = {[
-                {value: 'a', label: 'a'},
-                {value: 'b', label: 'b'},
-                {value: 'c', label: 'c'},
-            ]}
-            value = {formData.formula_farmaceutica}
-            onChange = {(e)=> handleChange('formula_farmaceutica', e.target.value)}
-            />
-
-            {/* <SelectInputAtom
+            <TextInputAtom
             name = 'vida util'
             label= 'Vida util'
-            options = {[
-                {value: '1', label: '1 año'},
-                {value: '2', label: '2 años'},
-                {value: '3', label: '3 años'},
-            ]}
-            value = {formData.vidaUtil}
-            onChange = {(e)=> handleChange('vidaUtil', e.target.value)}
-            /> */}
+            type = 'text'
+            required
+            value = {formData.vida_util}
+            onChange = {(e)=> handleChange('vida_util', e.target.value)}
+            />
 
             <TextInputAtom
             name = 'lote'
@@ -160,7 +121,23 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
             options={[
                 {value: 'vigente', label: 'vigente'},
                 {value: 'no vigente', label: 'no vigente'}
+                
             ]}
+            required
+            />
+
+            <SelectInputAtom
+            name = 'clasificacion riesgo'
+            label = 'clasificacion riesgo'
+            value = {formData.clasificacion_riesgo}
+            onChange = {(e)=> handleChange('clasificacion_riesgo', e.target.value)}
+            options = {[
+                {value: 'I', label: 'I'},
+                {value: 'IIA', label: 'IIA'},
+                {value: 'IIB ', label: 'IIB '},
+                {value: 'III ', label: 'III '}
+            ]}
+            required
             />
 
             <TextInputAtom
@@ -182,28 +159,47 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
             ]}
             value = {formData.proveedor}
             onChange = {(e)=> handleChange('proveedor', e.target.value)}
+            required
             />
 
             <SelectInputAtom
             name = 'estado embalaje'
             label = 'estado de embalaje'
             options = {[
-                {value: '1', label: 'Bueno'},
-                {value: '2', label: 'Malo'},
+                {value: 'Bueno', label: 'Bueno'},
+                {value: 'Malo', label: 'Malo'},
+                {value: 'Regular', label: 'Regular'}
             ]}
             value = {formData.estado_embalaje}
             onChange = {(e)=> handleChange('estado_embalaje', e.target.value)}
+            required
             />
 
             <SelectInputAtom
             name = 'condicion de transporte'
             label = 'condicion de transporte'
             options = {[
-                {value: 'A', label: 'A'},
+                {value: 'NC', label: 'NC'},
                 {value: 'C', label: 'C'},
             ]}
             value = {formData.condicion_transporte}
             onChange = {(e)=> handleChange('condicion_transporte', e.target.value)}
+            required
+            />
+
+            <SelectInputAtom
+            name = 'tipo inventario'
+            label = 'tipo inventario'
+            options = {[
+                {value: "dispositivos medicos", label: "dispositivos medicos"},
+                {value: "control especial", label: "control especial"},
+                {value: "respiratorio", label: "respiratorio"},
+                {value: "bioseguridad", label: "bioseguridad"},
+                {value: "aseo", label: "aseo"}
+            ]}
+            value = {formData.nombre_inventario}
+            onChange={(e)=> handleChange('nombre_inventario', e.target.value)}
+            required
             />
 
             <TextInputAtom
@@ -220,4 +216,4 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
    
 }
 
-export default RecepcionMedicamentoForm
+export default RecepcionDmForm

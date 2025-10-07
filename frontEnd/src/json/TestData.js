@@ -16,7 +16,8 @@ export const TypeInventory = {
     ControlEspecial: 'control especial',
     Aseo: 'aseo',
     Bioseguridad: 'bioseguridad',
-    Varios: 'varios'
+    Varios: 'varios',
+    Respiratorio: 'respiratorio'
 }
 
 export const LoteRowsColums = ["lote", "cantidad total", "Fecha vencimiento", "Precio unitario", "Precio total", "Fabricante", "Registro Invima", "Fecha vencimiento invima" ];
