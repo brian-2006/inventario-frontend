@@ -149,14 +149,10 @@ const RecepcionDmForm = ({formData, handleChange}) => {
             onChange = {(e) => handleChange('numero_factura', e.target.value)}
             />
 
-            <SelectInputAtom
+            <TextInputAtom
             name = 'proveedor'
             label = 'proveedor'
-            options = {[
-                {value: 'Proveedor1', label: 'Proveedor1'},
-                {value: 'Proveedor2', label: 'Proveedor2'},
-                {value: 'Proveedor3', label: 'Proveedor3'},
-            ]}
+            type = 'text'
             value = {formData.proveedor}
             onChange = {(e)=> handleChange('proveedor', e.target.value)}
             required

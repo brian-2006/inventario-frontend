@@ -1,42 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CreateButton } from "../../atoms/Button";
 import CloseIcon from "@mui/icons-material/Close";
-import RecepcionDmForm from "../../molecules/form/RecepcionDmForm";
+import CreateMedicine from "../../molecules/form/CreateMedicine";
 import ModalForm from '../modal/ModalForm'
 
-const FormRecepcionDm = () => {
+const CreateMedicineForm = () => {
   // --- Estado principal del formulario ---
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
-    tipo_insumo: "dm",
-    id_insumo: null,
-    nombre_generico: "",
-    estado_registro_invima: "",
-    vida_util: "",
-    numero_lote: "",
-    cantidad: "",
-    fecha_vencimiento: "",
-    precio_unitario: "",
-    fabricante: "",
-    registro_invima: "",
-    fecha_vencimiento_invima: "",
-    numero_factura: "",
-    proveedor: "",
-    estado_embalaje: "",
-    condicion_transporte: "",
-    quien_realiza: 2,
-    observaciones: "",
-    nombre_inventario: "",
-    clasificacion_riesgo: "",
+    
+    idinsumo: 1,
+    nombregenerico: "",
+    estadoregistroinvima: "",
   });
-
-  const navigate = useNavigate()
 
   // --- Control de apertura del modal ---
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const navigate = useNavigate()
 
   // --- Manejador de cambios de inputs ---
   const handleChange = (field, value) => {
@@ -49,13 +33,13 @@ const FormRecepcionDm = () => {
     try {
       console.log("payload:", formData);
       const response = await axios.post(
-        "http://127.0.0.1:8000/recepcionTecnica/registrarInsumo/",
+        "http://127.0.0.1:8000/insumo/medicamentos/",
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
       console.log(response.data);
       handleClose(); // cerrar modal tras éxito
-      navigate('/test/RecepcionDmTest')
+      navigate('/test/RecepcionMedicamentosForm')
     } catch (error) {
       console.error("Error al enviar formulario:", error);
     }
@@ -65,7 +49,7 @@ const FormRecepcionDm = () => {
   return (
     <>
        <CreateButton
-            text = 'registrar dispositivo medico'
+            text = 'Crear medicamento'
             sx={{ borderRadius: 2, fontWeight: "bold" }}
             onClick={handleOpen}
           >
@@ -74,11 +58,11 @@ const FormRecepcionDm = () => {
       <ModalForm
         open={open}
         onClose={handleClose}
-        title="Registrar dispositivo medico"
-        formId="formRecepcionDm"
+        title="Crear medicamento"
+        formId="createMedicineForm"
         onSubmit={handleSubmit}
       >
-        <RecepcionDmForm
+        <CreateMedicine
           formData={formData}
           handleChange={handleChange}
         />
@@ -87,4 +71,4 @@ const FormRecepcionDm = () => {
   );
 };
 
-export default FormRecepcionDm;
+export default CreateMedicineForm;

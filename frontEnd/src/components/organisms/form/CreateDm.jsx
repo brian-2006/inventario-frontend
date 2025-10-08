@@ -1,35 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CreateButton } from "../../atoms/Button";
 import CloseIcon from "@mui/icons-material/Close";
-import RecepcionDmForm from "../../molecules/form/RecepcionDmForm";
 import ModalForm from '../modal/ModalForm'
+import CreateDm from '../../molecules/form/CreateDmform'
 
-const FormRecepcionDm = () => {
+const FormCreateDm = () => {
   // --- Estado principal del formulario ---
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
-    tipo_insumo: "dm",
-    id_insumo: null,
-    nombre_generico: "",
-    estado_registro_invima: "",
-    vida_util: "",
-    numero_lote: "",
-    cantidad: "",
-    fecha_vencimiento: "",
-    precio_unitario: "",
-    fabricante: "",
-    registro_invima: "",
-    fecha_vencimiento_invima: "",
-    numero_factura: "",
-    proveedor: "",
-    estado_embalaje: "",
-    condicion_transporte: "",
-    quien_realiza: 2,
-    observaciones: "",
-    nombre_inventario: "",
-    clasificacion_riesgo: "",
+    idinsumo: 2,
+    nombredm: "",
   });
 
   const navigate = useNavigate()
@@ -49,13 +31,13 @@ const FormRecepcionDm = () => {
     try {
       console.log("payload:", formData);
       const response = await axios.post(
-        "http://127.0.0.1:8000/recepcionTecnica/registrarInsumo/",
+        "http://127.0.0.1:8000/insumo/dm/",
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
       console.log(response.data);
       handleClose(); // cerrar modal tras éxito
-      navigate('/test/RecepcionDmTest')
+      navigate('/test/RecepcionDmForm')
     } catch (error) {
       console.error("Error al enviar formulario:", error);
     }
@@ -65,7 +47,7 @@ const FormRecepcionDm = () => {
   return (
     <>
        <CreateButton
-            text = 'registrar dispositivo medico'
+            text = 'crear dispositivo medico'
             sx={{ borderRadius: 2, fontWeight: "bold" }}
             onClick={handleOpen}
           >
@@ -74,11 +56,11 @@ const FormRecepcionDm = () => {
       <ModalForm
         open={open}
         onClose={handleClose}
-        title="Registrar dispositivo medico"
-        formId="formRecepcionDm"
+        title="crear dispositivo medico"
+        formId="formCreateDm"
         onSubmit={handleSubmit}
       >
-        <RecepcionDmForm
+        <CreateDm
           formData={formData}
           handleChange={handleChange}
         />
@@ -87,4 +69,4 @@ const FormRecepcionDm = () => {
   );
 };
 
-export default FormRecepcionDm;
+export default FormCreateDm;

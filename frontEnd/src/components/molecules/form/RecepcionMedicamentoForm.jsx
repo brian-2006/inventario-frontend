@@ -41,38 +41,26 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
                 }}
             />
 
-            <SelectInputAtom
+            <TextInputAtom
             name='concentracion'
             label='Concentracion'
-            options={[
-                {value: '10mg', label: '10mg'},
-                {value: '20mg', label: '20mg'},
-                {value: '30mg', label: '30mg'},
-            ]}
+            type='text'
             value={formData.concentracion}
             onChange={(e)=> handleChange('concentracion', e.target.value)}
             />
 
-            <SelectInputAtom
+            <TextInputAtom
             name='presentacion'
             label='Presentacion'
-            options={[
-                {value: 'x', label: 'x'},
-                {value: 'y', label: 'y'},
-                {value: 'z', label: 'z'},
-            ]}
+            type='text'
             value={formData.presentacion_comercial}
             onChange={(e)=> handleChange('presentacion_comercial', e.target.value)}
             />
 
-            <SelectInputAtom
+            <TextInputAtom
             name = 'formula farmaceutica'
             label = 'Formula farmaceutica'
-            options = {[
-                {value: 'a', label: 'a'},
-                {value: 'b', label: 'b'},
-                {value: 'c', label: 'c'},
-            ]}
+            type = 'text'
             value = {formData.formula_farmaceutica}
             onChange = {(e)=> handleChange('formula_farmaceutica', e.target.value)}
             />
@@ -172,14 +160,10 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
             onChange = {(e) => handleChange('numero_factura', e.target.value)}
             />
 
-            <SelectInputAtom
+            <TextInputAtom
             name = 'proveedor'
             label = 'proveedor'
-            options = {[
-                {value: 'Proveedor1', label: 'Proveedor1'},
-                {value: 'Proveedor2', label: 'Proveedor2'},
-                {value: 'Proveedor3', label: 'Proveedor3'},
-            ]}
+            type = 'text'
             value = {formData.proveedor}
             onChange = {(e)=> handleChange('proveedor', e.target.value)}
             />

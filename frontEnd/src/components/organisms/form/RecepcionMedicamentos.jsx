@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CreateButton } from "../../atoms/Button";
 import CloseIcon from "@mui/icons-material/Close";
@@ -32,6 +33,8 @@ const FormRecepcionMedicamentos = () => {
     nombre_inventario: "medicamentos",
   });
 
+  const navigate = useNavigate()
+
   // --- Control de apertura del modal ---
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -53,6 +56,7 @@ const FormRecepcionMedicamentos = () => {
       );
       console.log(response.data);
       handleClose(); // cerrar modal tras éxito
+      navigate('/test/RecepcionMedicamentoTest')
     } catch (error) {
       console.error("Error al enviar formulario:", error);
     }
