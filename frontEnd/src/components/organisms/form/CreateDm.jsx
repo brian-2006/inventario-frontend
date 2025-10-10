@@ -1,8 +1,13 @@
+//importar hooks
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useNotifications } from '@toolpad/core/useNotifications';
+//libreria para llamados http
 import axios from "axios";
+//Botones
 import { CreateButton } from "../../atoms/Button";
 import CloseIcon from "@mui/icons-material/Close";
+//Importacion de otros modulos que se usaran
 import ModalForm from '../modal/ModalForm'
 import CreateDm from '../../molecules/form/CreateDmform'
 
@@ -15,6 +20,7 @@ const FormCreateDm = () => {
   });
 
   const navigate = useNavigate()
+  const notifications = useNotifications();
 
   // --- Control de apertura del modal ---
   const handleOpen = () => setOpen(true);
@@ -35,10 +41,19 @@ const FormCreateDm = () => {
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
-      console.log(response.data);
+      console.log(response.data)
+      console.log(response);
       handleClose(); // cerrar modal tras éxito
-      navigate('/test/RecepcionDmForm')
+      notifications.show(<strong>Dispositivo medico creado exitosamente</strong>,{
+        severity: 'success',
+        autoHideDuration: 3000,
+      })
+      // navigate('/test/RecepcionDmForm')
     } catch (error) {
+      notifications.show(error.response?.data.nombredm,{ 
+        severity: 'error',
+        autoHideDuration: 3000,
+      })
       console.error("Error al enviar formulario:", error);
     }
   };

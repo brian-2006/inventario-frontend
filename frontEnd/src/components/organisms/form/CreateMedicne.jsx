@@ -1,8 +1,11 @@
+//importa hooks
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useNotifications } from "@toolpad/core/useNotifications";
+//importa libreria para peticiones
 import axios from "axios";
+//importa componentes
 import { CreateButton } from "../../atoms/Button";
-import CloseIcon from "@mui/icons-material/Close";
 import CreateMedicine from "../../molecules/form/CreateMedicine";
 import ModalForm from '../modal/ModalForm'
 
@@ -21,6 +24,7 @@ const CreateMedicineForm = () => {
   const handleClose = () => setOpen(false);
 
   const navigate = useNavigate()
+  const notifications = useNotifications()
 
   // --- Manejador de cambios de inputs ---
   const handleChange = (field, value) => {
@@ -39,9 +43,18 @@ const CreateMedicineForm = () => {
       );
       console.log(response.data);
       handleClose(); // cerrar modal tras éxito
+      notifications.show(<strong>Medicamento creado exitosamente</strong>,{
+        severity: 'success',
+        autoHideDuration: 3000,
+      })
       navigate('/test/RecepcionMedicamentosForm')
     } catch (error) {
       console.error("Error al enviar formulario:", error);
+      notifications.show(error.response.statusText,{
+        severity: 'error',
+        autoHideDuration: 3000,
+      })
+
     }
   };
 

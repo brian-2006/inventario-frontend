@@ -1,8 +1,11 @@
+//importar hooks
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useNotifications } from "@toolpad/core/useNotifications";
+//importar libreria de peticiones
 import axios from "axios";
+//importar componentes
 import { CreateButton } from "../../atoms/Button";
-import CloseIcon from "@mui/icons-material/Close";
 import RecepcionDmForm from "../../molecules/form/RecepcionDmForm";
 import ModalForm from '../modal/ModalForm'
 
@@ -33,6 +36,7 @@ const FormRecepcionDm = () => {
   });
 
   const navigate = useNavigate()
+  const notifications = useNotifications()
 
   // --- Control de apertura del modal ---
   const handleOpen = () => setOpen(true);
@@ -56,8 +60,16 @@ const FormRecepcionDm = () => {
       console.log(response.data);
       handleClose(); // cerrar modal tras éxito
       navigate('/test/RecepcionDmTest')
+      notifications.show(<strong>Dispositivo medico registrado exitosamente</strong>,{
+        severity: 'success',
+        autoHideDuration: 3000,
+      })
     } catch (error) {
       console.error("Error al enviar formulario:", error);
+      notifications.show(error.response.data,{
+        severity: 'error',
+        autoHideDuration: 3000,
+      })
     }
   };
 
