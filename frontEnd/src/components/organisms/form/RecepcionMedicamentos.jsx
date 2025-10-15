@@ -34,7 +34,7 @@ const FormRecepcionMedicamentos = () => {
     condicion_transporte: "",
     quien_realiza: 2,
     observaciones: "",
-    nombre_inventario: "medicamentos",
+    nombre_inventario: "",
   });
 
   const navigate = useNavigate()

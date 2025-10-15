@@ -172,8 +172,8 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
             name = 'estado embalaje'
             label = 'estado de embalaje'
             options = {[
-                {value: '1', label: 'Bueno'},
-                {value: '2', label: 'Malo'},
+                {value: 'NC', label: 'NC'},
+                {value: 'C', label: 'C'},
             ]}
             value = {formData.estado_embalaje}
             onChange = {(e)=> handleChange('estado_embalaje', e.target.value)}
@@ -183,11 +183,24 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
             name = 'condicion de transporte'
             label = 'condicion de transporte'
             options = {[
-                {value: 'A', label: 'A'},
-                {value: 'C', label: 'C'},
+                {value: 'Carro', label: 'Carro'},
+                {value: 'Moto', label: 'Moto'},
             ]}
             value = {formData.condicion_transporte}
             onChange = {(e)=> handleChange('condicion_transporte', e.target.value)}
+            />
+
+            <SelectInputAtom
+            name = 'tipo inventario'
+            label = 'tipo inventario'
+            options = {[
+                {value: "medicamentos", label: "medicamentos"},
+                {value: "control especial", label: "control especial"},
+                
+            ]}
+            value = {formData.nombre_inventario}
+            onChange={(e)=> handleChange('nombre_inventario', e.target.value)}
+            required
             />
 
             <TextInputAtom

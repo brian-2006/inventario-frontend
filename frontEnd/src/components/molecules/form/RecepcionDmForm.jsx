@@ -135,7 +135,8 @@ const RecepcionDmForm = ({formData, handleChange}) => {
                 {value: 'I', label: 'I'},
                 {value: 'IIA', label: 'IIA'},
                 {value: 'IIB ', label: 'IIB '},
-                {value: 'III ', label: 'III '}
+                {value: 'III ', label: 'III '},
+                {value: 'N/A ', label: 'N/A '},
             ]}
             required
             />
@@ -162,9 +163,8 @@ const RecepcionDmForm = ({formData, handleChange}) => {
             name = 'estado embalaje'
             label = 'estado de embalaje'
             options = {[
-                {value: 'Bueno', label: 'Bueno'},
-                {value: 'Malo', label: 'Malo'},
-                {value: 'Regular', label: 'Regular'}
+                {value: 'NC', label: 'NC'},
+                {value: 'C', label: 'C'},
             ]}
             value = {formData.estado_embalaje}
             onChange = {(e)=> handleChange('estado_embalaje', e.target.value)}
@@ -175,8 +175,8 @@ const RecepcionDmForm = ({formData, handleChange}) => {
             name = 'condicion de transporte'
             label = 'condicion de transporte'
             options = {[
-                {value: 'NC', label: 'NC'},
-                {value: 'C', label: 'C'},
+                {value: 'Carro', label: 'Carro'},
+                {value: 'Moto', label: 'Moto'},
             ]}
             value = {formData.condicion_transporte}
             onChange = {(e)=> handleChange('condicion_transporte', e.target.value)}
@@ -188,10 +188,11 @@ const RecepcionDmForm = ({formData, handleChange}) => {
             label = 'tipo inventario'
             options = {[
                 {value: "dispositivos medicos", label: "dispositivos medicos"},
-                {value: "control especial", label: "control especial"},
                 {value: "respiratorio", label: "respiratorio"},
                 {value: "bioseguridad", label: "bioseguridad"},
-                {value: "aseo", label: "aseo"}
+                {value: "aseo", label: "aseo"},
+                {value: "equipos biomedicos", label: "equipos biomedicos"},
+                {value: "reactivo", label: "reactivo"}
             ]}
             value = {formData.nombre_inventario}
             onChange={(e)=> handleChange('nombre_inventario', e.target.value)}
