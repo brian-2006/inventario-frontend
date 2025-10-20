@@ -6,7 +6,6 @@ import { useNotifications } from '@toolpad/core/useNotifications';
 import axios from "axios";
 //Botones
 import { CreateButton } from "../../atoms/Button";
-import CloseIcon from "@mui/icons-material/Close";
 //Importacion de otros modulos que se usaran
 import ModalForm from '../modal/ModalForm'
 import CreateDm from '../../molecules/form/CreateDmform'
@@ -48,7 +47,7 @@ const FormCreateDm = () => {
         severity: 'success',
         autoHideDuration: 3000,
       })
-      // navigate('/test/RecepcionDmForm')
+      navigate('/test/RecepcionDmForm')
     } catch (error) {
       notifications.show(error.response?.data.nombredm,{ 
         severity: 'error',

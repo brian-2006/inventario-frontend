@@ -1,28 +1,37 @@
 import TextInputAtom from '../../atoms/form/Input'
 import SelectInputAtom from '../../atoms/form/SelectInputAtom'
+import AutoCompleteAtom from '../../atoms/form/AutoCompleteAtom'
 import {useState, useEffect} from 'react'
-import axios from 'axios'
+import {handleGet} from '../../../utils/api/apiClient'
 
-const RecepcionMedicamentoForm = ({formData, handleChange}) => {
+const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
     const [medicamentos, setMedicamentos] = useState([])
-
+    const [proveedores, setProveedores] = useState([])
+    const [laboratorios, setLaboratorios] = useState([])
+    const [concentraciones, setConcentracion] = useState([])
+    const [presentacionesComerciales, setPresentacionesComerciales] = useState([])
+    const [formasFarmaceuticas, setFormaFarmaceutica] = useState([])
     useEffect(() => {
-        const fetchMedicamentos = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/insumo/medicamentos/')
-                setMedicamentos(response.data)
-            } catch (error) {
-                console.error('Error al obtener medicamentos:', error)
-            }
-        }
-        fetchMedicamentos()
+        handleGet('insumo/medicamentos/', setMedicamentos)
+        handleGet('insumo/proveedor/', setProveedores)
+        handleGet('insumo/laboratorio/', setLaboratorios)
+        handleGet('insumo/concentracion/', setConcentracion)
+        handleGet('insumo/presentacioncomercial/', setPresentacionesComerciales)
+        handleGet('insumo/formafarmaceutica/', setFormaFarmaceutica)
     }, [])
+
+    const handleAutocompleteChange = (fieldName) => (event, newValue) => {
+        setter(prevData => ({
+          ...prevData,
+          [fieldName]: newValue // Ya es solo el ID o null
+        }));
+    };
 
     
     console.log(formData)
     return (
         <>
-            <SelectInputAtom
+            <AutoCompleteAtom
                 name="medicamento"
                 label="Nombre medicamento"
                 // Mantén options como {value, label}
@@ -33,36 +42,63 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
                 // El Select debe estar controlado por el id seleccionado
                 value={formData.id_insumo ?? ""}
                 // onChange actualiza id_insumo y nombregenerico
-                onChange={(e) => {
-                    const id = e.target.value;
-                    const found = medicamentos.find(m => m.id === parseInt(id));
-                    handleChange('id_insumo', id);
-                    handleChange('nombre_generico', found?.nombregenerico ?? "");
+                onChange={(event, newValue)=>{
+                    setter(prevData=>({
+                        ...prevData,
+                        id_insumo: newValue,
+                        nombre_generico: medicamentos.find(m=> m.id === newValue)?.nombregenerico ?? ""
+                    }))
                 }}
             />
 
-            <TextInputAtom
+            <AutoCompleteAtom
             name='concentracion'
             label='Concentracion'
-            type='text'
+            options = {
+                concentraciones.map(concentracion=>(
+                    {
+                        value: concentracion.concentracion,
+                        label: concentracion.concentracion
+                    }
+                ))
+            }
             value={formData.concentracion}
-            onChange={(e)=> handleChange('concentracion', e.target.value)}
+            onChange={(event, newValue)=>{
+                setter(prevData=>({
+                    ...prevData,
+                    concentracion: newValue,
+                }))
+            }}
             />
 
-            <TextInputAtom
+            <AutoCompleteAtom
             name='presentacion'
             label='Presentacion'
-            type='text'
+            options = {
+                presentacionesComerciales.map(presentacion=>(
+                    { 
+                        value: presentacion.nombrepresentacion,
+                        label: presentacion.nombrepresentacion
+                    }
+                ))
+            }
             value={formData.presentacion_comercial}
-            onChange={(e)=> handleChange('presentacion_comercial', e.target.value)}
+            onChange={(handleAutocompleteChange('presentacion_comercial'))}
             />
 
-            <TextInputAtom
+            <AutoCompleteAtom
             name = 'formula farmaceutica'
-            label = 'Formula farmaceutica'
-            type = 'text'
+            label = 'Forma farmaceutica'
+            options = {
+                formasFarmaceuticas.map(forma =>(
+                    {
+                        value: forma.nombreforma,
+                        label: forma.nombreforma
+                    }
+                ))
+            }
             value = {formData.formula_farmaceutica}
-            onChange = {(e)=> handleChange('formula_farmaceutica', e.target.value)}
+            onChange = {handleAutocompleteChange('formula_farmaceutica')}
             />
 
             {/* <SelectInputAtom
@@ -113,13 +149,18 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
             onChange = {(e)=> handleChange('precio_unitario', e.target.value)}
             />
 
-            <TextInputAtom
+            <AutoCompleteAtom
             name = 'fabricante'
             label = 'fabricante'
-            type = 'text'
+            options = {
+                laboratorios.map(laboratorio =>({
+                    value: laboratorio.id,
+                    label: laboratorio.nombrelaboratorio
+                }))
+            }
             required
             value = {formData.fabricante}
-            onChange = {(e) => handleChange('fabricante', e.target.value)}
+            onChange = {handleAutocompleteChange('fabricante')}
             />
 
             <TextInputAtom
@@ -143,12 +184,12 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
             <SelectInputAtom
             name = 'estado invima'
             label = 'estado registro invima'
-            value ={formData.estado_registro_invima}
-            onChange = {(e)=> handleChange('estado_registro_invima', e.target.value)}
             options={[
                 {value: 'vigente', label: 'vigente'},
                 {value: 'no vigente', label: 'no vigente'}
             ]}
+            value ={formData.estado_registro_invima}
+            onChange = {(e)=> handleChange('estado_registro_invima', e.target.value)}
             />
 
             <TextInputAtom
@@ -160,12 +201,17 @@ const RecepcionMedicamentoForm = ({formData, handleChange}) => {
             onChange = {(e) => handleChange('numero_factura', e.target.value)}
             />
 
-            <TextInputAtom
+            <AutoCompleteAtom
             name = 'proveedor'
             label = 'proveedor'
-            type = 'text'
+            options ={
+                proveedores.map(proveedor =>({
+                    value: proveedor.id,
+                    label: proveedor.nombreproveedor
+                }))
+            }
             value = {formData.proveedor}
-            onChange = {(e)=> handleChange('proveedor', e.target.value)}
+            onChange = {handleAutocompleteChange('proveedor')}
             />
 
             <SelectInputAtom

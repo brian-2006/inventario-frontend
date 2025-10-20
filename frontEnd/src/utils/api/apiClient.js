@@ -1,70 +1,25 @@
 import axios from 'axios'
+const baseURL = import.meta.env.VITE_API_BASE_URL;// enpoint metodo create
 
-// enpoint metodo create
-function Create (URL, data) {
 
-    const response = axios.post(URL, data)
-    .then(response => {
-        return response.data
-    })
-    .catch(error => {
+export const handleGet = async (Url, setData) =>{
+    try{
+        const response = await axios.get(`${baseURL}${Url}`)
+        setData(response.data)
+    }catch(error){
         console.log(error)
-    })
-
-    return response
+    }
 }
 
-// enpoint metodo update
-function UpdateById  (URL, id, data)  {
-    const response = axios.put(`${URL}${id}`, data)
-    .then(response => {
-        return response.data
-    })
-    .catch(error => {
+export const handlePost = async (url, data) =>{
+    try{
+        const response = await axios.post(
+            `${baseURL}${url}`,
+            data,
+            {headers: {"Content-Type": "application/json"}}
+        )
+        return response
+    }catch(error){
         console.log(error)
-    })
-
-    return response
-}
-
-//endpoint metodo consultar
-
-function GetById  (URL, id)  {
-    
-    const response = axios.get(`${URL}${id}`)
-    .then(response => {
-        return response.data
-    })
-    .catch(error => {
-        console.log(error)
-    })
-
-    return response
-}
-
-function GetList  (URL)  {
-
-    const response = axios.get(URL)
-    .then(response => {
-        return response.data
-    })
-    .catch(error => {
-        console.log(error)
-    })
-
-    return response
-}
-
-//endpoint para delete
-
-function DeleteById  (URL, id)  {
-    const response = axios.delete(`${URL}${id}`)
-    .then(response => {
-        return response.data
-    })
-    .catch(error => {
-        console.log(error)
-    })
-
-    return response
+    }
 }

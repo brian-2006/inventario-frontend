@@ -95,6 +95,7 @@ const FormRecepcionMedicamentos = () => {
         <RecepcionMedicamentoForm
           formData={formData}
           handleChange={handleChange}
+          setter = {setFormData}
         />
       </ModalForm>
     </>

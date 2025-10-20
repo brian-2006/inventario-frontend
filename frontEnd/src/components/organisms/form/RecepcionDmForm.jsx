@@ -92,6 +92,7 @@ const FormRecepcionDm = () => {
       >
         <RecepcionDmForm
           formData={formData}
+          setter = {setFormData}
           handleChange={handleChange}
         />
       </ModalForm>

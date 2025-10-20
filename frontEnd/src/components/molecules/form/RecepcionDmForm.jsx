@@ -1,43 +1,47 @@
 import TextInputAtom from '../../atoms/form/Input'
 import SelectInputAtom from '../../atoms/form/SelectInputAtom'
+import AutoCompleteAtom from '../../atoms/form/AutoCompleteAtom'
 import {useState, useEffect} from 'react'
-import axios from 'axios'
+import { handleGet } from '../../../utils/api/apiClient'
 
-const RecepcionDmForm = ({formData, handleChange}) => {
+
+const RecepcionDmForm = ({formData, handleChange, setter}) => {
     const [dms, setDms] = useState([])
+    const [proveedores, setProveedores] = useState([])
+    const [laboratorios, setLaboratorios] = useState([])
 
     useEffect(() => {
-        const fetchMedicamentos = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/insumo/dm/')
-                setDms(response.data)
-            } catch (error) {
-                console.error('Error al obtener medicamentos:', error)
-            }
-        }
-        fetchMedicamentos()
-    }, [])
+        
+        handleGet('insumo/dm/', setDms)
+        handleGet('insumo/proveedor/', setProveedores)
+        handleGet('insumo/laboratorio/', setLaboratorios)
+     }, [])
 
-    
+    const handleAutocompleteChange = (fieldName) => (event, newValue) => {
+        setter(prevData => ({
+          ...prevData,
+          [fieldName]: newValue // Ya es solo el ID o null
+        }));
+    };
+
     console.log(formData)
     return (
         <>
-            <SelectInputAtom
+            <AutoCompleteAtom
                 name="dispositivo medico"
                 label="Nombre del dispositivo medico"
-                // Mantén options como {value, label}
                 options={dms.map(dm => ({
                     value: dm.id,
                     label: dm.nombredm,
                 }))}
-                // El Select debe estar controlado por el id seleccionado
-                value={formData.id_insumo ?? ""}
-                // onChange actualiza id_insumo y nombregenerico
-                onChange={(e) => {
-                    const id = e.target.value;
-                    const found = dms.find(dm => dm.id === parseInt(id));
-                    handleChange('id_insumo', id);
-                    handleChange('nombre_generico', found?.nombredm ?? "");
+                value={formData.id_insumo}
+                onChange={(event, newValue) => {
+                    // newValue ya es solo el ID o null
+                    setter(prevData => ({
+                        ...prevData,
+                        id_insumo: newValue,
+                        nombre_generico: dms.find(dm => dm.id === newValue)?.nombredm ?? ""
+                    }));
                 }}
             />
 
@@ -86,13 +90,16 @@ const RecepcionDmForm = ({formData, handleChange}) => {
             onChange = {(e)=> handleChange('precio_unitario', e.target.value)}
             />
 
-            <TextInputAtom
-            name = 'fabricante'
-            label = 'fabricante'
-            type = 'text'
-            required
-            value = {formData.fabricante}
-            onChange = {(e) => handleChange('fabricante', e.target.value)}
+            <AutoCompleteAtom
+                name='fabricante'
+                label='fabricante'
+                options={laboratorios.map(laboratorio => ({
+                    value: laboratorio.id,
+                    label: laboratorio.nombrelaboratorio
+                }))}
+                value={formData.fabricante}
+                onChange={handleAutocompleteChange('fabricante')}
+                required
             />
 
             <TextInputAtom
@@ -117,12 +124,12 @@ const RecepcionDmForm = ({formData, handleChange}) => {
             name = 'estado invima'
             label = 'estado registro invima'
             value ={formData.estado_registro_invima}
-            onChange = {(e)=> handleChange('estado_registro_invima', e.target.value)}
             options={[
                 {value: 'vigente', label: 'vigente'},
                 {value: 'no vigente', label: 'no vigente'}
                 
             ]}
+            onChange = {(e)=> handleChange('estado_registro_invima', e.target.value)}
             required
             />
 
@@ -150,13 +157,16 @@ const RecepcionDmForm = ({formData, handleChange}) => {
             onChange = {(e) => handleChange('numero_factura', e.target.value)}
             />
 
-            <TextInputAtom
-            name = 'proveedor'
-            label = 'proveedor'
-            type = 'text'
-            value = {formData.proveedor}
-            onChange = {(e)=> handleChange('proveedor', e.target.value)}
-            required
+            <AutoCompleteAtom
+                name='proveedor'
+                label='proveedor'
+                options={proveedores.map(proveedor => ({
+                    value: proveedor.id,
+                    label: proveedor.nombreproveedor
+                }))}
+                value={formData.proveedor}
+                onChange={handleAutocompleteChange('proveedor')}
+                required
             />
 
             <SelectInputAtom
