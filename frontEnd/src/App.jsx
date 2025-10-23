@@ -1,9 +1,14 @@
-import React from 'react'
 import TestRoutes from './routes/TestRoutes'
 import {Routes, Route} from 'react-router-dom'
-import { useState } from 'react'
-import Layout from './components/templates/Layout'
 
+import ToolBarWrapper from "./components/organisms/toolbar/ToolBarWrapper"
+
+//componentes de prueba
+import SearchBar from "./components/molecules/search/SearchBar"
+import DateRangePickerAtom from "./components/molecules/search/DateRangePicker"
+import {CreateButton, DownloadButton} from "./components/atoms/Button"
+import Header from "./components/organisms/header/Header"
+import SidebarItemExpandable from './components/organisms/sidebar/SidebarWrapper'
 function App() {
    
 
@@ -12,7 +17,30 @@ function App() {
         <Routes>
                 <Route path='/test/*' element={<TestRoutes />} />
         </Routes>
-        <Layout/>
+        {/* <ToolBarWrapper title= "Filtros de busqueda recepcion tecnica" maxWidth = "sxl">
+          <SearchBar onSearch={valor => alert("Buscar: " + valor)} />
+          <DateRangePickerAtom
+          onChange={(range) => console.log("Rango seleccionado:", range)}
+          sx={{ maxWidth: 400 }}
+          />
+          <CreateButton text = "crear nuevo insumo"/>
+          <DownloadButton text = "descargar reporte"/>
+        </ToolBarWrapper>
+        <ToolBarWrapper title= "Filtros de busqueda inventario principal" maxWidth = "sxl">
+          <SearchBar onSearch={valor => alert("Buscar: " + valor)} />
+          <DateRangePickerAtom
+          onChange={(range) => console.log("Rango seleccionado:", range)}
+          sx={{ maxWidth: 400 }}
+          />
+          <CreateButton text = "crear nuevo insumo"/>
+          <DownloadButton text = "descargar reporte"/>
+        </ToolBarWrapper> */}
+
+        {/* <Header/> */}
+
+        <SidebarItemExpandable/>
+    
+
         
      
         

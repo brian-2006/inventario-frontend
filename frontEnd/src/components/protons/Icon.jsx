@@ -132,3 +132,24 @@ export const BoxIcon = ({ className = '', color, fontSize }) => {
       />
     );
 };
+
+
+export const CalendarIcon = ({className = '', color, fontSize}) =>{
+  return(
+    <i
+        className={`pi pi-calendar ${className}`}
+        aria-hidden="true"
+        style={{ color: color, fontSize: fontSize }}
+      />
+  )
+}
+
+export const MenuIcon = ({className = '', color, fontSize = "2rem"}) =>{
+  return(
+    <i
+        className={`pi pi-bars ${className}`}
+        aria-hidden="true"
+        style={{ color: color, fontSize: fontSize }}
+      />
+  )
+}
