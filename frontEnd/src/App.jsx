@@ -9,6 +9,8 @@ import DateRangePickerAtom from "./components/molecules/search/DateRangePicker"
 import {CreateButton, DownloadButton} from "./components/atoms/Button"
 import Header from "./components/organisms/header/Header"
 import SidebarItemExpandable from './components/organisms/sidebar/SidebarWrapper'
+import MuiSideBar from "./components/organisms/sidebar/react-mui-sidebar"
+import Home from "./components/pages/Home"
 function App() {
    
 
@@ -16,6 +18,7 @@ function App() {
     <>  {/*rutas de pruebas */}
         <Routes>
                 <Route path='/test/*' element={<TestRoutes />} />
+                <Route path = "/" element = {<Home/>}/>
         </Routes>
         {/* <ToolBarWrapper title= "Filtros de busqueda recepcion tecnica" maxWidth = "sxl">
           <SearchBar onSearch={valor => alert("Buscar: " + valor)} />
@@ -25,8 +28,8 @@ function App() {
           />
           <CreateButton text = "crear nuevo insumo"/>
           <DownloadButton text = "descargar reporte"/>
-        </ToolBarWrapper>
-        <ToolBarWrapper title= "Filtros de busqueda inventario principal" maxWidth = "sxl">
+        </ToolBarWrapper> */}
+        {/* <ToolBarWrapper title= "Filtros de busqueda inventario principal" maxWidth = "sxl">
           <SearchBar onSearch={valor => alert("Buscar: " + valor)} />
           <DateRangePickerAtom
           onChange={(range) => console.log("Rango seleccionado:", range)}
@@ -38,7 +41,8 @@ function App() {
 
         {/* <Header/> */}
 
-        <SidebarItemExpandable/>
+        {/* <SidebarItemExpandable/> */}
+        <MuiSideBar/>
     
 
         

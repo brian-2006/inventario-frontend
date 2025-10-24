@@ -4,9 +4,11 @@ IconButton,
 Box,
 Drawer,
 Typography,
+Toolbar,
 } from "@mui/material"
 import {MenuButton} from '../../atoms/Button'
 import {useState} from 'react'
+import {User3DIcon} from '../../protons/Icon'
 
 const Header = () =>{
     const [open, SetOpen] = useState(false)
@@ -16,17 +18,17 @@ const Header = () =>{
     }
     return(
         <AppBar variant = "outlined" position = "static">
-            <Box sx = {{alignItems: "right", display: "flex", width: "100%"}}>
-                <Typography variant = "h6">
-                    <strong>MENU</strong>
-                </Typography>
-            </Box>
-            <Box sx ={{alignItems: "left", display: "flex"}}>
-                <MenuButton onClick={handleOpen}/>
-            </Box>
-            
+            <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <MenuButton onClick={handleOpen}/>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <User3DIcon size={80} />
+                </Box>
+            </Toolbar>
             <Drawer open = {open} onClose = {handleOpen}/>
         </AppBar>
+        
     )
 }
 
