@@ -101,7 +101,7 @@ const MuiSideBar = ()=>{
                         <MenuItem
                             icon = {<ReactivoIcon/>}
                             component = {Link}
-                            link = "/"
+                            link = "/inventario/reactivo"
                         >
                             Reactivos
                         </MenuItem>
@@ -109,7 +109,7 @@ const MuiSideBar = ()=>{
                         <MenuItem
                             icon = {<BioMedicoIcon/>}
                             component = {Link}
-                            link = "/"
+                            link = "/inventario/equipos-biomedicos"
                         >
                             Equipos biomedicos
                         </MenuItem>

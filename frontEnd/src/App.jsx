@@ -22,6 +22,8 @@ import InventarioControlEspecialPage from './components/pages/inventory/ControlE
 import RecepcionMedicamentosPage from './components/pages/RecepcionTecnica/RecepcionMedicamentos'
 import FormRecepcionMedicamentos from './components/organisms/form/RecepcionMedicamentos'
 import FormRecepcionDm from './components/organisms/form/RecepcionDmForm'
+import InventarioEquiposBiomedicosPage from './components/pages/inventory/EquiposBiomedicos'
+import InventarioReactivoPage from './components/pages/inventory/InventarioReactivo'
 function App() {
 
 
@@ -37,6 +39,8 @@ function App() {
                 <Route path = "/inventario/bioseguridad" element = {<InventarioBioseguridadPage/>}/>
                 <Route path = "/inventario/aseo" element = {<InventarioAseoPage/>}/>
                 <Route path = "/inventario/control-especial" element = {<InventarioControlEspecialPage/>}/>
+                <Route path = "/inventario/equipos-biomedicos" element = {<InventarioEquiposBiomedicosPage/>}/>
+                <Route path = "/inventario/reactivo" element = {<InventarioReactivoPage/>}/>
             {/*rutas de recepcion tecnica */}
                 <Route path = "/recepcion-tecnica/medicamentos" element = {<RecepcionMedicamentosPage/>}/>
             {/*Rutas de formularios*/ }

@@ -9,7 +9,9 @@ export const TypeInventory = {
     Aseo: 'aseo',
     Bioseguridad: 'bioseguridad',
     Varios: 'varios',
-    Respiratorio: 'respiratorio'
+    Respiratorio: 'respiratorio',
+    Reactivo: 'reactivo',
+    EquiposBiomedicos: 'equipos biomedicos'
 }
 
 export const LoteRowsColums = ["lote", "cantidad total", "Fecha vencimiento", "Precio unitario", "Precio total", "Fabricante", "Registro Invima", "Fecha vencimiento invima" ];
