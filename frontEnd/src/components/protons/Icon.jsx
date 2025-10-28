@@ -27,7 +27,7 @@ import Document from '../../assets/icons/recepcion tecnica.png'
 
 //Iconos 3D
 
-export const FolderIcon = ({ className = '', size = 15 }) => {
+export const FolderIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={Folder}
@@ -37,7 +37,7 @@ export const FolderIcon = ({ className = '', size = 15 }) => {
     />
   );
 };
-export const DocIcon = ({ className = '', size = 30 }) => {
+export const DocIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={Document}
@@ -59,7 +59,7 @@ export const User3DIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const DmIcon = ({ className = '', size = 30 }) => {
+export const DmIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={Dm}
@@ -70,7 +70,7 @@ export const DmIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const ControlEspecialIcon = ({ className = '', size = 30 }) => {
+export const ControlEspecialIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={ControlEspecial}
@@ -81,7 +81,7 @@ export const ControlEspecialIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const BioMedicoIcon = ({ className = '', size = 30 }) => {
+export const BioMedicoIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={BioMedico}
@@ -92,7 +92,7 @@ export const BioMedicoIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const BioseguridadIcon = ({ className = '', size = 30 }) => {
+export const BioseguridadIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={Bioseguridad}
@@ -103,7 +103,7 @@ export const BioseguridadIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const AseoIcon = ({ className = '', size = 30 }) => {
+export const AseoIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={Aseo}
@@ -114,7 +114,7 @@ export const AseoIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const ReactivoIcon = ({ className = '', size = 30 }) => {
+export const ReactivoIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={Sangre}
@@ -127,7 +127,7 @@ export const ReactivoIcon = ({ className = '', size = 30 }) => {
 
 
 
-export const RespiratorioIcon = ({ className = '', size = 30 }) => {
+export const RespiratorioIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={Respiratorio}
@@ -138,7 +138,7 @@ export const RespiratorioIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const MedicamentosIcon = ({ className = '', size = 30 }) => {
+export const MedicamentosIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={medicamentos}
@@ -151,7 +151,7 @@ export const MedicamentosIcon = ({ className = '', size = 30 }) => {
 
 
 
-export const MaletaIcon = ({ className = '', size = 30 }) => {
+export const MaletaIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={BotiquinUrl}
@@ -162,7 +162,7 @@ export const MaletaIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const AmbulanceIcon = ({ className = '', size = 30 }) => {
+export const AmbulanceIcon = ({ className = '', size = 20 }) => {
   return (
     <img
       src={Ambulance}
@@ -173,7 +173,7 @@ export const AmbulanceIcon = ({ className = '', size = 30 }) => {
   );
 };
 
-export const TAMIcon = ({className = "", size = 30}) =>{
+export const TAMIcon = ({className = "", size = 20}) =>{
   return(
     <img
     src = {TAM}
@@ -184,7 +184,7 @@ export const TAMIcon = ({className = "", size = 30}) =>{
   );
 };
 
-export const Botiquin3DIcon = ({className = "", size = 30}) =>{
+export const Botiquin3DIcon = ({className = "", size = 20}) =>{
   return(
     <img
     src = {Botiquin}
@@ -195,7 +195,7 @@ export const Botiquin3DIcon = ({className = "", size = 30}) =>{
   );
 };
 
-export const CarroConsultaIcon = ({className = "", size = 30}) =>{
+export const CarroConsultaIcon = ({className = "", size = 20}) =>{
   return(
     <img
     src = {CarroConsulta}
@@ -305,20 +305,22 @@ export const OpenIcon = ({ className = '' }) => {
     );
 };
 
-export const EyeIcon = ({ className = '' }) => {
+export const EyeIcon = ({ className = '', color, fontSize }) => {
     return (
       <i
         className={`pi pi-eye ${className}`}
         aria-hidden="true"
+        style={{ color: color, fontSize: fontSize }}
       />
     );
 };
 
-export const UserIcon = ({ className = '' }) => {
+export const UserIcon = ({ className = '', color, fontSize }) => {
     return (
       <i
         className={`pi pi-user ${className}`}
         aria-hidden="true"
+        style={{ color: color, fontSize: fontSize }}
       />
     );
 };

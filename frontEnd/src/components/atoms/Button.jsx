@@ -1,12 +1,22 @@
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import {DeleteIcon, UpdateIcon, MenuIcon} from '../protons/Icon.jsx'
+import {DeleteIcon, UpdateIcon, MenuIcon, UserIcon} from '../protons/Icon.jsx'
 
 //iconos de MUI
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 //botonoes de iconos
+export const UserButton = ({size, onClick}) => {
+    return (
+        <IconButton
+          aria-label="usuario" color="#F5F5F5" size={size} onClick={onClick}>
+          <UserIcon sx ={{bgcolor: "#F5F5F5"}}/>
+        </IconButton>
+    );
+};
+
+
 export const DeleteButton = ({size, onClick}) => {
     return (
         <IconButton

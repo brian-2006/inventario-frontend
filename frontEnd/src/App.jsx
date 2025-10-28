@@ -11,44 +11,42 @@ import Header from "./components/organisms/header/Header"
 import SidebarItemExpandable from './components/organisms/sidebar/SidebarWrapper'
 import MuiSideBar from "./components/organisms/sidebar/react-mui-sidebar"
 import Home from "./components/pages/Home"
+import Logo from "./components/organisms/sidebar/logo"
+
+import InventarioMedicamentosPage from './components/pages/inventory/InventarioMedicamentos'
+import InventarioDMPage from './components/pages/inventory/InventarioDM'
+import InventarioRespiratorioPage from './components/pages/inventory/InventarioRespiratorio'
+import InventarioBioseguridadPage from './components/pages/inventory/InventarioBioseguridad'
+import InventarioAseoPage from './components/pages/inventory/InventarioAseo'
+import InventarioControlEspecialPage from './components/pages/inventory/ControlEspecial'
+import RecepcionMedicamentosPage from './components/pages/RecepcionTecnica/RecepcionMedicamentos'
+import FormRecepcionMedicamentos from './components/organisms/form/RecepcionMedicamentos'
+import FormRecepcionDm from './components/organisms/form/RecepcionDmForm'
 function App() {
-   
+
 
   return (
     <>  {/*rutas de pruebas */}
         <Routes>
+          {/*rutas de inventarios */}
                 <Route path='/test/*' element={<TestRoutes />} />
-                <Route path = "/" element = {<Home/>}/>
+                <Route path = "/" element = {<InventarioMedicamentosPage/>}/>
+                <Route path ="/inventario/medicamentos" element ={<InventarioMedicamentosPage/>}/>
+                <Route path = "/inventario/dispositivos-medicos" element = {<InventarioDMPage/>}/>
+                <Route path = "/inventario/respiratorio" element = {<InventarioRespiratorioPage/>}/>
+                <Route path = "/inventario/bioseguridad" element = {<InventarioBioseguridadPage/>}/>
+                <Route path = "/inventario/aseo" element = {<InventarioAseoPage/>}/>
+                <Route path = "/inventario/control-especial" element = {<InventarioControlEspecialPage/>}/>
+            {/*rutas de recepcion tecnica */}
+                <Route path = "/recepcion-tecnica/medicamentos" element = {<RecepcionMedicamentosPage/>}/>
+            {/*Rutas de formularios*/ }
+                <Route path = "/recepcion-tecnica/medicamentos/form" element = {<FormRecepcionMedicamentos/>}/>
         </Routes>
-        {/* <ToolBarWrapper title= "Filtros de busqueda recepcion tecnica" maxWidth = "sxl">
-          <SearchBar onSearch={valor => alert("Buscar: " + valor)} />
-          <DateRangePickerAtom
-          onChange={(range) => console.log("Rango seleccionado:", range)}
-          sx={{ maxWidth: 400 }}
-          />
-          <CreateButton text = "crear nuevo insumo"/>
-          <DownloadButton text = "descargar reporte"/>
-        </ToolBarWrapper> */}
-        {/* <ToolBarWrapper title= "Filtros de busqueda inventario principal" maxWidth = "sxl">
-          <SearchBar onSearch={valor => alert("Buscar: " + valor)} />
-          <DateRangePickerAtom
-          onChange={(range) => console.log("Rango seleccionado:", range)}
-          sx={{ maxWidth: 400 }}
-          />
-          <CreateButton text = "crear nuevo insumo"/>
-          <DownloadButton text = "descargar reporte"/>
-        </ToolBarWrapper> */}
-
-        {/* <Header/> */}
-
-        {/* <SidebarItemExpandable/> */}
-        <MuiSideBar/>
-    
-
-        
-     
-        
       
+  
+
+
+
     </>
   )
 }

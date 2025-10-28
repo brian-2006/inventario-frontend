@@ -8,7 +8,9 @@ Toolbar,
 } from "@mui/material"
 import {MenuButton} from '../../atoms/Button'
 import {useState} from 'react'
-import {User3DIcon} from '../../protons/Icon'
+import {User3DIcon, UserIcon} from '../../protons/Icon'
+import {UserButton} from '../../atoms/Button'
+import MuiSideBar from '../sidebar/react-mui-sidebar'
 
 const Header = () =>{
     const [open, SetOpen] = useState(false)
@@ -23,10 +25,25 @@ const Header = () =>{
                     <MenuButton onClick={handleOpen}/>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <User3DIcon size={80} />
+                    <UserButton size = "large" color/>
                 </Box>
             </Toolbar>
-            <Drawer open = {open} onClose = {handleOpen}/>
+            <Drawer 
+            open = {open} 
+            onClose = {handleOpen}
+            anchor="left"
+            variant="tempory"
+            sx = {{
+                "& .MuiDrawer-paper": {
+                    width: 300,
+                    boxSizing: "border-box",
+                    backgroundColor: "#fafafa",
+                    borderRight: "1px solid #ddd",
+                },
+            }}
+            >
+                <MuiSideBar/>
+            </Drawer>
         </AppBar>
         
     )

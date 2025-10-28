@@ -61,7 +61,6 @@ const FormRecepcionMedicamentos = () => {
       );
       console.log(response.data);
       handleClose(); // cerrar modal tras éxito
-      navigate('/test/RecepcionMedicamentoTest')
       notifications.show(<strong>Medicamento registrado exitosamente</strong>,{
         severity: 'success',
         autoHideDuration: 3000,

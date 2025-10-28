@@ -1,17 +1,30 @@
 import { useState } from "react";
 import {InputBase, IconButton, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { ConnectingAirportsOutlined } from "@mui/icons-material";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({onSearch}) => {
   const [value, setValue] = useState("");
   // Bar optimizada con focus "azul" y shadow para énfasis
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const newValue = e.target.value
+    setValue(newValue)
+    onSearch?.(newValue.trim())
+    console.log(newValue.trim())
+  };
+
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  onSearch?.(value);
+};
+
+
   return (
     <Paper
       component="form"
-      onSubmit={e => {
-        e.preventDefault();
-        onSearch?.(value);
-      }}
+      onSubmit={handleSubmit}
       sx={{
         display: "flex",
         alignItems: "center",
@@ -30,7 +43,7 @@ const SearchBar = ({ onSearch }) => {
       }}
     >
       <IconButton
-        onClick={() => onSearch?.(value)}
+        onClick={handleSearch}
         sx={{
           color: "#1976d2",
           borderRadius: 3,
@@ -42,7 +55,7 @@ const SearchBar = ({ onSearch }) => {
       </IconButton>
       <InputBase
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={handleSearch}
         placeholder="Buscar..."
         inputProps={{ "aria-label": "buscar" }}
         sx={{
@@ -55,7 +68,7 @@ const SearchBar = ({ onSearch }) => {
         onKeyDown={e => {
           if (e.key === "Enter") {
             e.preventDefault();
-            onSearch?.(value);
+            handleSubmit(e);
           }
         }}
       />

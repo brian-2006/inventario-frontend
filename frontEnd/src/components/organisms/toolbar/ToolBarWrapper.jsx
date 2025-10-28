@@ -1,43 +1,56 @@
-// src/organisms/LayoutWrapper.jsx
-import { Container, Typography, Paper, Stack } from "@mui/material";
+// src/organisms/ToolBarWrapper.jsx
+import { Container, Typography, Paper, Stack, Box } from "@mui/material";
 
-
-const ToolBarWrapper = ({ title, children, maxWidth = "xl" }) => {
+const ToolBarWrapper = ({ title = "filtros busqueda", children, maxWidth = "xl" }) => {
   return (
     <Container
-      fixed
       maxWidth={maxWidth}
+      disableGutters
       sx={{
-        border: 2,
-        borderColor: "#DBD9D9",
+        p: 2,
         borderRadius: 4,
-        p: 3,
+        border: "1px solid #ccc",
       }}
     >
+      {/* Encabezado */}
       {title && (
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography
+          variant="h5"
+          component="h2"
+          fontWeight={500}
+          sx={{
+            mb: 2,
+            color: "text.primary",
+            
+          }}
+        >
           {title}
         </Typography>
       )}
 
+      {/* Contenedor principal */}
       <Paper
-        elevation={3}
+        elevation={2}
         sx={{
+          p: 2,
+          borderRadius: 3,
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          borderRadius: 4,
+          flexDirection: "column",
           gap: 2,
-          width: "100%",
-          flexWrap: "wrap",
+          backgroundColor: "#fff",
+          overflow: "hidden",
         }}
       >
+        {/* Stack flexible para los filtros */}
         <Stack
-          direction="row"
+          direction={{ xs: "column", sm: "row" }}
           alignItems="center"
-          spacing={2}
           justifyContent="space-between"
-          sx={{ p: 2, width: "100%" }}
+          spacing={2}
+          sx={{
+            width: "100%",
+            flexWrap: "wrap",
+          }}
         >
           {children}
         </Stack>

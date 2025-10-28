@@ -3,7 +3,7 @@ import { CreateButton, DownloadButton } from "../../atoms/Button"
 import SearchBar from '../../molecules/search/SearchBar'
 import DateRangePickerAtom from '../../molecules/search/DateRangePicker'
 
-const ToolBarInventory = ({ title = "inventario de..."}) =>{
+const ToolBarInventory = ({ title = "filtro de busqueda"}) =>{
     return (
         <>
         <ToolBarWrapper title = {title}>

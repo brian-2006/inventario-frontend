@@ -3,7 +3,7 @@ import {DmMainInventoryColumns, LoteRowsColums, TypeInventory} from '../json/Tes
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 
-const  InventarioDmTest = ()=> {
+const  InventarioRespiratorioTest = ()=> {
 
     const [rows, setRows] = useState([]);       
     const [loteRows, setLoteRows] = useState([]); 
@@ -38,4 +38,4 @@ const  InventarioDmTest = ()=> {
     )
 }
 
-export default InventarioDmTest;
+export default InventarioRespiratorioTest;

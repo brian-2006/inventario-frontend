@@ -59,7 +59,6 @@ const FormRecepcionDm = () => {
       );
       console.log(response.data);
       handleClose(); // cerrar modal tras éxito
-      navigate('/test/RecepcionDmTest')
       notifications.show(<strong>Dispositivo medico registrado exitosamente</strong>,{
         severity: 'success',
         autoHideDuration: 3000,

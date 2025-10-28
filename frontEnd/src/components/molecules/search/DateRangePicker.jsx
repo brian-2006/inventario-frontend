@@ -14,6 +14,8 @@ import dayjs from "dayjs";
 const DateRangePickerAtom = ({
   value,
   onChange,
+  onDateStart,
+  onDateEnd,
   sx = {},
   labelStart = "Desde",
   labelEnd = "Hasta",
@@ -23,13 +25,18 @@ const DateRangePickerAtom = ({
   const handleStartChange = (newDate) => {
     const updated = [newDate, internalValue[1]];
     setInternalValue(updated);
-    onChange?.(updated);
+    //onChange?.(updated);
+    onDateStart?.(newDate.toISOString().split('T')[0]);
+    console.log(newDate.toISOString().split('T')[0])
   };
 
   const handleEndChange = (newDate) => {
     const updated = [internalValue[0], newDate];
     setInternalValue(updated);
-    onChange?.(updated);
+    //onChange?.(updated);
+    onDateEnd?.(newDate.toISOString().split('T')[0]);
+    console.log(newDate.toISOString().split('T')[0])
+  
   };
 
   return (
