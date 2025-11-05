@@ -31,14 +31,14 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
     }
 
 
- // ✅ Filtrar por fecha y coincidencia al mismo tiempo
+ // Filtrar por fecha y coincidencia al mismo tiempo
   useEffect(() => {
     if (!data.length) return;
 
-    // 1️⃣ Filtramos por rango de fechas
+    //  Filtramos por rango de fechas
     let result = useFilterDate({ startDate, endDate, data });
 
-    // 2️⃣ Luego filtramos por búsqueda de texto
+    // Luego filtramos por búsqueda de texto
     if (q) {
       result = result.filter(dato =>
         (dato?.nombre || '').toLowerCase().startsWith(q)

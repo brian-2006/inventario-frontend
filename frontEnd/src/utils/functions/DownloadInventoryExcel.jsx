@@ -1,12 +1,12 @@
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 
-const handleDownLoad = async (endpoint, startDate, endDate, searchTerm = "", nombre_archivo) => {
+const handleDownLoadInventory = async (endpoint, startDate, endDate, nombre_archivo, lotNumbers) => {
   try {
     const params = {
       start: startDate, 
       end: endDate,
-      q: searchTerm,
+      lotNumbers: JSON.stringify(lotNumbers),
     };
 
     const response = await axios.get(`${endpoint}`, {
@@ -20,6 +20,4 @@ const handleDownLoad = async (endpoint, startDate, endDate, searchTerm = "", nom
   }
 };
 
-export default handleDownLoad;
-
-//TOCA HACER EL PROPIO DOWNLOAD EXCEL PARA QUE RECIBA SUS PROPIOS PARAMS DE EL INVENTARIO Y NO SOLO LA RECEPCION TECNICA
+export default handleDownLoadInventory;

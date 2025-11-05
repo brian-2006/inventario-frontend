@@ -1,9 +1,21 @@
-const Home =() =>{
-    return(
-        <div sx ={{alignItems: "center", justifyContent: "center", display: "flex"}}>
-            {/* <center><h1>Home</h1></center> */}
-        </div>
-    )
-}
+import InventarioMedicamentosPage from './inventory/InventarioMedicamentos';
+import InventarioBioseguridadPage from './inventory/InventarioBioseguridad';
+import InventarioRespiratorioPage from './inventory/InventarioRespiratorio'
 
-export default Home
+import TabsInventory from '../organisms/tab/TabSection'
+
+const Home = () => {
+
+
+  return (
+        <TabsInventory
+        tabSData={[
+            {label: "inventario", value: "inventario", content: <InventarioMedicamentosPage/>, toolbar: ""},
+            {label: "respiratorio", value: "respiratorio", content: <InventarioRespiratorioPage/>, toolbar: ""},
+            {label: "reposicion", value: "reposicion", content: <InventarioBioseguridadPage/>, toolbar: ""}
+
+        ]}/>
+  );
+};
+
+export default Home;

@@ -1,18 +1,7 @@
 import TestRoutes from './routes/TestRoutes'
 import {Routes, Route} from 'react-router-dom'
 
-import ToolBarWrapper from "./components/organisms/toolbar/ToolBarWrapper"
-
 //componentes de prueba
-import SearchBar from "./components/molecules/search/SearchBar"
-import DateRangePickerAtom from "./components/molecules/search/DateRangePicker"
-import {CreateButton, DownloadButton} from "./components/atoms/Button"
-import Header from "./components/organisms/header/Header"
-import SidebarItemExpandable from './components/organisms/sidebar/SidebarWrapper'
-import MuiSideBar from "./components/organisms/sidebar/react-mui-sidebar"
-import Home from "./components/pages/Home"
-import Logo from "./components/organisms/sidebar/logo"
-
 import InventarioMedicamentosPage from './components/pages/inventory/InventarioMedicamentos'
 import InventarioDMPage from './components/pages/inventory/InventarioDM'
 import InventarioRespiratorioPage from './components/pages/inventory/InventarioRespiratorio'
@@ -20,6 +9,7 @@ import InventarioBioseguridadPage from './components/pages/inventory/InventarioB
 import InventarioAseoPage from './components/pages/inventory/InventarioAseo'
 import InventarioControlEspecialPage from './components/pages/inventory/ControlEspecial'
 import RecepcionMedicamentosPage from './components/pages/RecepcionTecnica/RecepcionMedicamentos'
+import RecepcionDispositivosMedicosPage from './components/pages/RecepcionTecnica/RecepcionDispositivosMedicos'
 import FormRecepcionMedicamentos from './components/organisms/form/RecepcionMedicamentos'
 import FormRecepcionDm from './components/organisms/form/RecepcionDmForm'
 import InventarioEquiposBiomedicosPage from './components/pages/inventory/EquiposBiomedicos'
@@ -43,8 +33,10 @@ function App() {
                 <Route path = "/inventario/reactivo" element = {<InventarioReactivoPage/>}/>
             {/*rutas de recepcion tecnica */}
                 <Route path = "/recepcion-tecnica/medicamentos" element = {<RecepcionMedicamentosPage/>}/>
+                <Route path = "/recepcion-tecnica/dispositivos-medicos" element={<RecepcionDispositivosMedicosPage/>}/>
             {/*Rutas de formularios*/ }
                 <Route path = "/recepcion-tecnica/medicamentos/form" element = {<FormRecepcionMedicamentos/>}/>
+                <Route path = "/recepcion-tecnica/dispositivos-medicos/form" element = {<FormRecepcionDm/>}/>
         </Routes>
       
   

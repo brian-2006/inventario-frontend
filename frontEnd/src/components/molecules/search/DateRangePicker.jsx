@@ -1,6 +1,7 @@
 // src/components/atoms/date/DateRangePickerAtom.jsx
 import { useState } from "react";
-import { Box, TextField, Stack } from "@mui/material";
+import { Box, TextField, Stack, InputAdornment } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { CalendarIcon } from "../../protons/Icon"
@@ -37,6 +38,19 @@ const DateRangePickerAtom = ({
     onDateEnd?.(newDate.toISOString().split('T')[0]);
     console.log(newDate.toISOString().split('T')[0])
   
+  };
+
+    const clearStartDate = () => {
+    const updated = [null, internalValue[1]];
+    setInternalValue(updated);
+    onDateStart?.(null);
+  };
+
+  // 🔹 Limpiar fecha de fin
+  const clearEndDate = () => {
+    const updated = [internalValue[0], null];
+    setInternalValue(updated);
+    onDateEnd?.(null);
   };
 
   return (
@@ -98,6 +112,7 @@ const DateRangePickerAtom = ({
                   paddingY: 0.5,
                 },
               },
+              
             },
             openPickerIcon: {
                 color: 'secondary',

@@ -11,6 +11,7 @@ import FormCreateDm from '../components/organisms/form/CreateDm'
 import CreateMedicineForm from '../components/organisms/form/CreateMedicne'
 import FormRecepcionMedicamentos from '../components/organisms/form/RecepcionMedicamentos'
 import RecepcionDmForm from '../components/organisms/form/RecepcionDmForm'
+import Home from '../components/pages/Home'
 
 const TestRoutes = () => {
     return (
@@ -30,6 +31,8 @@ const TestRoutes = () => {
             <Route path = "CrearMedicamento" element = {<CreateMedicineForm/>}/>
             <Route path='RecepcionMedicamentosForm' element={<FormRecepcionMedicamentos/>} />
             <Route path= 'RecepcionDmForm' element = {<RecepcionDmForm/>}/>
+            {/*ruta de prueba de componente */}
+            <Route path = "Home" element = {<Home/>}/>
         </Routes>
     )
 }  

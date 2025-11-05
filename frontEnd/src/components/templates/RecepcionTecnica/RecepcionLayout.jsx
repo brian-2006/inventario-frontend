@@ -1,11 +1,17 @@
-import { Box, Container, Paper, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Header from '../../organisms/header/Header'
-import TabsInventory from '../../organisms/tab/TabSection'
+
+//importamos estado
+import {useState} from 'react'
 
 
+const RecepcionLayout = ({title, toolbar, table  }) => {
 
+  const [value, setValue] = useState('inventario');
 
-const InventarioLayout = ({title, toolbar, table, tabsData = []  }) => {
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <Box
@@ -41,16 +47,11 @@ const InventarioLayout = ({title, toolbar, table, tabsData = []  }) => {
           {title}
         </Typography>
 
-        {tabsData.length > 0 &&(
-          <TabsInventory tabsData={tabsData}/>
-        )}
-        
-        
-         {/* Toolbar (ya con sus propios controles internos)
+        {/*  Toolbar (ya con sus propios controles internos) */}
         {toolbar}
 
         {/*  Tabla de resultados */}
-        {/* <Box
+        <Box
           sx={{
             p: 3,
             mx: 1,
@@ -58,10 +59,10 @@ const InventarioLayout = ({title, toolbar, table, tabsData = []  }) => {
           }}
         >
           {table}
-        </Box> */} 
+        </Box>
       </Container>
     </Box>
   );
 };
 
-export default InventarioLayout;
+export default RecepcionLayout;

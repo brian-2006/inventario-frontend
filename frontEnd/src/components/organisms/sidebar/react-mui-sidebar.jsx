@@ -268,7 +268,7 @@ const MuiSideBar = ()=>{
                     <MenuItem 
                     icon = {<DocIcon/>}
                     component = {Link}
-                    link = "/test/RecepcionDmTest"
+                    link = "/recepcion-tecnica/dispositivos-medicos"
                     >
                     Recepcion Dispositivos medicos
                     </MenuItem>

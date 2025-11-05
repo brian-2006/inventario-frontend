@@ -2,29 +2,37 @@ import ToolBarWrapper from './ToolBarWrapper'
 import { CreateButton, DownloadButton } from "../../atoms/Button"
 import SearchBar from '../../molecules/search/SearchBar'
 import DateRangePickerAtom from '../../molecules/search/DateRangePicker'
+import FormRecepcionDm from '../../organisms/form/RecepcionDmForm'
 
 
-const ToolBarInventory = ({ 
-    title = "filtro de busqueda",
-    onSerach = {},
+const ToolBarRecepcionDm = ({ title = "filtro de busqueda", 
+    textButton = "registrar nuevo insumo", 
+    onClick = {}, 
+    onSearch = {},
     onDateStart = {},
-    onDateEnd = {},
+    onDateEnd = {}, 
     downLoad = null,
+    //onDateChange = {},
+    
 }) =>{
+    
     return (
         <>
         <ToolBarWrapper title = {title}>
-            <SearchBar onSearch={onSerach} />
+            <SearchBar onSearch={onSearch} />
             <DateRangePickerAtom
+            //onChange={onDateChange}
             onDateStart={onDateStart}
             onDateEnd={onDateEnd}
             sx={{ maxWidth: 400 }}
             />
+            <FormRecepcionDm/>
             <DownloadButton text = "descargar reporte"
-            onClick={downLoad}/>
+            onClick={downLoad}
+            />
         </ToolBarWrapper>
         </>
     )
 }
 
-export default ToolBarInventory
+export default ToolBarRecepcionDm
