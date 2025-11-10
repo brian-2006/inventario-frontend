@@ -27,3 +27,5 @@ export const RecepcionTencinaRows = {
         'Cantidad', 'Precio unitario', 'Estado de embalaje', 
         'Condiciones de transporte', 'Quien realiza', 'Observaciones', 'inventario', 'Tipo acta']
 }
+
+export const SemaforizacionMedicamentosColumns = ["Estado", "Lote", "Fecha vencimiento", "Nombre","Presentacion", "Concentracion",  "Forma Farmaceutica",  "Laboratorio", "Cantidad total", "Precio unitario", "Precio total", "Invima", "Vencimiento invima" ]

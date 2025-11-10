@@ -21,7 +21,7 @@ const TableHeaderRow = ({ headers }) => {
             ...(index === headers.length - 1 && { borderTopRightRadius: "10px" }),
           }}
         >
-          {head}
+          <strong>{head}</strong>
         </TableCellAtom>
       ))}
     </TableRow>

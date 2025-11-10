@@ -28,7 +28,7 @@ const ToolBarRecepcion = ({ title = "filtro de busqueda",
             />
             <FormRecepcionMedicamentos/>
             <DownloadButton text = "descargar reporte"
-            onClick={downLoad}//FALTA AQUI PASAR EL ENDPOINT Y LA INFORMACION QUE VIENE EN downLoad
+            onClick={downLoad}
             />
         </ToolBarWrapper>
         </>
