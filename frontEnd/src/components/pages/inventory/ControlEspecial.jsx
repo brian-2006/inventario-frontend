@@ -1,14 +1,31 @@
+//plantilla base de estructura
 import InventarioLayout from '../../templates/inventory/MainInventory'
+
+//components de inventario
 import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioControlEspecialTest from '../../../Test/InventarioControlEspecial'
-import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
+
+//funciones para filtrado de datos y descarga de cada componente
+import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel' //-> Inventario
+import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion' //-> Semaforizacion
+
+//hooks
 import {useState} from 'react'
 
+//componentes de la semaforizacion
+import SemaforizacionControlEspecialPage from '../semaforizacion/SemaforizacionControlEspecial'
+import ToolBarSemaforizacionMedicamentos from '../../organisms/toolbar/ToolBarSemaforizacion'
+
 const InventarioControlEspecialPage = () =>{
+    //estados de seccion de inventario
     const [search, setSearch] = useState('')
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
     const [downLoad, setDownLoad] = useState(null)
+
+    //estados de la seccin de semaforización
+    const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
+    const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
 
     const tabsData = [
         {
@@ -42,8 +59,22 @@ const InventarioControlEspecialPage = () =>{
         {
             label: "Semaforizacion",
             value: "semaforizacion",
-            content: null,
-            toolbar: "",
+            content: (
+                <SemaforizacionControlEspecialPage
+                searchTerm={searchSemaforizacion}
+                onDownload={setDownLoadSemaforizacion}
+                />
+            ),
+            toolbar: (
+            <ToolBarSemaforizacionMedicamentos
+                        onSearch={setSearchSemaforizacion}
+                        downLoad={()=>handleDownLoadSemaforizacion(
+                            'http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacion/',
+                            downloadSemaforizacion,
+                            'reporte_vencimientos_control_especial.xlsx'
+                        )}
+            />
+            ),
         },
         {
             label: "Reposicion",

@@ -1,18 +1,20 @@
+//plantilla de intefaz
 import InventarioLayout from '../../templates/inventory/MainInventory'
+
+//components de inventario
 import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioMedicamentos from '../../../Test/InventarioMedicamentos'
-import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
-import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion'
 
-//importamos tool bars
+//componentes de semaforización
 import ToolBarSemaforizacionMedicamentos from '../../organisms/toolbar/ToolBarSemaforizacion'
+import SemaforizacionMedicamentosPage from '../semaforizacion/SemaforizacionMedicamentos'
 
-//se importan los tablas de contenido
-import Home from '../Home'
+//funciones de descarga y filtrado de datos
+import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel' //-> inventario
+import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion' //->semaforizacion
 
+//hooks
 import {useState} from 'react'
-
-import axios from 'axios'
 
 const InventarioMedicamentosPage = () =>{
     //estados del inventario
@@ -25,16 +27,6 @@ const InventarioMedicamentosPage = () =>{
     const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
     const [downLoadSemaforizacion, setDownLoadSemaforizacion] = useState(null) 
 
-
-
-    const handlePost = async (url, data) => {
-        try {
-            const res = await axios.post(url, data);
-            return res.data;
-        } catch (e) {
-            console.log(e);
-        }
-    };
 
     const tabsData = [
         {
@@ -69,7 +61,7 @@ const InventarioMedicamentosPage = () =>{
             label: "Semaforizacion",
             value: "semaforizacion",
             content: (
-                <Home 
+                <SemaforizacionMedicamentosPage 
                     searchTerm={searchSemaforizacion}
                     onDownload={setDownLoadSemaforizacion}
                     
@@ -79,7 +71,11 @@ const InventarioMedicamentosPage = () =>{
             toolbar: (
                 <ToolBarSemaforizacionMedicamentos
                     onSearch={setSearchSemaforizacion}
-                    downLoad={()=> handleDownLoadSemaforizacion("http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacion/", downLoadSemaforizacion, "reporte_semaforizacion_medicamentos.xlsx")}
+                    downLoad={()=> handleDownLoadSemaforizacion(
+                        "http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacion/", 
+                        downLoadSemaforizacion, 
+                        "reporte_semaforizacion_medicamentos.xlsx"
+                    )}
             />),
         },
         {

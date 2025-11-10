@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import SemaforizacionTable from '../organisms/table/SemaforizacionTable';
-import { SemaforizacionMedicamentosColumns } from '../../json/TestData';
-import useFilterTerm from '../../utils/hooks/useFilterTerm';
+import SemaforizacionTable from '../../organisms/table/SemaforizacionTable'
+import { SemaforizacionMedicamentosColumns } from '../../../json/TestData'
+import useFilterTerm from '../../../utils/hooks/useFilterTerm'
 
-const Home = ({ searchTerm, onDownload }) => {
+const SemaforizacionControlEspecialPage = ({ searchTerm, onDownload }) => {
   const [info, setInfo] = useState(null);
 
-  const id_inventory = 9;
+  const id_inventory = 11;
 
   useEffect(() => {
     axios
@@ -58,4 +58,4 @@ const Home = ({ searchTerm, onDownload }) => {
   );
 };
 
-export default Home;
+export default SemaforizacionControlEspecialPage;
