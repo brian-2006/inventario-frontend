@@ -1,8 +1,16 @@
 import InventarioLayout from '../../templates/inventory/MainInventory'
 import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioEquiposBiomedicosTest from '../../../Test/InventarioEquiposBiomedicos'
-import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
+
+//componentes de la semaforizacióm
+import SemaforizacionEquiposBiomedicosPage from '../semaforizacion/SemaforizacionEquiposBiomedicos'
+import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
+
 import {useState} from 'react'
+
+//funciones para filtrado de datos y descarga de cada componente
+import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
+import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion'
 
 const InventarioEquiposBiomedicosPage = () =>{
 
@@ -10,6 +18,10 @@ const InventarioEquiposBiomedicosPage = () =>{
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
     const [downLoad, setDownLoad] = useState(null)
+
+    //estados de semaforizacion
+    const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
+    const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
 
     const tabsData = [
         {
@@ -43,8 +55,19 @@ const InventarioEquiposBiomedicosPage = () =>{
         {
             label: "Semaforizacion",
             value: "semaforizacion",
-            content: null,
-            toolbar: "",
+            content: (
+                <SemaforizacionEquiposBiomedicosPage
+                    searchTerm = {searchSemaforizacion}
+                    onDownload = {setDownLoadSemaforizacion}/>
+            ),
+            toolbar: <ToolBarSemaforizacion
+                    onSearch={setSearchSemaforizacion}
+                    downLoad={()=>handleDownLoadSemaforizacion(
+                        'http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacionDM/',
+                        downloadSemaforizacion,
+                        'reporte_vencimientos_equipos_biomedicos.xlsx'
+                    )}
+                />,
         },
         {
             label: "Reposicion",

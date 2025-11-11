@@ -1,9 +1,20 @@
+//plantilla de interfaz
 import InventarioLayout from '../../templates/inventory/MainInventory'
+
+//componentes inventario
 import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioRespiratorioTest from '../../../Test/InventarioRespiratorio'
+
+//funciones busquesa y descarga
 import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
+import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion'
+
+//hooks
 import {useState} from 'react'
 
+//componetes de semaforizacion
+import SemaforizacionRespiratorioPage from '../semaforizacion/SemaforizacionRespiratorio'
+import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
 
 
 const InventarioRespiratorioPage = () =>{
@@ -15,6 +26,8 @@ const InventarioRespiratorioPage = () =>{
     const [downLoad, setDownLoad] = useState(null)
 
     //estados semaforizacion
+    const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
+    const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
 
     const tabsData = [
         {
@@ -48,8 +61,22 @@ const InventarioRespiratorioPage = () =>{
         {
             label: "Semaforizacion",
             value: "semaforizacion",
-            content: null,
-            toolbar: "",
+            content: (
+                <SemaforizacionRespiratorioPage
+                    searchTerm={searchSemaforizacion}
+                    onDownload={setDownLoadSemaforizacion}
+                />
+            ),
+            toolbar: (
+                <ToolBarSemaforizacion
+                onSearch={setSearchSemaforizacion}
+                downLoad = {()=> handleDownLoadSemaforizacion(
+                    'http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacionDM/',
+                    downloadSemaforizacion,
+                    'reporte_vencimientos_respiratorios.xlsx'
+                )}
+                />
+            ),
         },
         {
             label: "Reposicion",

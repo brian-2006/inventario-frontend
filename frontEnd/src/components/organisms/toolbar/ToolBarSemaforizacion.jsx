@@ -2,7 +2,7 @@ import ToolBarWrapper from './ToolBarWrapper'
 import { CreateButton, DownloadButton } from "../../atoms/Button"
 import SearchBar from '../../molecules/search/SearchBar'
 
-const ToolBarSemaforizacionMedicamentos = ({
+const ToolBarSemaforizacion = ({
 
     title = "filtro de busqueda",
     onSearch = {},
@@ -23,5 +23,5 @@ const ToolBarSemaforizacionMedicamentos = ({
     )
 }
 
-export default ToolBarSemaforizacionMedicamentos;
+export default ToolBarSemaforizacion;
 

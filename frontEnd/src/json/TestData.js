@@ -29,3 +29,4 @@ export const RecepcionTencinaRows = {
 }
 
 export const SemaforizacionMedicamentosColumns = ["Estado", "Lote", "Fecha vencimiento", "Nombre","Presentacion", "Concentracion",  "Forma Farmaceutica",  "Laboratorio", "Cantidad total", "Precio unitario", "Precio total", "Invima", "Vencimiento invima" ]
+export const SemaforizacionDmColumns = ["Estado", "Lote", "Fecha vencimiento", "Nombre", "Laboratorio", "Cantidad total", "Precio unitario", "Precio total", "Invima", "Vencimiento invima", "clasificacion", "vida util"]

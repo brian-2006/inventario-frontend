@@ -6,7 +6,7 @@ import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioMedicamentos from '../../../Test/InventarioMedicamentos'
 
 //componentes de semaforización
-import ToolBarSemaforizacionMedicamentos from '../../organisms/toolbar/ToolBarSemaforizacion'
+import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
 import SemaforizacionMedicamentosPage from '../semaforizacion/SemaforizacionMedicamentos'
 
 //funciones de descarga y filtrado de datos
@@ -69,7 +69,7 @@ const InventarioMedicamentosPage = () =>{
             ),
 
             toolbar: (
-                <ToolBarSemaforizacionMedicamentos
+                <ToolBarSemaforizacion
                     onSearch={setSearchSemaforizacion}
                     downLoad={()=> handleDownLoadSemaforizacion(
                         "http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacion/", 

@@ -5,16 +5,17 @@ import InventarioLayout from '../../templates/inventory/MainInventory'
 import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioControlEspecialTest from '../../../Test/InventarioControlEspecial'
 
-//funciones para filtrado de datos y descarga de cada componente
-import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel' //-> Inventario
-import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion' //-> Semaforizacion
+//componentes de la semaforizacion
+import SemaforizacionControlEspecialPage from '../semaforizacion/SemaforizacionControlEspecial'
+import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
 
 //hooks
 import {useState} from 'react'
 
-//componentes de la semaforizacion
-import SemaforizacionControlEspecialPage from '../semaforizacion/SemaforizacionControlEspecial'
-import ToolBarSemaforizacionMedicamentos from '../../organisms/toolbar/ToolBarSemaforizacion'
+//funciones para filtrado de datos y descarga de cada componente
+import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel' //-> Inventario
+import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion' //-> Semaforizacion
+
 
 const InventarioControlEspecialPage = () =>{
     //estados de seccion de inventario
@@ -66,7 +67,7 @@ const InventarioControlEspecialPage = () =>{
                 />
             ),
             toolbar: (
-            <ToolBarSemaforizacionMedicamentos
+            <ToolBarSemaforizacion
                         onSearch={setSearchSemaforizacion}
                         downLoad={()=>handleDownLoadSemaforizacion(
                             'http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacion/',
