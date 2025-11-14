@@ -9,6 +9,10 @@ import InventarioBioseguridadTest from '../../../Test/InventarioBioseguridad'
 import SemaforizacionBioseguridadPage from '../semaforizacion/SemaforizacionBioseguridad'
 import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
 
+//componentes de reposicion
+import ReposicionBioseguridadPage from '../Reposicion/ReposicionBioseguridad'
+import ToolbarReposicion from '../../organisms/toolbar/ToolbarReposicion'
+
 //funciones para filtrado de datos y descarga de cada componente
 import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
 import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion'
@@ -18,15 +22,22 @@ import {useState} from 'react'
 
 const InventarioBioseguridadPage = () =>{
 
-    
-        const [search, setSearch] = useState('')
-        const [startDate, setStartDate] = useState(null)
-        const [endDate, setEndDate] = useState(null)
-        const [downLoad, setDownLoad] = useState(null)
+    //estados de inventario
+    const [search, setSearch] = useState('')
+    const [startDate, setStartDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
+    const [downLoad, setDownLoad] = useState(null)
 
-            //estados de semaforizacion
-            const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
-            const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
+    //estados de semaforizacion
+    const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
+    const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
+
+            
+    //estados de reposicion
+    const [searchReposicion, setSearchReposicion] = useState("")
+    const [startDateReposicion, setStartDateReposicion]= useState(null)
+    const [endDateReposicion, setEndDateReposicion] = useState(null)
+    const [downloadReposicion, setDownloadReposicion] = useState(null)
 
     const tabsData = [
         {
@@ -77,8 +88,23 @@ const InventarioBioseguridadPage = () =>{
         {
             label: "Reposicion",
             value: "reposicion",
-            content: null,
-            toolbar: "",
+            content: (
+                <ReposicionBioseguridadPage
+                    searchTerm={searchReposicion}
+                    dateStart={startDateReposicion}
+                    dateEnd={endDateReposicion}/>
+            ),
+            toolbar:( 
+                    <ToolbarReposicion
+                        onSearch={setSearchReposicion}
+                        onDateStart={setStartDateReposicion}
+                        onDateEnd={setEndDateReposicion}
+                        download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicionDM/',
+                            downloadReposicion,
+                            'reporte_reposicion_bioseguridad.xlsx'
+                        )}
+                    />
+                ),
         },
         {
             label: "Gastos",

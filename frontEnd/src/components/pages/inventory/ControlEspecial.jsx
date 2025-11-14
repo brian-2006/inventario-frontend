@@ -9,6 +9,10 @@ import InventarioControlEspecialTest from '../../../Test/InventarioControlEspeci
 import SemaforizacionControlEspecialPage from '../semaforizacion/SemaforizacionControlEspecial'
 import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
 
+//componentes de reposicion
+import ReposicionControlEspecialPage from '../Reposicion/ReposicionControlEspecial'
+import ToolbarReposicion from '../../organisms/toolbar/ToolbarReposicion'
+
 //hooks
 import {useState} from 'react'
 
@@ -27,6 +31,13 @@ const InventarioControlEspecialPage = () =>{
     //estados de la seccin de semaforización
     const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
     const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
+
+    //estados de reposicion
+    const [searchReposicion, setSearchReposicion] = useState("")
+    const [startDateReposicion, setStartDateReposicion]= useState(null)
+    const [endDateReposicion, setEndDateReposicion] = useState(null)
+    const [downloadReposicion, setDownloadReposicion] = useState(null)
+
 
     const tabsData = [
         {
@@ -80,8 +91,25 @@ const InventarioControlEspecialPage = () =>{
         {
             label: "Reposicion",
             value: "reposicion",
-            content: null,
-            toolbar: "",
+            content: (
+                <ReposicionControlEspecialPage
+                    searchTerm={searchReposicion}
+                    dateStart={startDateReposicion}
+                    dateEnd={endDateReposicion}
+                    onDownload={setDownloadReposicion}
+                />
+            ),
+            toolbar: (
+            <ToolbarReposicion
+                onSearch={setSearchReposicion}
+                onDateStart={setStartDateReposicion}
+                onDateEnd={setEndDateReposicion}
+                download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
+                    downloadReposicion,
+                    'reporte_reposicion_control_especial.xlsx'
+                )}
+            />
+            ),
         },
         {
             label: "Gastos",

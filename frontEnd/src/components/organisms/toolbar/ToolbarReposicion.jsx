@@ -1,30 +1,30 @@
 import ToolBarWrapper from './ToolBarWrapper'
-import { DownloadButton } from "../../atoms/Button"
+import {DownloadButton } from "../../atoms/Button"
 import SearchBar from '../../molecules/search/SearchBar'
 import DateRangePickerAtom from '../../molecules/search/DateRangePicker'
 
 
-const ToolBarInventory = ({ 
+const ToolbarReposicion = ({ 
     title = "filtro de busqueda",
-    onSerach = {},
+    onSearch = {},
     onDateStart = {},
     onDateEnd = {},
-    downLoad = null,
+    download = null,
 }) =>{
     return (
         <>
         <ToolBarWrapper title = {title}>
-            <SearchBar onSearch={onSerach} />
+            <SearchBar onSearch={onSearch} />
             <DateRangePickerAtom
             onDateStart={onDateStart}
             onDateEnd={onDateEnd}
             sx={{ maxWidth: 400 }}
             />
             <DownloadButton text = "descargar reporte"
-            onClick={downLoad}/>
+            onClick={download}/>
         </ToolBarWrapper>
         </>
     )
 }
 
-export default ToolBarInventory
+export default ToolbarReposicion

@@ -14,8 +14,9 @@ import FormRecepcionMedicamentos from './components/organisms/form/RecepcionMedi
 import FormRecepcionDm from './components/organisms/form/RecepcionDmForm'
 import InventarioEquiposBiomedicosPage from './components/pages/inventory/EquiposBiomedicos'
 import InventarioReactivoPage from './components/pages/inventory/InventarioReactivo'
+import FormLogin from './components/organisms/form/LoginForm'
+import ProtectedRoute from './components/routes/ProtectedRoute'
 function App() {
-
 
   return (
     <>  {/*rutas de pruebas */}
@@ -37,10 +38,10 @@ function App() {
             {/*Rutas de formularios*/ }
                 <Route path = "/recepcion-tecnica/medicamentos/form" element = {<FormRecepcionMedicamentos/>}/>
                 <Route path = "/recepcion-tecnica/dispositivos-medicos/form" element = {<FormRecepcionDm/>}/>
+                <Route path = "/login" element = {<FormLogin/>}/>
         </Routes>
       
   
-
 
 
     </>

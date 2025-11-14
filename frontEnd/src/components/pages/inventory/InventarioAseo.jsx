@@ -1,4 +1,7 @@
+//plantilla del layout
 import InventarioLayout from '../../templates/inventory/MainInventory'
+
+//componentes de inventario
 import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioAseoTest from '../../../Test/InventarioAseoTest'
 
@@ -8,12 +11,16 @@ import {useState} from 'react'
 import SemaforizacionAseoPage from '../semaforizacion/SemaforizacionAseo'
 import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
 
+//componentes de reposicion
+import ReposicionAseoPage from '../Reposicion/ReposicionAseo'
+import ToolbarReposicion from '../../organisms/toolbar/ToolbarReposicion'
+
 //funciones para filtrado de datos y descarga de cada componente
 import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
 import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion'
 
 const InventarioAseoPage = () =>{
-
+    //estados de inventario
     const [search, setSearch] = useState('')
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
@@ -22,7 +29,12 @@ const InventarioAseoPage = () =>{
     //estados de semaforizacion
     const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
     const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
-
+    
+    //estados de reposicion
+    const [searchReposicion, setSearchReposicion] = useState("")
+    const [startDateReposicion, setStartDateReposicion]= useState(null)
+    const [endDateReposicion, setEndDateReposicion] = useState(null)
+    const [downloadReposicion, setDownloadReposicion] = useState(null)
 
         const tabsData = [
         {
@@ -69,8 +81,25 @@ const InventarioAseoPage = () =>{
         {
             label: "Reposicion",
             value: "reposicion",
-            content: null,
-            toolbar: "",
+            content: (
+                <ReposicionAseoPage
+                    searchTerm={searchReposicion}
+                    dateStart={startDateReposicion}
+                    dateEnd={endDateReposicion}
+                    onDownload ={setDownloadReposicion}
+                />
+            ),
+            toolbar: (
+                <ToolbarReposicion
+                    onSearch={setSearchReposicion}
+                    onDateStart={setStartDateReposicion}
+                    onDateEnd={setEndDateReposicion}
+                    downLoad={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicionDM/',
+                        downloadReposicion,
+                        'reporte_reposicion_aseo.xlsx'
+                    )}
+                />
+            ),
         },
         {
             label: "Gastos",

@@ -15,7 +15,7 @@ const ToolBarSemaforizacion = ({
     
         <ToolBarWrapper>
             <SearchBar onSearch ={onSearch}/>
-            <DownloadButton text = "descargar reporte semaforizacion"
+            <DownloadButton text = "descargar reporte vencimientos"
                 onClick={downLoad}
             />
         </ToolBarWrapper>

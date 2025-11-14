@@ -17,8 +17,6 @@ const TableContainerAtom = ({ children, sx = {}, ...props }) => {
         backgroundColor: "#fff",
         maxHeight: 450,
         maxWidth: 'auto',
-        // overflowY: 'auto', 
-        // overflowX: 'auto',
         ...sx,                 // estilos adicionales que vengan como prop
       }}
       {...props} // pasar también cualquier otra prop que reciba

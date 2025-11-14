@@ -16,6 +16,10 @@ import {useState} from 'react'
 import SemaforizacionRespiratorioPage from '../semaforizacion/SemaforizacionRespiratorio'
 import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
 
+//componentes de reposicion
+import ReposicionRespiratorioPage from '../Reposicion/ReposicionRespiratorio'
+import ToolbarReposicion from '../../organisms/toolbar/ToolbarReposicion'
+
 
 const InventarioRespiratorioPage = () =>{
 
@@ -28,6 +32,12 @@ const InventarioRespiratorioPage = () =>{
     //estados semaforizacion
     const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
     const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
+
+    //estados de reposicion
+    const [searchReposicion, setSearchReposicion] = useState("")
+    const [startDateReposicion, setStartDateReposicion]= useState(null)
+    const [endDateReposicion, setEndDateReposicion] = useState(null)
+    const [downloadReposicion, setDownloadReposicion] = useState(null)
 
     const tabsData = [
         {
@@ -81,8 +91,26 @@ const InventarioRespiratorioPage = () =>{
         {
             label: "Reposicion",
             value: "reposicion",
-            content: null,
-            toolbar: "",
+            content: (
+                <ReposicionRespiratorioPage
+                    searchTerm={searchReposicion}
+                    dateStart={startDateReposicion}
+                    dateEnd={endDateReposicion}
+                    downLoad ={setDownloadReposicion}
+                    />
+            ),
+            toolbar: (
+                <ToolbarReposicion
+                onSearch={setSearchReposicion}
+                onDateStart={setStartDate}
+                onDateEnd={setEndDateReposicion}
+                download={()=> handleDownLoadSemaforizacion(
+                    'http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
+                    downloadReposicion,
+                    "reporte_reposicion_respiratorio.xlsx"
+                )}
+                />
+            ),
         },
         {
             label: "Gastos",

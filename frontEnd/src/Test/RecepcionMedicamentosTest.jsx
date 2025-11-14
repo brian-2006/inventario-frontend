@@ -16,13 +16,13 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
     const q = (SearchTerm || '').toLowerCase();
 
 
-    const GetData = () =>{
+    const GetData =  () =>{
         axios.get(`http://127.0.0.1:8000/recepcionTecnica/getRecpcionList/${acta}/`)
         .then(response => {
         setData(response.data || []);
         onDownLoad(response.data || []);
-        console.log(data);
-        console.log(typeof (data));
+        // console.log(data);
+        // console.log(typeof (data));
         })
 
         .catch(error => {
@@ -47,6 +47,7 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
     // 3️⃣ Guardamos los datos filtrados
     setFilteredData(result);
+    GetData()
   }, [q, startDate, endDate, data]);
 
   // Cargar datos al montar el componente

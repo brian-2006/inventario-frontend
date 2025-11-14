@@ -18,8 +18,6 @@ const  InventarioMedicamentos = ({SearchTerm, startDate, endDate, onDownLoad})=>
         setLoteRows(loteRows);
         onDownLoad(loteRows);
 
-        // console.log(rows);
-        //console.log(loteRows);
         })
 
         .catch(error => {

@@ -8,12 +8,14 @@ Toolbar,
 } from "@mui/material"
 import {MenuButton} from '../../atoms/Button'
 import {useState} from 'react'
-import {User3DIcon, UserIcon} from '../../protons/Icon'
+import {UserIcon} from '../../protons/Icon'
 import {UserButton} from '../../atoms/Button'
 import MuiSideBar from '../sidebar/react-mui-sidebar'
+import { useAuth } from '../../../providers/AuthProvider'
 
 const Header = () =>{
     const [open, SetOpen] = useState(false)
+    const { logout } = useAuth()
 
     const handleOpen = () =>{
         SetOpen(!open)
@@ -25,7 +27,7 @@ const Header = () =>{
                     <MenuButton onClick={handleOpen}/>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <UserButton size = "large" color/>
+                    <UserButton size = "large" color onClick ={logout}/>
                 </Box>
             </Toolbar>
             <Drawer 

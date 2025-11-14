@@ -1,12 +1,25 @@
+//plantilla layout
 import InventarioLayout from '../../templates/inventory/MainInventory'
+
+//componentes de inventario
 import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioDmTest from '../../../Test/InventarioDm.jsx'
-import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
-import {useState} from 'react'
 
+//componentes de semaforizacion
 import SemaforizacionDispositivosMedicosPage from '../semaforizacion/SemaforizacionDispositivosMedicos'
 import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
+
+//componentes de reposicion
+import ReposicionDmPage from '../Reposicion/ReposicionDispositvosMedicos.jsx'
+import ToolbarReposicion from '../../organisms/toolbar/ToolbarReposicion.jsx'
+
+//funciones de descarga y filtrado de datos
+import handleDownLoadInventory from '../../../utils/functions/DownloadInventoryExcel'
 import handleDownLoadSemaforizacion from '../../../utils/functions/DownloadSemaforizacion.jsx'
+
+//hooks
+import {useState} from 'react'
+
 
 const InventarioDMPage = () =>{
     //estados de inventario
@@ -18,6 +31,12 @@ const InventarioDMPage = () =>{
     //estados de semaforizacion
     const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
     const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
+    
+    //estados de reposicion
+    const [searchReposicion, setSearchReposicion] = useState("")
+    const [startDateReposicion, setStartDateReposicion]= useState(null)
+    const [endDateReposicion, setEndDateReposicion] = useState(null)
+    const [downloadReposicion, setDownloadReposicion] = useState(null)
 
     const tabsData = [
         {
@@ -71,8 +90,25 @@ const InventarioDMPage = () =>{
         {
             label: "Reposicion",
             value: "reposicion",
-            content: null,
-            toolbar: "",
+            content: (
+                <ReposicionDmPage
+                    searchTerm={searchReposicion}
+                    dateStart={startDateReposicion}
+                    dateEnd={endDateReposicion}
+                    onDownload={setDownloadReposicion}
+                />
+            ),
+            toolbar: (
+                <ToolbarReposicion
+                    onSearch={setSearchReposicion}
+                    onDateStart={setStartDateReposicion}
+                    onDateEnd={setEndDateReposicion}
+                    download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicionDM/',
+                        downloadReposicion,
+                        'reporte_reposicion_dispositivos_medicos.xlsx'
+                    )}
+                />
+            ),
         },
         {
             label: "Gastos",

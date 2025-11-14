@@ -5,7 +5,7 @@ import TabsInventory from '../../organisms/tab/TabSection'
 
 
 
-const InventarioLayout = ({title, tabsData = []  }) => {
+const TabLayout = ({title, tabsData = []  }) => {
 
   return (
     <Box
@@ -44,24 +44,9 @@ const InventarioLayout = ({title, tabsData = []  }) => {
         {tabsData.length > 0 &&(
           <TabsInventory tabsData={tabsData}/>
         )}
-        
-        
-         {/* Toolbar (ya con sus propios controles internos)
-        {toolbar}
-
-        {/*  Tabla de resultados */}
-        {/* <Box
-          sx={{
-            p: 3,
-            mx: 1,
-            my: 1
-          }}
-        >
-          {table}
-        </Box> */} 
       </Container>
     </Box>
   );
 };
 
-export default InventarioLayout;
+export default TabLayout;

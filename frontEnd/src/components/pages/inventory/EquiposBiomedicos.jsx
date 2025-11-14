@@ -6,6 +6,11 @@ import InventarioEquiposBiomedicosTest from '../../../Test/InventarioEquiposBiom
 import SemaforizacionEquiposBiomedicosPage from '../semaforizacion/SemaforizacionEquiposBiomedicos'
 import ToolBarSemaforizacion from '../../organisms/toolbar/ToolBarSemaforizacion'
 
+//componentes de reposicion
+import ReposicionEquiposBionmedicosPage from '../Reposicion/ReposicionEquiposBionmedicos'
+import ToolbarReposicion from '../../organisms/toolbar/ToolbarReposicion.jsx'
+
+//hooks
 import {useState} from 'react'
 
 //funciones para filtrado de datos y descarga de cada componente
@@ -22,6 +27,12 @@ const InventarioEquiposBiomedicosPage = () =>{
     //estados de semaforizacion
     const [downloadSemaforizacion, setDownLoadSemaforizacion] = useState(null)
     const [searchSemaforizacion, setSearchSemaforizacion] = useState('')
+
+    //estados de reposicion
+    const [searchReposicion, setSearchReposicion] = useState("")
+    const [startDateReposicion, setStartDateReposicion]= useState(null)
+    const [endDateReposicion, setEndDateReposicion] = useState(null)
+    const [downloadReposicion, setDownloadReposicion] = useState(null)
 
     const tabsData = [
         {
@@ -72,8 +83,25 @@ const InventarioEquiposBiomedicosPage = () =>{
         {
             label: "Reposicion",
             value: "reposicion",
-            content: null,
-            toolbar: "",
+            content: (
+                <ReposicionEquiposBionmedicosPage
+                searchTerm={searchReposicion}
+                dateStart={startDateReposicion}
+                dateEnd={endDateReposicion}
+                onDownload={setDownloadReposicion}
+                />
+            ),
+            toolbar: (
+                <ToolbarReposicion
+                onSearch={setSearchReposicion}
+                onDateStart={setStartDateReposicion}
+                onDateEnd={setEndDateReposicion}
+                download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicionDM/',
+                    downloadReposicion,
+                    'reporte_reposicion_euipos_biomedicos.xlsx'
+                )}
+                />
+            ),
         },
         {
             label: "Gastos",

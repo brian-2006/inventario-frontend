@@ -37,7 +37,6 @@ const FormRecepcionMedicamentos = () => {
     nombre_inventario: "",
   });
 
-  const navigate = useNavigate()
   const notifications = useNotifications()
 
   // --- Control de apertura del modal ---
