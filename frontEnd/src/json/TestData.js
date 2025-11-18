@@ -1,5 +1,5 @@
-export const MedicineMainInventoryColumns = ['','Nombre del medicamento', 'Cantidad disponible', 'Número de lotes', 'Valor total', 'acciones'] //desde el endpoint debe venir un array para iterar sobre ellos
-export const DmMainInventoryColumns = ['','Nombre dispositivo', 'Cantidad disponible', 'Número de lotes', 'Valor total', 'vida util', 'clasificacion riesgo', 'acciones'] //desde el endpoint debe venir un array para iterar sobre ellos
+export const MedicineMainInventoryColumns = ['','Nombre del medicamento', 'Cantidad disponible', 'Número de lotes', 'Valor total'] //desde el endpoint debe venir un array para iterar sobre ellos
+export const DmMainInventoryColumns = ['','Nombre dispositivo', 'Cantidad disponible', 'Número de lotes', 'Valor total', 'vida util', 'clasificacion riesgo'] //desde el endpoint debe venir un array para iterar sobre ellos
 
 
 export const TypeInventory = {
@@ -14,7 +14,7 @@ export const TypeInventory = {
     EquiposBiomedicos: 'equipos biomedicos'
 }
 
-export const LoteRowsColums = ["lote", "cantidad total", "Fecha vencimiento", "Precio unitario", "Precio total", "Fabricante", "Registro Invima", "Fecha vencimiento invima" ];
+export const LoteRowsColums = ["lote", "cantidad total", "Fecha vencimiento", "Precio unitario", "Precio total", "Fabricante", "Registro Invima", "Fecha vencimiento invima", "acciones" ];
 
 export const RecepcionTencinaRows = {
     Medicamento: ['Fecha', 'Hora', 'Número de factura', 'Proveedor','Nombre generico', 

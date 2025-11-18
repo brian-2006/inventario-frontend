@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import {DeleteIcon, UpdateIcon, MenuIcon, UserIcon} from '../protons/Icon.jsx'
+import {DeleteIcon, UpdateIcon, MenuIcon, UserIcon, ShopCarIcon} from '../protons/Icon.jsx'
 import CircularProgress from '@mui/material/CircularProgress';
 
 
@@ -19,22 +19,31 @@ export const UserButton = ({size, onClick}) => {
 };
 
 
-export const DeleteButton = ({size, onClick}) => {
+export const DeleteButton = ({size, onClick, ...props}) => {
     return (
         <IconButton
-          aria-label="Eliminar" color="error" size={size} onClick={onClick}>
+          aria-label="Eliminar" color="error" size={size} onClick={onClick} {...props}>
           <DeleteIcon/>
         </IconButton>
     );
 };
 
 
-export const UpdateButton = ({size, onClick}) =>{
+export const UpdateButton = ({size, onClick, ...props}) =>{
 
     return(
         <IconButton
-            aria-label="actualizar" color="primary" size={size} onClick={onClick}>
+            aria-label="actualizar" color="primary" size={size} onClick={onClick} {...props}>
             <UpdateIcon/>
+        </IconButton>
+    )
+}
+
+export const AssignButton = ({size, onClick, ...props}) => {
+    return(
+        <IconButton
+            aria-label="asignar" color="primary" size={size} onClick={onClick} {...props}>
+            <ShopCarIcon/>
         </IconButton>
     )
 }

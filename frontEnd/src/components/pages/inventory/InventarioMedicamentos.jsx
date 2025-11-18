@@ -105,7 +105,8 @@ const InventarioMedicamentosPage = () =>{
                     onSearch={setSearchReposicion}
                     onDateStart={setStartDateReposicion}
                     onDateEnd={setEndDateReposicion}
-                    download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
+                    download={()=> handleDownLoadSemaforizacion(
+                        'http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
                         downloadReposicion,
                         "reporte_reposicion_medicamentos.xlsx"
                     )}

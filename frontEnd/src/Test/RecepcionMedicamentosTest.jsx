@@ -21,7 +21,7 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
         .then(response => {
         setData(response.data || []);
         onDownLoad(response.data || []);
-        // console.log(data);
+        console.log(data);
         // console.log(typeof (data));
         })
 

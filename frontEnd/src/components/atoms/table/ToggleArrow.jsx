@@ -8,9 +8,9 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 export const IconToggleAtom = ({ open, onClick }) => (
   <TableCellAtom
     sx={{
-      width: "40px",            // ancho mínimo
-      padding: "0px",           // sin padding
-      textAlign: "center",      // centrar el icono
+      width: "40px",           
+      padding: "0px",          
+      textAlign: "center",      
     }}
   >
     <IconButton
@@ -18,7 +18,7 @@ export const IconToggleAtom = ({ open, onClick }) => (
       size="small"
       onClick={onClick}
       sx={{
-        padding: "2px",         // quitar margen interno
+        padding: "2px",         
       }}
     >
       {open ? (

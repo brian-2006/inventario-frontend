@@ -11,6 +11,8 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
     const [concentraciones, setConcentracion] = useState([])
     const [presentacionesComerciales, setPresentacionesComerciales] = useState([])
     const [formasFarmaceuticas, setFormaFarmaceutica] = useState([])
+    
+    //se traen todas las opciones estandar para registrar medicamento
     useEffect(() => {
         handleGet('insumo/medicamentos/', setMedicamentos)
         handleGet('insumo/proveedor/', setProveedores)
@@ -34,7 +36,7 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
             <AutoCompleteAtom
                 name="medicamento"
                 label="Nombre medicamento"
-                // Mantén options como {value, label}
+                
                 options={medicamentos.map(m => ({
                     value: m.id,
                     label: m.nombregenerico,
