@@ -94,7 +94,7 @@ const InventarioAseoPage = () =>{
                     onSearch={setSearchReposicion}
                     onDateStart={setStartDateReposicion}
                     onDateEnd={setEndDateReposicion}
-                    downLoad={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicionDM/',
+                    download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
                         downloadReposicion,
                         'reporte_reposicion_aseo.xlsx'
                     )}

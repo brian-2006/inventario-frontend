@@ -11,6 +11,8 @@ import RecepcionMedicamentoForm from "../../molecules/form/RecepcionMedicamentoF
 import ModalForm from '../modal/ModalForm'
 
 const FormRecepcionMedicamentos = () => {
+  //estado de carga
+  const [loading, setLoading] = useState(false)
   // --- Estado principal del formulario ---
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -52,6 +54,7 @@ const FormRecepcionMedicamentos = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       console.log("payload:", formData);
       const response = await axios.post(
         "http://127.0.0.1:8000/recepcionTecnica/registrarInsumo/",
@@ -70,6 +73,8 @@ const FormRecepcionMedicamentos = () => {
         severity: 'error',
         autoHideDuration: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -89,6 +94,7 @@ const FormRecepcionMedicamentos = () => {
         title="Registrar medicamento"
         formId="formRecepcionMedicamentos"
         onSubmit={handleSubmit}
+        loadingState={loading}
       >
         <RecepcionMedicamentoForm
           formData={formData}

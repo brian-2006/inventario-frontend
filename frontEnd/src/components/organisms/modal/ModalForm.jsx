@@ -11,6 +11,7 @@ const ModalForm = ({
   cancelText = "Cancelar",
   maxWidth = "md",
   fullWidth = true,
+  loadingState = false,
 }) => {
   return (
     <Dialog
@@ -58,6 +59,7 @@ const ModalForm = ({
           variant="contained"
           color="primary"
           sx={{ px: 3 }}
+          loading = {loadingState}
         >
           {submitText}
         </Button>

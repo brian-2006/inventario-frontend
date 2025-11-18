@@ -11,6 +11,7 @@ import ModalForm from '../modal/ModalForm'
 
 const FormRecepcionDm = () => {
   // --- Estado principal del formulario ---
+
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     tipo_insumo: "dm",
@@ -35,7 +36,7 @@ const FormRecepcionDm = () => {
     clasificacion_riesgo: "",
   });
 
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const notifications = useNotifications()
 
   // --- Control de apertura del modal ---
@@ -50,7 +51,9 @@ const FormRecepcionDm = () => {
   // --- Envío del formulario ---
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
+      setLoading(true)
       console.log("payload:", formData);
       const response = await axios.post(
         "http://127.0.0.1:8000/recepcionTecnica/registrarInsumo/",
@@ -69,6 +72,8 @@ const FormRecepcionDm = () => {
         severity: 'error',
         autoHideDuration: 3000,
       })
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -88,11 +93,13 @@ const FormRecepcionDm = () => {
         title="Registrar dispositivo medico"
         formId="formRecepcionDm"
         onSubmit={handleSubmit}
+        loadingState={loading}
       >
         <RecepcionDmForm
           formData={formData}
           setter = {setFormData}
           handleChange={handleChange}
+          
         />
       </ModalForm>
     </>

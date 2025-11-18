@@ -96,7 +96,7 @@ const InventarioRespiratorioPage = () =>{
                     searchTerm={searchReposicion}
                     dateStart={startDateReposicion}
                     dateEnd={endDateReposicion}
-                    downLoad ={setDownloadReposicion}
+                    onDownload={setDownloadReposicion}
                     />
             ),
             toolbar: (

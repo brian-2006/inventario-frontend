@@ -1,8 +1,10 @@
 //filtos de tool bar 
 import useFilterDate from '../../../utils/hooks/useFilterDate'
+import useFilterByTerm from '../../../utils/hooks/useFilterByTerm'
 
 //se importan los componentes
 import ReposicionDmTable from '../../organisms/table/ReposicionDmTable'
+
 //se importan hooks
 import {useState, useEffect} from 'react'
 

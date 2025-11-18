@@ -106,7 +106,7 @@ const InventarioReactivoPage = () =>{
                     onDateEnd={setEndDateReposicion}
                     download={()=> 
                         handleDownLoadSemaforizacion(
-                        'http://127.0.0.1:8000/inventarioPrincipal/reporteReposicionDM/',
+                        'http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
                         downloadReposicion,
                         'reporte_reposicion_reactivos.xlsx'
                     )}

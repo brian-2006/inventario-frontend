@@ -28,17 +28,17 @@ const RecepcionTableTest  = ({SearchTerm, startDate, endDate, onDownLoad }) => {
     useEffect(()=>{
         if (!data.length) return;
 
-    // 1️⃣ Filtramos por rango de fechas
+    // 1️ Filtramos por rango de fechas
     let result = useFilterDate({ startDate, endDate, data });
 
-    // 2️⃣ Luego filtramos por búsqueda de texto
+    // 2️ Luego filtramos por búsqueda de texto
     if (q) {
       result = result.filter(dato =>
         (dato?.nombre || '').toLowerCase().startsWith(q)
       );
     }
 
-    // 3️⃣ Guardamos los datos filtrados
+    // 3️ Guardamos los datos filtrados
     setFilteredData(result);
     GetData()
     }, [q, startDate, endDate, data])

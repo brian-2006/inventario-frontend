@@ -92,14 +92,17 @@ const InventarioBioseguridadPage = () =>{
                 <ReposicionBioseguridadPage
                     searchTerm={searchReposicion}
                     dateStart={startDateReposicion}
-                    dateEnd={endDateReposicion}/>
+                    dateEnd={endDateReposicion}
+                    onDownload={setDownloadReposicion}
+                    />
+                    
             ),
             toolbar:( 
                     <ToolbarReposicion
                         onSearch={setSearchReposicion}
                         onDateStart={setStartDateReposicion}
                         onDateEnd={setEndDateReposicion}
-                        download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicionDM/',
+                        downLoad={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
                             downloadReposicion,
                             'reporte_reposicion_bioseguridad.xlsx'
                         )}

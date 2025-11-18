@@ -1,6 +1,8 @@
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import {DeleteIcon, UpdateIcon, MenuIcon, UserIcon} from '../protons/Icon.jsx'
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 //iconos de MUI
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
@@ -77,7 +79,7 @@ export const DownloadButton = ({ text, onClick, size, sx = {}, ...props }) => {
   );
 };
 
-export const CreateButton = ({ text, onClick, size, sx = {}, ...props}) => {
+export const CreateButton = ({ text, onClick, size, loading = false, sx = {}, ...props}) => {
 
     return(
         <Button
@@ -85,7 +87,9 @@ export const CreateButton = ({ text, onClick, size, sx = {}, ...props}) => {
         //color='#6FE0F2' 
         size={size} 
         onClick={onClick}
-        endIcon={<AddOutlinedIcon/>}
+        endIcon={loading ? <CircularProgress size={20} /> : undefined}
+        loading = {loading}
+        //disabled={loading}
         sx={{
           borderRadius: "50px",
           height: 40,
