@@ -27,7 +27,7 @@ const FormLogin = () =>{
     try{
       
         const payload = { email: formData.user, password: encode(formData.password) };
-        console.log(`contraseña limpia: ${payload.password}, contraseña codificada: ${encode(payload.password )}`)
+        //console.log(`contraseña limpia: ${payload.password}, contraseña codificada: ${encode(payload.password )}`)
         const response = await axios.post('https://judie-froggy-nonsportingly.ngrok-free.dev/angeles-application-service/api/v1/users/login', 
             payload,
             { headers: { 'Content-Type': 'application/json' } }

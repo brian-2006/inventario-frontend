@@ -36,7 +36,6 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
             <AutoCompleteAtom
                 name="medicamento"
                 label="Nombre medicamento"
-                
                 options={medicamentos.map(m => ({
                     value: m.id,
                     label: m.nombregenerico,

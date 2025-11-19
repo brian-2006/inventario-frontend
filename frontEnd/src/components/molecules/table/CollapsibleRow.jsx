@@ -18,16 +18,22 @@ import TableContainerAtom from '../../atoms/table/TableContainer'
 import TableAtom from '../../atoms/table/Table'
 import TableHeaderRow from './TableHeaderRow'
 import {DeleteButton, AssignButton} from '../../atoms/Button'
+import DeleteRequestButton from '../../organisms/modal/Request'
 
 
 const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
     const [open, setOpen] = useState(false);
+    const [openDeleteIndex, setOpenDeleteIndex] = useState(null)
 
-    //funcion para activar o desactivat el boton de asignar 
+    //funcion para activar o desactivar el boton de asignar 
     const isExpired = (date) => {
         const quince_dias = new Date(new Date().setDate(new Date().getDate() + 15))
         const fehca_vencimiento = new Date(date)
         return fehca_vencimiento <= quince_dias
+    }
+
+    const handleDelte =(index) =>{
+        setOpenDeleteIndex((prev) => (prev === index ? null : index))
     }
     return(
         <>
@@ -65,7 +71,12 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
                                                     </TableCellAtom>
                                                 ))}
                                                 <TableCellAtom>
-                                                    <DeleteButton size="small" />
+                                                    <DeleteRequestButton 
+                                                        onclose={() => handleDelte(index)} 
+                                                        estado = {openDeleteIndex === index} 
+                                                        tittle = "peticion de eliminar" 
+                                                        data = {data}
+                                                    />
                                                     <AssignButton size="small" disabled = {isExpired(data["fecha vencimiento"])}/>
                                                 </TableCellAtom>
                                                 </TableRow>
