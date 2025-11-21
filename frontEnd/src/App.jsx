@@ -23,21 +23,21 @@ function App() {
         <Routes>
           {/*rutas de inventarios */}
                 <Route path='/test/*' element={<TestRoutes />} />
-                <Route path = "/" element = {<InventarioMedicamentosPage/>}/>
-                <Route path ="/inventario/medicamentos" element ={<InventarioMedicamentosPage/>}/>
-                <Route path = "/inventario/dispositivos-medicos" element = {<InventarioDMPage/>}/>
-                <Route path = "/inventario/respiratorio" element = {<InventarioRespiratorioPage/>}/>
-                <Route path = "/inventario/bioseguridad" element = {<InventarioBioseguridadPage/>}/>
-                <Route path = "/inventario/aseo" element = {<InventarioAseoPage/>}/>
-                <Route path = "/inventario/control-especial" element = {<InventarioControlEspecialPage/>}/>
-                <Route path = "/inventario/equipos-biomedicos" element = {<InventarioEquiposBiomedicosPage/>}/>
-                <Route path = "/inventario/reactivo" element = {<InventarioReactivoPage/>}/>
+                <Route path = "/" element = {<ProtectedRoute> <InventarioMedicamentosPage/></ProtectedRoute>}/>
+                <Route path ="/inventario/medicamentos" element ={<ProtectedRoute><InventarioMedicamentosPage/></ProtectedRoute>}/>
+                <Route path = "/inventario/dispositivos-medicos" element = {<ProtectedRoute><InventarioDMPage/></ProtectedRoute>}/>
+                <Route path = "/inventario/respiratorio" element = {<ProtectedRoute><InventarioRespiratorioPage/></ProtectedRoute>}/>
+                <Route path = "/inventario/bioseguridad" element = {<ProtectedRoute><InventarioBioseguridadPage/></ProtectedRoute>}/>
+                <Route path = "/inventario/aseo" element = {<ProtectedRoute><InventarioAseoPage/></ProtectedRoute>}/>
+                <Route path = "/inventario/control-especial" element = {<ProtectedRoute><InventarioControlEspecialPage/></ProtectedRoute>}/>
+                <Route path = "/inventario/equipos-biomedicos" element = {<ProtectedRoute><InventarioEquiposBiomedicosPage/></ProtectedRoute>}/>
+                <Route path = "/inventario/reactivo" element = {<ProtectedRoute><InventarioReactivoPage/></ProtectedRoute>}/>
             {/*rutas de recepcion tecnica */}
-                <Route path = "/recepcion-tecnica/medicamentos" element = {<RecepcionMedicamentosPage/>}/>
-                <Route path = "/recepcion-tecnica/dispositivos-medicos" element={<RecepcionDispositivosMedicosPage/>}/>
+                <Route path = "/recepcion-tecnica/medicamentos" element = {<ProtectedRoute><RecepcionMedicamentosPage/></ProtectedRoute>}/>
+                <Route path = "/recepcion-tecnica/dispositivos-medicos" element={<ProtectedRoute><RecepcionDispositivosMedicosPage/></ProtectedRoute>}/>
             {/*Rutas de formularios*/ }
-                <Route path = "/recepcion-tecnica/medicamentos/form" element = {<FormRecepcionMedicamentos/>}/>
-                <Route path = "/recepcion-tecnica/dispositivos-medicos/form" element = {<FormRecepcionDm/>}/>
+                <Route path = "/recepcion-tecnica/medicamentos/form" element = {<ProtectedRoute><FormRecepcionMedicamentos/></ProtectedRoute>}/>
+                <Route path = "/recepcion-tecnica/dispositivos-medicos/form" element = {<ProtectedRoute><FormRecepcionDm/></ProtectedRoute>}/>
                 <Route path = "/login" element = {<FormLogin/>}/>
         </Routes>
       

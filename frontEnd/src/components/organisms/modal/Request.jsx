@@ -12,15 +12,17 @@ import {
   } from '@mui/material'
   
   import { useState } from 'react'
-  import { DeleteButton } from '../../atoms/Button'
+  import { DeleteButton, UpdateButton } from '../../atoms/Button'
   
   const DeleteRequestButton = ({ onclose, estado, tittle, data }) => {
     
     const [razon, setRazon] = useState("")
+    
   
     return (
       <>
         <DeleteButton size = "small" onClick={onclose} />
+        {/* <UpdateButton size = "small" onClick={setIsAuthenticated}/> */}
   
         <Dialog
           onClose={onclose}

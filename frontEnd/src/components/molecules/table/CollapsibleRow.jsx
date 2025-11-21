@@ -22,8 +22,13 @@ import DeleteRequestButton from '../../organisms/modal/Request'
 
 
 const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
+    //estado para desplegar lotes asociados boton de eliminación
     const [open, setOpen] = useState(false);
+    //estado para abrir 
     const [openDeleteIndex, setOpenDeleteIndex] = useState(null)
+    //estado de prueba para validar el usuario
+    const [isAuthenticated, setIsAuthenticated] =useState(false)
+    let saludo = "hola como estas"
 
     //funcion para activar o desactivar el boton de asignar 
     const isExpired = (date) => {
@@ -31,10 +36,15 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
         const fehca_vencimiento = new Date(date)
         return fehca_vencimiento <= quince_dias
     }
+    //funcio para menejar cambio de autenticacion
+    const handleChangeAuthenticated = () =>{
+        setIsAuthenticated(!isAuthenticated)
+    }
 
     const handleDelte =(index) =>{
         setOpenDeleteIndex((prev) => (prev === index ? null : index))
     }
+    //console.log(isAuthenticated)
     return(
         <>
             {/*fila principal*/ }
@@ -71,12 +81,14 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
                                                     </TableCellAtom>
                                                 ))}
                                                 <TableCellAtom>
+                                                    
                                                     <DeleteRequestButton 
                                                         onclose={() => handleDelte(index)} 
                                                         estado = {openDeleteIndex === index} 
                                                         tittle = "peticion de eliminar" 
                                                         data = {data}
                                                     />
+                                                    
                                                     <AssignButton size="small" disabled = {isExpired(data["fecha vencimiento"])}/>
                                                 </TableCellAtom>
                                                 </TableRow>
