@@ -13,11 +13,23 @@ import {
   
   import { useState } from 'react'
   import { DeleteButton, UpdateButton } from '../../atoms/Button'
+
+  import useCreateRequest from '../../../utils/CustomHooks/useRequest'
+  import {TyptRequest, TableRequested} from '../../../json/TestData'
   
-  const DeleteRequestButton = ({ onclose, estado, tittle, data }) => {
+  const DeleteRequestButton = ({ onclose, estado, tittle, data, user }) => {
+
+
+    const {executeCreate, loading, error} = useCreateRequest()
     
     const [razon, setRazon] = useState("")
-    
+    console.log(data)
+    console.log(error?? "no hay error")
+
+    const handleClick = async () => {
+      await executeCreate(data, TyptRequest.eliminar, TableRequested.Lote, data["numero lote"], user, razon)
+      onclose()
+    }
   
     return (
       <>
@@ -127,10 +139,14 @@ import {
           </DialogContent>
   
           <DialogActions sx={{ px: 3, pb: 2 }}>
-            <Button variant='contained' color='primary' onClick={onclose}>
+            <Button variant='contained' 
+              color='primary' 
+              onClick={handleClick}
+              loading = {loading}
+            >
               ACEPTAR
             </Button>
-            <Button variant='contained' color='error' onClick={onclose}>
+            <Button variant='contained' color='error' onClick={onclose} >
               CANCELAR
             </Button>
           </DialogActions>

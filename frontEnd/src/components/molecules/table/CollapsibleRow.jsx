@@ -1,5 +1,5 @@
-import React from "react"
 import { useState } from "react"
+import { useAuth } from "../../../providers/AuthProvider"
 import{
     TableRow,
   Collapse,
@@ -17,9 +17,9 @@ import TableCellAtom from '../../atoms/table/TableCell'
 import TableContainerAtom from '../../atoms/table/TableContainer'
 import TableAtom from '../../atoms/table/Table'
 import TableHeaderRow from './TableHeaderRow'
-import {DeleteButton, AssignButton} from '../../atoms/Button'
+//botonos de accion con funcionalidad
+import { AssignButton} from '../../atoms/Button'
 import DeleteRequestButton from '../../organisms/modal/Request'
-
 
 const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
     //estado para desplegar lotes asociados boton de eliminación
@@ -27,8 +27,17 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
     //estado para abrir 
     const [openDeleteIndex, setOpenDeleteIndex] = useState(null)
     //estado de prueba para validar el usuario
-    const [isAuthenticated, setIsAuthenticated] =useState(false)
-    let saludo = "hola como estas"
+    const [Authenticated, setAuthenticated] =useState(false)
+
+    //variables donde se guardara la informacion del usuario
+    const { user, isAuthenticated, token } = useAuth();
+
+    // Muestra información del usuario si está autenticado
+    // console.log('Usuario autenticado:', user);
+    // console.log('Token:', token);
+    // console.log('¿Está autenticado?', isAuthenticated);
+    // console.log(`permisos del usuario: ${user.permissions}
+    //     nombre de usuario: ${user.username??"no tiene apellido"}`)
 
     //funcion para activar o desactivar el boton de asignar 
     const isExpired = (date) => {
@@ -38,13 +47,13 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
     }
     //funcio para menejar cambio de autenticacion
     const handleChangeAuthenticated = () =>{
-        setIsAuthenticated(!isAuthenticated)
+        setAuthenticated(!Authenticated)
     }
 
     const handleDelte =(index) =>{
         setOpenDeleteIndex((prev) => (prev === index ? null : index))
     }
-    //console.log(isAuthenticated)
+    //console.log(Authenticated)
     return(
         <>
             {/*fila principal*/ }
@@ -81,14 +90,22 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
                                                     </TableCellAtom>
                                                 ))}
                                                 <TableCellAtom>
-                                                    
-                                                    <DeleteRequestButton 
-                                                        onclose={() => handleDelte(index)} 
-                                                        estado = {openDeleteIndex === index} 
-                                                        tittle = "peticion de eliminar" 
-                                                        data = {data}
-                                                    />
-                                                    
+                                                    {user.permissions == 2 || user.permissions == 1?(
+                                                        <DeleteRequestButton 
+                                                            onclose={() => handleDelte(index)} 
+                                                            estado = {openDeleteIndex === index} 
+                                                            tittle = "peticion de eliminar" 
+                                                            data = {data}
+                                                            user = {user.username}
+                                                        />
+                                                    ): <DeleteRequestButton 
+                                                            onclose={() => handleDelte(index)} 
+                                                            estado = {openDeleteIndex === index} 
+                                                            tittle = "peticion de eliminar" 
+                                                            data = {data}
+                                                            user = {user.username}
+                                                        />}
+
                                                     <AssignButton size="small" disabled = {isExpired(data["fecha vencimiento"])}/>
                                                 </TableCellAtom>
                                                 </TableRow>

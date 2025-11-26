@@ -9,13 +9,19 @@ Toolbar,
 import {MenuButton} from '../../atoms/Button'
 import {useState} from 'react'
 import {UserIcon} from '../../protons/Icon'
-import {UserButton} from '../../atoms/Button'
+import {UserButton, NotificationButton} from '../../atoms/Button'
 import MuiSideBar from '../sidebar/react-mui-sidebar'
+
 import { useAuth } from '../../../providers/AuthProvider'
 
 const Header = () =>{
+    //estados para cerrar sesion
     const [open, SetOpen] = useState(false)
+    //funcion para cerrar sesion
     const { logout } = useAuth()
+
+    //datos de usuario autenticado
+    const { user, isAuthenticated, token } = useAuth();
 
     const handleOpen = () =>{
         SetOpen(!open)
@@ -27,7 +33,11 @@ const Header = () =>{
                     <MenuButton onClick={handleOpen}/>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    { user.permissions == 2?(
+                        <NotificationButton size = "large"/>
+                    ): null}
                     <UserButton size = "large" color onClick ={logout}/>
+                    
                 </Box>
             </Toolbar>
             <Drawer 

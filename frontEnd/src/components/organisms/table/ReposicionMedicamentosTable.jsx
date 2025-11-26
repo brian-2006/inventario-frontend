@@ -1,4 +1,4 @@
-import {ReposicionMedicamentosColumns, ReposicionMedicamentosData} from '../../../json/TestData'
+import {ReposicionMedicamentosColumns} from '../../../json/TestData'
 
 import {TableHead, TableBody, TableRow} from '@mui/material'
 

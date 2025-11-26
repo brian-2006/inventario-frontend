@@ -23,21 +23,21 @@ function App() {
         <Routes>
           {/*rutas de inventarios */}
                 <Route path='/test/*' element={<TestRoutes />} />
-                <Route path = "/" element = {<ProtectedRoute> <InventarioMedicamentosPage/></ProtectedRoute>}/>
-                <Route path ="/inventario/medicamentos" element ={<ProtectedRoute><InventarioMedicamentosPage/></ProtectedRoute>}/>
-                <Route path = "/inventario/dispositivos-medicos" element = {<ProtectedRoute><InventarioDMPage/></ProtectedRoute>}/>
-                <Route path = "/inventario/respiratorio" element = {<ProtectedRoute><InventarioRespiratorioPage/></ProtectedRoute>}/>
-                <Route path = "/inventario/bioseguridad" element = {<ProtectedRoute><InventarioBioseguridadPage/></ProtectedRoute>}/>
-                <Route path = "/inventario/aseo" element = {<ProtectedRoute><InventarioAseoPage/></ProtectedRoute>}/>
-                <Route path = "/inventario/control-especial" element = {<ProtectedRoute><InventarioControlEspecialPage/></ProtectedRoute>}/>
-                <Route path = "/inventario/equipos-biomedicos" element = {<ProtectedRoute><InventarioEquiposBiomedicosPage/></ProtectedRoute>}/>
-                <Route path = "/inventario/reactivo" element = {<ProtectedRoute><InventarioReactivoPage/></ProtectedRoute>}/>
+                <Route path = "/" element = {<ProtectedRoute> <InventarioMedicamentosPage/> </ProtectedRoute>}/>
+                <Route path ="/inventario/medicamentos" element ={<ProtectedRoute> <InventarioMedicamentosPage/> </ProtectedRoute>}/>
+                <Route path = "/inventario/dispositivos-medicos" element = {<ProtectedRoute> <InventarioDMPage/> </ProtectedRoute>}/>
+                <Route path = "/inventario/respiratorio" element = {<ProtectedRoute> <InventarioRespiratorioPage/> </ProtectedRoute>}/>
+                <Route path = "/inventario/bioseguridad" element = {<ProtectedRoute> <InventarioBioseguridadPage/> </ProtectedRoute>}/>
+                <Route path = "/inventario/aseo" element = {<ProtectedRoute> <InventarioAseoPage/> </ProtectedRoute>}/>
+                <Route path = "/inventario/control-especial" element = {<ProtectedRoute> <InventarioControlEspecialPage/> </ProtectedRoute>}/>
+                <Route path = "/inventario/equipos-biomedicos" element = {<ProtectedRoute> <InventarioEquiposBiomedicosPage/> </ProtectedRoute>}/>
+                <Route path = "/inventario/reactivo" element = {<ProtectedRoute> <InventarioReactivoPage/> </ProtectedRoute>}/>
             {/*rutas de recepcion tecnica */}
-                <Route path = "/recepcion-tecnica/medicamentos" element = {<ProtectedRoute><RecepcionMedicamentosPage/></ProtectedRoute>}/>
-                <Route path = "/recepcion-tecnica/dispositivos-medicos" element={<ProtectedRoute><RecepcionDispositivosMedicosPage/></ProtectedRoute>}/>
+                <Route path = "/recepcion-tecnica/medicamentos" element = {<ProtectedRoute> <RecepcionMedicamentosPage/> </ProtectedRoute>}/>
+                <Route path = "/recepcion-tecnica/dispositivos-medicos" element={<ProtectedRoute> <RecepcionDispositivosMedicosPage/> </ProtectedRoute>}/>
             {/*Rutas de formularios*/ }
-                <Route path = "/recepcion-tecnica/medicamentos/form" element = {<ProtectedRoute><FormRecepcionMedicamentos/></ProtectedRoute>}/>
-                <Route path = "/recepcion-tecnica/dispositivos-medicos/form" element = {<ProtectedRoute><FormRecepcionDm/></ProtectedRoute>}/>
+                <Route path = "/recepcion-tecnica/medicamentos/form" element = {<ProtectedRoute> <FormRecepcionMedicamentos/> </ProtectedRoute>}/>
+                <Route path = "/recepcion-tecnica/dispositivos-medicos/form" element = {<ProtectedRoute> <FormRecepcionDm/> </ProtectedRoute>}/>
                 <Route path = "/login" element = {<FormLogin/>}/>
         </Routes>
       

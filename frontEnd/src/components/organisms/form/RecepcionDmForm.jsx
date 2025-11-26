@@ -8,8 +8,13 @@ import axios from "axios";
 import { CreateButton } from "../../atoms/Button";
 import RecepcionDmForm from "../../molecules/form/RecepcionDmForm";
 import ModalForm from '../modal/ModalForm'
+//importamos datos del usuario
+import { useAuth } from '../../../providers/AuthProvider'
 
 const FormRecepcionDm = () => {
+
+  //estados del usuario
+  const { user } = useAuth();
   // --- Estado principal del formulario ---
 
   const [open, setOpen] = useState(false);

@@ -1,4 +1,4 @@
-import {ReposicionDmColumns, ReposicionDmData} from '../../../json/TestData'
+import {ReposicionDmColumns} from '../../../json/TestData'
 
 import {TableHead, TableBody, TableRow} from '@mui/material'
 

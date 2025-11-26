@@ -206,6 +206,7 @@ export const CarroConsultaIcon = ({className = "", size = 20}) =>{
   );
 };
 
+//iconos de prime react
 export const DeleteIcon = ({ className = '' }) => {
   return (
     <i
@@ -375,3 +376,13 @@ export const HealthIcon = ({className = "", color, fontSize }) =>{
       />
   )
 }
+
+export const Notification = ({ className = '', color, fontSize }) => {
+  return (
+    <i
+      className={`pi pi-bell ${className}`}
+      aria-hidden="true"
+      style={{ color: color, fontSize: fontSize }}
+    />
+  );
+};
