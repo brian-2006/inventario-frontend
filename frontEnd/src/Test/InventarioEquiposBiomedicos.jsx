@@ -48,6 +48,7 @@ const  InventarioEquiposBiomedicosTest = ({SearchTerm, startDate, endDate, onDow
             mainRows={filteredData}
             lotHeaders = {LoteRowsColums}
             lotRows = {filteredLotRows}
+            module = {TypeInventory.EquiposBiomedicos}
             />
         </>
     )

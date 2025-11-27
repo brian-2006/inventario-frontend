@@ -16,10 +16,15 @@ import {
 
   import useCreateRequest from '../../../utils/CustomHooks/useRequest'
   import {TyptRequest, TableRequested} from '../../../json/TestData'
+
+  //importamos provider para obtener datos del usuario
+  import { useAuth } from '../../../providers/AuthProvider'
   
-  const DeleteRequestButton = ({ onclose, estado, tittle, data, user }) => {
+  const DeleteRequestButton = ({ onclose, estado, tittle, data, module}) => {
+    //obtenemos los datos necesarios
+    const {user} = useAuth()
 
-
+    console.log(`nombre de usuario que esta entrando: ${user.userInformation.idUser??"no tiene nombre"}`)
     const {executeCreate, loading, error} = useCreateRequest()
     
     const [razon, setRazon] = useState("")
@@ -27,7 +32,17 @@ import {
     console.log(error?? "no hay error")
 
     const handleClick = async () => {
-      await executeCreate(data, TyptRequest.eliminar, TableRequested.Lote, data["numero lote"], user, razon)
+      await executeCreate(
+        data, 
+        TyptRequest.eliminar, 
+        TableRequested.Lote, 
+        data["id"], 
+        user.userInformation.idUser, 
+        razon,
+        user.userInformation.fullName,
+        user.userInformation.cargo,
+        module
+      )
       onclose()
     }
   

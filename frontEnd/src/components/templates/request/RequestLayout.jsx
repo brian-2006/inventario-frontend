@@ -1,9 +1,9 @@
 import { Box, Container, Paper, Typography } from "@mui/material";
 import Header from '../../organisms/header/Header'
-import TabsInventory from '../../organisms/tab/TabSection'
+import TabRequest from '../../organisms/tab/TabRequest'
 
 
-const TabLayout = ({title, tabsData = []  }) => {
+const RrquestLayout = ({title, tabsData = []  }) => {
 
   return (
     <Box
@@ -40,11 +40,11 @@ const TabLayout = ({title, tabsData = []  }) => {
         </Typography>
 
         {tabsData.length > 0 &&(
-          <TabsInventory tabsData={tabsData}/>
+          <TabRequest tabsData={tabsData}/>
         )}
       </Container>
     </Box>
   );
 };
 
-export default TabLayout;
+export default RrquestLayout;

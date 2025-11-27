@@ -8,7 +8,7 @@ Toolbar,
 } from "@mui/material"
 import {MenuButton} from '../../atoms/Button'
 import {useState} from 'react'
-import {UserIcon} from '../../protons/Icon'
+import { useNavigate } from 'react-router-dom';
 import {UserButton, NotificationButton} from '../../atoms/Button'
 import MuiSideBar from '../sidebar/react-mui-sidebar'
 
@@ -22,6 +22,8 @@ const Header = () =>{
 
     //datos de usuario autenticado
     const { user, isAuthenticated, token } = useAuth();
+    const navigate = useNavigate()
+
 
     const handleOpen = () =>{
         SetOpen(!open)
@@ -34,9 +36,9 @@ const Header = () =>{
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     { user.permissions == 2?(
-                        <NotificationButton size = "large"/>
+                        <NotificationButton size = "large" onClick = {()=> navigate('/request/admin')}/>
                     ): null}
-                    <UserButton size = "large" color onClick ={logout}/>
+                    <UserButton size = "large" onClick ={logout}/>
                     
                 </Box>
             </Toolbar>

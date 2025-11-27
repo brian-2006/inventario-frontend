@@ -1,17 +1,31 @@
 // components/RequestDetailModal.jsx
 import { 
   Dialog, DialogTitle, DialogContent, DialogActions, 
-  Typography, Grid, Button, Box, IconButton, Chip 
+  Typography, Grid, Button, Box, IconButton 
 } from '@mui/material';
+//iconos 
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
+//se importan botones
+import { ViewButton } from '../../atoms/Button'
+//chips de estilo para estado de solicitud y tipode solicitud
 import RequestStateChip from '../../molecules/chips/ValidationState'
 import TypeActionChip from '../../molecules/chips/ActionType'
+//hooks
+import {useState} from 'react'
+//importamos modal que amplia la informacion
+import InfoModal from './Info';
 
-const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, rol }) => {
+const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny}) => {
   if (!request) return null;
 
-  // No need to store in a variable, we'll use it directly in the JSX
+  const [infoOpen, setInfoOpen] = useState(false);
+
+  const handleInfoOpen = () => setInfoOpen(true);
+  const handleInfoClose = () => setInfoOpen(false);
+
+  console.log(request.requestPayload)
+
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
@@ -29,11 +43,11 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, rol })
           {/* Fila 1 */}
           <Grid item xs={6}>
             <Typography variant="caption" color="text.secondary" display="block">Solicitante:</Typography>
-            <Typography variant="subtitle1">{request.requesteruser}</Typography>
+            <Typography variant="subtitle1">{request.username}</Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="caption" color="text.secondary" display="block">Rol:</Typography>
-            <Typography variant="subtitle1">{rol}</Typography>
+            <Typography variant="subtitle1">{request.rol}</Typography>
           </Grid>
 
           {/* Fila 2 */}
@@ -42,15 +56,26 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, rol })
             <Typography variant="body1">{request.created_at}</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="caption" color="text.secondary" display="block">Tipo:</Typography>
-            
+            <Typography variant="caption" color="text.secondary" display="block">Tipo solicitud:</Typography>
+
             <TypeActionChip action={request.actionType} />
           </Grid>
+          <Grid item xs={6}>
+            <Typography variant="caption" color="text.secondary" display="block">Estado solicitud:</Typography>
+            <RequestStateChip estado={request.status} />
+          </Grid>
+
 
           {/* Fila 3 */}
           <Grid item xs={12}>
-            <Typography variant="caption" color="text.secondary" display="block">Inventario de origen:</Typography>
-            <Typography variant="body1">Medicamentos</Typography>
+            <Typography variant="caption" color="text.secondary" display="block">Modulo de origen:</Typography>
+            <Typography variant="body1">{request.module}</Typography>
+            
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant="body1" color="text.secondary" display="block">informacion:</Typography>
+            <ViewButton size = "small" onClick={handleInfoOpen}/>
           </Grid>
         </Grid>
 
@@ -88,6 +113,12 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, rol })
           Negar
         </Button>
       </DialogActions>
+      <InfoModal
+        open = {infoOpen}
+        onClose={handleInfoClose}
+        title = "informacion de peticion"
+        data = {request.requestpayload} 
+      />
     </Dialog>
   );
 };

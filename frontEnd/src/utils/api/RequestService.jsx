@@ -6,17 +6,23 @@ const CreateRequest = async ({
     type_request, 
     table, 
     id_item, 
-    requester_user, 
-    justification
+    user_id, 
+    justification,
+    username,
+    rol,
+    module
 }) => {
 
     const body = {
-        requesteruser: requester_user,
+        requesteruser: user_id,
         justification: justification,
         targettable: table,
         target_id: id_item,
         actiontype: type_request,
-        requestpayload: payload
+        requestpayload: payload,
+        username: username,
+        rol: rol,
+        module: module
     }
     console.log(body)
     const response = await axios.post(`${baseURL}request/createRequest/`, body);

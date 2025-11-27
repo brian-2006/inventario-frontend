@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import {DeleteIcon, UpdateIcon, MenuIcon, UserIcon, ShopCarIcon, Notification} from '../protons/Icon.jsx'
+import {DeleteIcon, UpdateIcon, MenuIcon, UserIcon, ShopCarIcon, Notification, EyeIcon} from '../protons/Icon.jsx'
 import CircularProgress from '@mui/material/CircularProgress';
 
 
@@ -24,6 +24,15 @@ export const NotificationButton = ({size, onClick = {}}) => {
         <Notification sx ={{bgcolor: "#F5F5F5"}}/>
       </IconButton>
   );
+};  
+
+export const ViewButton = ({size, onClick}) => {
+    return (
+        <IconButton
+          aria-label="ver" color="#20a2d5ff" size={size} onClick={onClick}>
+          <EyeIcon sx ={{bgcolor: "#11c8f1ff"}}/>
+        </IconButton>
+    );
 };
 
 

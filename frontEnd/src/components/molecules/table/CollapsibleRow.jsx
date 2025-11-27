@@ -21,7 +21,7 @@ import TableHeaderRow from './TableHeaderRow'
 import { AssignButton} from '../../atoms/Button'
 import DeleteRequestButton from '../../organisms/modal/Request'
 
-const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
+const CollapsibleRow  = ({rows, lote_rows, lote_rows_data, module}) => {
     //estado para desplegar lotes asociados boton de eliminación
     const [open, setOpen] = useState(false);
     //estado para abrir 
@@ -33,11 +33,11 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
     const { user, isAuthenticated, token } = useAuth();
 
     // Muestra información del usuario si está autenticado
-    // console.log('Usuario autenticado:', user);
+    console.log('Usuario autenticado:', user);
     // console.log('Token:', token);
     // console.log('¿Está autenticado?', isAuthenticated);
-    // console.log(`permisos del usuario: ${user.permissions}
-    //     nombre de usuario: ${user.username??"no tiene apellido"}`)
+    console.log(`permisos del usuario: ${user.permissions}`)
+    console.log(`nombre de usuario: ${user.userInformation.fullName??"no tiene nombre"}`)
 
     //funcion para activar o desactivar el boton de asignar 
     const isExpired = (date) => {
@@ -84,11 +84,13 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
                                             {lote_rows_data.map((data, index)=>(
                                                 
                                                 <TableRow key={index}>
-                                                {Object.entries(data).map(([key, value])=>(
-                                                    <TableCellAtom key={key}>
-                                                        {value}
-                                                    </TableCellAtom>
-                                                ))}
+                                                {Object.entries(data).map(([key, value]) => 
+                                                    (key !== "id") ? (
+                                                        <TableCellAtom key={key}>
+                                                            {value}
+                                                        </TableCellAtom>
+                                                    ) : null
+                                                )}
                                                 <TableCellAtom>
                                                     {user.permissions == 2 || user.permissions == 1?(
                                                         <DeleteRequestButton 
@@ -96,14 +98,14 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data}) => {
                                                             estado = {openDeleteIndex === index} 
                                                             tittle = "peticion de eliminar" 
                                                             data = {data}
-                                                            user = {user.username}
+                                                            module = {module}
                                                         />
                                                     ): <DeleteRequestButton 
                                                             onclose={() => handleDelte(index)} 
                                                             estado = {openDeleteIndex === index} 
                                                             tittle = "peticion de eliminar" 
                                                             data = {data}
-                                                            user = {user.username}
+                                                            module = {module}
                                                         />}
 
                                                     <AssignButton size="small" disabled = {isExpired(data["fecha vencimiento"])}/>

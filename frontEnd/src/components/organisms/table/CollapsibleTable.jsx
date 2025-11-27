@@ -15,7 +15,7 @@ import TableAtom from '../../atoms/table/Table'
 
 import TableHeaderRow from '../../molecules/table/TableHeaderRow'
 
-const CollapsibleTable = ({mainHeaders, mainRows, lotHeaders, lotRows } ) =>{
+const CollapsibleTable = ({mainHeaders, mainRows, lotHeaders, lotRows, module = "no asignado" } ) =>{
 
     {/*
         mainHeaders: encabezados de la tabla principal: array 
@@ -39,6 +39,7 @@ const CollapsibleTable = ({mainHeaders, mainRows, lotHeaders, lotRows } ) =>{
                                 rows={row} 
                                 lote_rows={lotHeaders} 
                                 lote_rows_data ={lotRows[index]}
+                                module = {module}
                             />
                         ))}
                             

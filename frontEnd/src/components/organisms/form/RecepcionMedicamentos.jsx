@@ -9,8 +9,12 @@ import axios from "axios";
 import { CreateButton } from "../../atoms/Button";
 import RecepcionMedicamentoForm from "../../molecules/form/RecepcionMedicamentoForm";
 import ModalForm from '../modal/ModalForm'
+import { useAuth } from '../../../providers/AuthProvider'
 
 const FormRecepcionMedicamentos = () => {
+  //se cargan datos del usuario
+  const { user } = useAuth();
+  
   //estado de carga
   const [loading, setLoading] = useState(false)
   // --- Estado principal del formulario ---
@@ -34,7 +38,7 @@ const FormRecepcionMedicamentos = () => {
     proveedor: "",
     estado_embalaje: "",
     condicion_transporte: "",
-    quien_realiza: 2,
+    quien_realiza: user.userInformation.idUser,
     observaciones: "",
     nombre_inventario: "",
   });

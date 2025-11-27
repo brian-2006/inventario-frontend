@@ -49,6 +49,7 @@ const  InventarioRespiratorioTest = ({SearchTerm, startDate, endDate, onDownLoad
             mainRows={filteredData}
             lotHeaders = {LoteRowsColums}
             lotRows = {filteredLotRows}
+            module = {TypeInventory.Respiratorio}
             />
         </>
     )

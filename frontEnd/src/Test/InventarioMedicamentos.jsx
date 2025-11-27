@@ -17,7 +17,7 @@ const  InventarioMedicamentos = ({SearchTerm, startDate, endDate, onDownLoad})=>
         setRows(rows);
         setLoteRows(loteRows);
         onDownLoad(loteRows);
-
+        console.log(loteRows)
         })
 
         .catch(error => {
@@ -39,6 +39,8 @@ const  InventarioMedicamentos = ({SearchTerm, startDate, endDate, onDownLoad})=>
         GetData();
     }, []);
 
+    console.log(`lotes rows filtrados ${filteredLotRows}`)
+
     
 
     return (
@@ -48,6 +50,7 @@ const  InventarioMedicamentos = ({SearchTerm, startDate, endDate, onDownLoad})=>
             mainRows={filteredData}
             lotHeaders = {LoteRowsColums}
             lotRows = {filteredLotRows}
+            module = {TypeInventory.Medicamentos}
             />
         </>
     )

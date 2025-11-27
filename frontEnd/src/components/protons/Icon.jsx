@@ -306,7 +306,7 @@ export const OpenIcon = ({ className = '' }) => {
     );
 };
 
-export const EyeIcon = ({ className = '', color, fontSize }) => {
+export const EyeIcon = ({ className = '', color = "black", fontSize }) => {
     return (
       <i
         className={`pi pi-eye ${className}`}

@@ -1,6 +1,9 @@
 import { createContext, useContext, useMemo, useState, useEffect, useCallback } from 'react';
 import { decodeJwt, isTokenValid } from '../utils/jwt';
 
+import EmptyStatePage from '../components/molecules/EmptyState'
+import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
+import CircularProgress from '@mui/material/CircularProgress';
 const STORAGE_KEY = 'auth';
 const AuthContext = createContext();
 
@@ -91,7 +94,11 @@ const AuthProvider = ({ children }) => {
   );
 
   if (isLoading) {
-    return <div>Cargando...</div>; // O un componente de carga
+    return <EmptyStatePage
+      icon={<CircularProgress/>}
+      title = "login"
+      description=' cargando inicio de sesion'
+    /> // O un componente de carga
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

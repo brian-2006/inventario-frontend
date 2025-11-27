@@ -48,6 +48,7 @@ const  InventarioAseoTest = ({SearchTerm, startDate, endDate, onDownLoad})=> {
             mainRows={filteredData}
             lotHeaders = {LoteRowsColums}
             lotRows = {filteredLotRows}
+            module = {TypeInventory.Aseo}
             />
         </>
     )

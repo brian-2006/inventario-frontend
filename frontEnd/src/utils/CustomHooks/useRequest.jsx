@@ -8,7 +8,7 @@ const useCreateRequest = ()=>{
     //estado para notificacion
     const notification = useNotifications()
 
-    const executeCreate = async (payload, type_request, table, id_item, requester_user, justification) => {
+    const executeCreate = async (payload, type_request, table, id_item, user_id, justification, username, rol, module) => {
         setLoading(true)
         try {
             const response = await CreateRequest({
@@ -16,8 +16,11 @@ const useCreateRequest = ()=>{
                 type_request,
                 table,
                 id_item,
-                requester_user,
-                justification
+                user_id,
+                justification,
+                username,
+                rol,
+                module
             })
             notification.show('peticion creada', {
                 severity: 'success',

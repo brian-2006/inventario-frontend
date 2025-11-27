@@ -1,10 +1,11 @@
 import useCreateRequest from '../../utils/CustomHooks/useRequestList' 
 import {useState, useEffect} from 'react';
 import { TypeState } from '../../json/TestData';
-import { Grid } from '@mui/material';
-import RequestResponseCard from '../organisms/Card/RequestAdminCard';
 
+import RequestGrid from '../molecules/screen/ScreenCard'
 
+import EmptyStatePage from '../molecules/EmptyState'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 const Home = ()=>{
 
@@ -31,14 +32,14 @@ const Home = ()=>{
       {loading?(
   
         `cargando lista de peticiones de ${TypeState.pendiente}`
+      ):data.length > 0?(
+            <RequestGrid Card={data} />
       ):(
-        <Grid container spacing={2} sx={{ p: 4, bgcolor: '#f4f6f8', minHeight: '100vh'}}>
-          <Grid item xs={12} sx ={{display: "flex", flexDirection: "row"}}>
-            {data.map((dato)=>
-              <RequestResponseCard key={dato.id} request={dato} />
-            )} 
-          </Grid>
-        </Grid>
+        <EmptyStatePage
+          icon = {<ErrorOutlineIcon sx ={{fontSzie : "inherent"}}/>}
+          color = "#F8FA64"
+          description = "no hay peticiones aún" 
+        />
       )
       
     }
@@ -49,43 +50,3 @@ const Home = ()=>{
 
 export default Home ;
 
-
-
-
-// const Home = () =>{
-
-  // const data = {
-  //       id: 6,
-  //       requesteruser: "Bpuerta",
-  //       justification: "Lote vencido",
-  //       targettable: "Lote",
-  //       target_id: 10000,
-  //       actiontype: "DELETE",
-  //       requestpayload: {
-  //           "fabricante": "ALFA SAFE",
-  //           "numero lote": "10000",
-  //           "precio total": "5000.00",
-  //           "cantidad total": 5,
-  //           "precio unitario": 1000,
-  //           "registro invima": "2020M-0002104-R2",
-  //           "fecha vencimiento": "2025-10-30",
-  //           "fecha vencimiento invima": "2025-10-12"
-  //       },
-  //       status: "PENDIENTE",
-  //       reviewedby: null,
-  //       adminresponse: null
-  // }
-
-
-//   return(
-//     <Grid container spacing={2} sx={{ p: 4, bgcolor: '#f4f6f8', minHeight: '100vh' }}>
-//       <Grid item xs={12}>
-//         {
-//           <RequestResponseCard request={data} />
-//         }
-//       </Grid>
-//     </Grid>
-//   )
-// }
-
-// export default Home;

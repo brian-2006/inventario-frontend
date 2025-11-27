@@ -48,6 +48,7 @@ const  InventarioBioseguridadTest = ({SearchTerm, startDate, endDate, onDownLoad
             mainRows={filteredData}
             lotHeaders = {LoteRowsColums}
             lotRows = {filteredLotRows}
+            module = {TypeInventory.Bioseguridad}
             />
         </>
     )

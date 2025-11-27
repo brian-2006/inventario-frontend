@@ -35,7 +35,7 @@ const FormRecepcionDm = () => {
     proveedor: "",
     estado_embalaje: "",
     condicion_transporte: "",
-    quien_realiza: 2,
+    quien_realiza: user.userInformation.idUser,
     observaciones: "",
     nombre_inventario: "",
     clasificacion_riesgo: "",

@@ -51,6 +51,7 @@ const  InventarioControlEspecialTest = ({SearchTerm, startDate, endDate, onDownL
             mainRows={filteredData}
             lotHeaders = {LoteRowsColums}
             lotRows = {filteredLotRows}
+            module= {TypeInventory.ControlEspecial}
             />
         </>
     )

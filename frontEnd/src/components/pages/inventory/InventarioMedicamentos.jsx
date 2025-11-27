@@ -57,13 +57,13 @@ const InventarioMedicamentosPage = () =>{
                 onDateStart={setStartDate}
                 onDateEnd={setEndDate}
                 downLoad={() =>
-                handleDownLoadInventory(
-                    "http://127.0.0.1:8000/inventarioPrincipal/exportarExcelInventario/",
-                    startDate,
-                    endDate,
-                    `reporte_inventario_medicamentos_${startDate}_${endDate}.xlsx`,
-                    downLoad
-                )
+                    handleDownLoadInventory(
+                        "http://127.0.0.1:8000/inventarioPrincipal/exportarExcelInventario/",
+                        startDate,
+                        endDate,
+                        `reporte_inventario_medicamentos_${startDate}_${endDate}.xlsx`,
+                        downLoad
+                    )
                 }
             />
             ),
@@ -87,7 +87,7 @@ const InventarioMedicamentosPage = () =>{
                         downLoadSemaforizacion, 
                         "reporte_semaforizacion_medicamentos.xlsx"
                     )}
-            />),
+                />),
         },
         {
             label: "Reposicion",

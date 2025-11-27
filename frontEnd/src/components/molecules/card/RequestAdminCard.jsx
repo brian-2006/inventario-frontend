@@ -1,15 +1,16 @@
 // components/RequestCard.jsx
 import React, { useState } from 'react';
 import { 
-  Card, CardContent, Typography, Button, Box, Stack 
+  Card, CardContent, Typography, Button, Box, Stack, Paper
 } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import RequestResponseModal from '.././modal/RequestResponse';
-import TypeActionChip from '../../molecules/chips/ActionType'
-import RequestStateChip from '../../molecules/chips/ValidationState'
+import RequestResponseModal from '../../organisms/modal/RequestResponse';
+import TypeActionChip from '../chips/ActionType'
+import RequestStateChip from '../chips/ValidationState'
+
+import {EyeIcon} from '../../protons/Icon'
 
 const RequestResponseCard = ({ request }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -17,6 +18,8 @@ const RequestResponseCard = ({ request }) => {
   // Configuraciones visuales basadas en props
   const status = RequestStateChip(request?.status?? "PENDIENTE")
   const action = TypeActionChip(request?.actiontype?? "DELETE")
+
+  console.log('Request data:', request);
 
   // Manejadores de lógica (Aquí conectarías con tu hook useRequest)
   const handleAccept = () => {
@@ -44,12 +47,12 @@ const RequestResponseCard = ({ request }) => {
           <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={1}>
             <Box>
               <Typography variant="h6" fontWeight="bold" sx={{ lineHeight: 1.2 }}>
-                {request.requesteruser}
+                {request.username}
               </Typography>
               <Stack direction="row" alignItems="center" spacing={0.5} mt={0.5}>
                 <PersonOutlineIcon fontSize="small" color="action" />
                 <Typography variant="body2" color="text.secondary">
-                  {request.requesteruser}
+                  {request.rol}
                 </Typography>
               </Stack>
             </Box>
@@ -70,7 +73,7 @@ const RequestResponseCard = ({ request }) => {
             <Stack direction="row" alignItems="center" spacing={1}>
               <Inventory2OutlinedIcon fontSize="small" color="action" />
               <Typography variant="body2" color="text.secondary" sx={{ mr: 1 }}>
-                respiratorio
+                {request.module}
               </Typography>
               {/* Tipo de Acción (Badge azul) */}
               {action}
@@ -96,7 +99,7 @@ const RequestResponseCard = ({ request }) => {
           <Button 
             variant="outlined" 
             fullWidth 
-            startIcon={<VisibilityIcon />}
+            startIcon={<EyeIcon fontSize = "medium" />}
             onClick={() => setOpenModal(true)}
             sx={{ 
               borderRadius: 2, 
@@ -109,7 +112,7 @@ const RequestResponseCard = ({ request }) => {
               }
             }}
           >
-            Ver detalles
+            <strong> Ver detalles</strong>
           </Button>
         </CardContent>
       </Card>
