@@ -11,25 +11,55 @@ import TypeActionChip from '../chips/ActionType'
 import RequestStateChip from '../chips/ValidationState'
 
 import {EyeIcon} from '../../protons/Icon'
+import axios from 'axios';
+//se importan provider de autenticacion para traer dattos del usaruio
+import { useAuth } from '../../../providers/AuthProvider'
+
+//importamos custom hooks que traen los estados de los llamados https
+import useRequestDeny from '../../../utils/CustomHooks/useRequestDeny'
 
 const RequestResponseCard = ({ request }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [loadingValidate, setLoadingValidate] = useState(false)
+  //obtenemos datos del usuario que valida la peticion
+  const {user} = useAuth()
+
+  //traemos los estados de el endpont para denegar peticion
+  const {executeDeny, loadingDeny, error} = useRequestDeny()
 
   // Configuraciones visuales basadas en props
-  const status = RequestStateChip(request?.status?? "PENDIENTE")
-  const action = TypeActionChip(request?.actiontype?? "DELETE")
+  const status = <RequestStateChip estado={request.status} />
+  const action = <TypeActionChip action = {request.actiontype}/>
 
   console.log('Request data:', request);
 
   // Manejadores de lógica (Aquí conectarías con tu hook useRequest)
-  const handleAccept = () => {
-    console.log("Aceptando solicitud ID:", request.id);
+  const handleAccept = async() => {
+    
+    try {
+      setLoadingValidate(true)
+      const response = await axios.delete('http://localhost:8000/request/ValidateRequest/', {
+        data: {
+          id_request: request.id,
+          reviewed_by: user.userInformation.fullName,
+          admin_response: request.adminresponse
+
+        }
+      });
+      
+      console.log("Eliminada:", response.data);
+    } catch (error) {
+      console.error("Error:", error.response?.data);
+      setLoadingValidate(false)
+    }finally{
+      setLoadingValidate(false)
+    }
     setOpenModal(false);
-    // await executeRequest(...)
+
   };
 
-  const handleDeny = () => {
-    console.log("Negando solicitud ID:", request.id);
+  const handleDeny = async () => {
+    await executeDeny(request.id, user.userInformation.fullName, request.adminresponse)
     setOpenModal(false);
   };
 
@@ -124,6 +154,8 @@ const RequestResponseCard = ({ request }) => {
         request={request}
         onAccept={handleAccept}
         onDeny={handleDeny}
+        loadingValidate={loadingValidate}
+        loadingDeny={loadingDeny}
       />
     </>
   );

@@ -16,8 +16,13 @@ import {useState} from 'react'
 //importamos modal que amplia la informacion
 import InfoModal from './Info';
 
-const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny}) => {
+const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, loadingValidate, loadingDeny}) => {
   if (!request) return null;
+
+  // console.log("informacion que llega" + JSON.stringify(request))
+  // console.log(`el estado de solicitud que esta llegando es este: ${request.status}`)
+  // console.log(`datos del item: ${JSON.stringify(request.requestpayload)}`)
+
 
   const [infoOpen, setInfoOpen] = useState(false);
 
@@ -79,25 +84,40 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny}) => {
           </Grid>
         </Grid>
 
-        <Typography variant="subtitle2" gutterBottom>Observaciones:</Typography>
-        <Box sx={{ 
-          bgcolor: '#f5f5f5', 
-          p: 2, 
-          borderRadius: 2, 
-          border: '1px solid #e0e0e0',
-          color: 'text.secondary'
-        }}>
-          <Typography variant="body2">{request.justification}</Typography>
-        </Box>
+        {request.status !== "PENDIENTE" &&(
+          <Grid container spacing={4}>
+            <Grid item xs={6}>
+              <Typography variant="caption" color="text.secondary" display="block">revisado por:</Typography>
+              <Typography variant="subtitle1">{request.reviewedby}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="caption" color="text.secondary" display="block">fecha de revision:</Typography>
+              <Typography variant="subtitle1">{request.updated_at}</Typography>
+            </Grid>
+          </Grid>
+        )}
+
+        <Typography variant="subtitle2" gutterBottom>Comentario auxiliar:</Typography>
+          <Box sx={{ 
+            bgcolor: '#f5f5f5', 
+            p: 2, 
+            borderRadius: 2, 
+            border: '1px solid #e0e0e0',
+            color: 'text.secondary'
+          }}>
+            <Typography variant="body2">{request.justification}</Typography>
+          </Box>
       </DialogContent>
 
-      <DialogActions sx={{ p: 2, justifyContent: 'space-between' }}>
+      {request.status == "PENDIENTE"?(
+        <DialogActions sx={{ p: 2, justifyContent: 'space-between' }}>
         <Button 
           variant="contained" 
           color="success" 
           startIcon={<CheckIcon />}
           fullWidth
           onClick={onAccept}
+          loading = {loadingValidate}
           sx={{ mr: 1, textTransform: 'none', fontWeight: 'bold' }}
         >
           Aceptar
@@ -108,11 +128,26 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny}) => {
           startIcon={<CloseIcon />}
           fullWidth
           onClick={onDeny}
+          loading = {loadingDeny}
           sx={{ ml: 1, textTransform: 'none', fontWeight: 'bold' }}
         >
           Negar
         </Button>
       </DialogActions>
+      ): (
+        <DialogContent sx={{ p: 2, justifyContent: 'space-between' }}>
+        <Typography variant="subtitle2" gutterBottom>Comentario administrador:</Typography>
+          <Box sx={{ 
+            bgcolor: '#f5f5f5', 
+            p: 2, 
+            borderRadius: 2, 
+            border: '1px solid #e0e0e0',
+            color: 'text.secondary'
+          }}>
+            <Typography variant="body2">{request.adminresponse?? "no hay comentario"}</Typography>
+          </Box>
+        </DialogContent>
+      )}
       <InfoModal
         open = {infoOpen}
         onClose={handleInfoClose}
@@ -120,6 +155,7 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny}) => {
         data = {request.requestpayload} 
       />
     </Dialog>
+  
   );
 };
 

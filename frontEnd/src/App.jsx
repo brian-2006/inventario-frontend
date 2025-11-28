@@ -17,7 +17,7 @@ import InventarioReactivoPage from './components/pages/inventory/InventarioReact
 import FormLogin from './components/organisms/form/LoginForm'
 import RequestAdminPage from './components/pages/request/RequestAdmin'
 import ProtectedRoute from './components/routes/ProtectedRoute'
-
+import RequestAuxiliarPage from './components/pages/request/RequestAuxiliar'
 function App() {
 
   return (
@@ -40,6 +40,8 @@ function App() {
             {/*Rutas de formularios*/ }
                 <Route path = "/recepcion-tecnica/medicamentos/form" element = {<ProtectedRoute> <FormRecepcionMedicamentos/> </ProtectedRoute>}/>
                 <Route path = "/recepcion-tecnica/dispositivos-medicos/form" element = {<ProtectedRoute> <FormRecepcionDm/> </ProtectedRoute>}/>
+            {/* Rutas de request */}
+                <Route path = '/request/auxiliar' element = {<ProtectedRoute><RequestAuxiliarPage/></ProtectedRoute>}/>
                 <Route path = "/request/admin" element = {<ProtectedRoute><RequestAdminPage/></ProtectedRoute>}/>
                 <Route path = "/login" element = {<FormLogin/>}/>
         </Routes>

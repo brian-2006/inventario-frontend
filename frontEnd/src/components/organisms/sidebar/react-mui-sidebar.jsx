@@ -116,7 +116,7 @@ const MuiSideBar = ()=>{
                     </Submenu>
 
                 </Menu>
-                <Menu subHeading = "Moviles">
+                {/* <Menu subHeading = "Moviles">
                     
                     
 
@@ -253,9 +253,9 @@ const MuiSideBar = ()=>{
                         Botiquin 03
                         </MenuItem>
 
-                    </Submenu>
+                    </Submenu> 
 
-                </Menu>
+                </Menu> */}
                 <Menu subHeading="Recepcion Tenica Administrativa">
                     <MenuItem 
                     icon = {<DocIcon/>}

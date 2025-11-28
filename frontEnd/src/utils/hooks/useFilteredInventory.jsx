@@ -1,4 +1,3 @@
-// 📁 src/utils/hooks/useInventoryFilter.js
 import { useState, useEffect } from "react";
 
 const useInventoryFilter = ({ rows = [], loteRows = [], searchTerm = "", startDate, endDate, onDownLoad }) => {
@@ -13,9 +12,9 @@ const useInventoryFilter = ({ rows = [], loteRows = [], searchTerm = "", startDa
     }
 
     const q = (searchTerm || "").toLowerCase();
-
-    // 1️⃣ Filtrar filas principales por búsqueda, preservando índices
     const indices = [];
+
+    // 1️⃣ Filtrar productos
     const filtered = q
       ? rows.filter((row, idx) => {
           const match = (row?.[0] || "").toLowerCase().startsWith(q);
@@ -27,10 +26,10 @@ const useInventoryFilter = ({ rows = [], loteRows = [], searchTerm = "", startDa
           return row;
         });
 
-    // 2️⃣ Obtener los lotes correspondientes a los índices filtrados
+    // 2️⃣ Obtener solo los lotes asociados
     let filteredLotes = indices.map(i => loteRows[i]).filter(v => Array.isArray(v));
 
-    // 3️⃣ Aplicar filtro de fecha sobre los lotes
+    // 3️⃣ Filtrar por fechas
     filteredLotes = filteredLotes.map(grupo =>
       grupo.filter(lote => {
         const fecha = new Date(lote["fecha vencimiento"]);
@@ -44,10 +43,23 @@ const useInventoryFilter = ({ rows = [], loteRows = [], searchTerm = "", startDa
       })
     );
 
-    // 4️⃣ Actualizar estado
-    setFilteredData(filtered);
-    setFilteredLotRows(filteredLotes);
-    onDownLoad(filteredLotes);
+    // 🆕 4️⃣ ELIMINAR productos sin lotes luego del filtrado
+    const filteredFinalData = [];
+    const filteredFinalLotes = [];
+
+    filteredLotes.forEach((lotes, idx) => {
+      if (lotes.length > 0) {
+        filteredFinalData.push(filtered[idx]);
+        filteredFinalLotes.push(lotes);
+      }
+    });
+
+    // 5️⃣ Actualizar estado final
+    setFilteredData(filteredFinalData);
+    setFilteredLotRows(filteredFinalLotes);
+
+    // callback
+    onDownLoad(filteredFinalLotes);
   }, [rows, loteRows, searchTerm, startDate, endDate]);
 
   return { filteredData, filteredLotRows };

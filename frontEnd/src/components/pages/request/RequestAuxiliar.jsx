@@ -1,22 +1,22 @@
 //plantilla de intefaz
 import RrquestLayout from '../../templates/request/RequestLayout';
-
+//importamos estados
+import {TypeState} from '../../../json/TestData'
 
 //contenido de pendientes
-import RequestAdmin from '../../organisms/Card/RequestAdminPendiente'
-import RequestAdminValidado from '../../organisms/Card/RequestAdminValidado'
-import RequestAdminNegado from '../../organisms/Card/RequestAdminNegado'
+import RequestAuxiliar from '../../organisms/Card/RequestAuxiliar'
 
 
 
-const RequestAdminPage = () =>{
+
+const RequestAuxiliarPage = () =>{
 
     const tabsData = [
         {
             label: "Pendiente",
             value: "pendiente",
             content: (
-            <RequestAdmin/>
+            <RequestAuxiliar status = {TypeState.pendiente}/>
             ),
             // toolbar: (
             // <ToolBarInventory
@@ -39,7 +39,7 @@ const RequestAdminPage = () =>{
             label: "Validado",
             value: "Validado",
             content: (
-            <RequestAdminValidado/>
+            <RequestAuxiliar status = {TypeState.validado}/>
             ),
 
             // toolbar: (
@@ -56,7 +56,7 @@ const RequestAdminPage = () =>{
             label: "Negado",
             value: "Negado",
             content: (
-            <RequestAdminNegado/>
+            <RequestAuxiliar status = {TypeState.validado}/>
             ),
             // toolbar: (
             //     <ToolbarReposicion
@@ -84,4 +84,4 @@ const RequestAdminPage = () =>{
     )
 }
 
-export default RequestAdminPage;
+export default RequestAuxiliarPage;

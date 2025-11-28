@@ -37,6 +37,8 @@ const Header = () =>{
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     { user.permissions == 2?(
                         <NotificationButton size = "large" onClick = {()=> navigate('/request/admin')}/>
+                    ): user.permissions == 8?(
+                        <NotificationButton size = "large" onClick = {()=> navigate('/request/auxiliar')}/>
                     ): null}
                     <UserButton size = "large" onClick ={logout}/>
                     

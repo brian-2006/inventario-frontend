@@ -1,4 +1,3 @@
-
 //solictud al endpoint para traer los datos
 import useRequestList from '../../../utils/CustomHooks/useRequestList'
 //interfaz de carga y de solicitud vacia
@@ -17,7 +16,7 @@ import SignalWifiBadIcon from '@mui/icons-material/SignalWifiBad';
 import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-const RequestAdmin = ()=>{
+const RequestAdminNegado = ()=>{
 
   const {GetList, loading, error} = useRequestList()
   const [data, setData] = useState([])
@@ -25,9 +24,9 @@ const RequestAdmin = ()=>{
 
   useEffect(()=>{
     const RequestList= async ()=>{
-      const response = await GetList(TypeState.pendiente)
+      const response = await GetList(TypeState.negado)
       setData(response)
-      console.log(data)
+      console.log(`data: ${data}`)
       console.log(data.requester)
     }
     RequestList()
@@ -71,4 +70,4 @@ const RequestAdmin = ()=>{
   )
 }
 
-export default RequestAdmin ;
+export default RequestAdminNegado ;
