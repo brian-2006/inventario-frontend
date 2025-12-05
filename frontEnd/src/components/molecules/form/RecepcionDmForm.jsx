@@ -126,7 +126,8 @@ const RecepcionDmForm = ({formData, handleChange, setter}) => {
             value ={formData.estado_registro_invima}
             options={[
                 {value: 'vigente', label: 'vigente'},
-                {value: 'no vigente', label: 'no vigente'}
+                {value: 'no vigente', label: 'no vigente'},
+                {value: 'N/A', label: 'N/A'}
                 
             ]}
             onChange = {(e)=> handleChange('estado_registro_invima', e.target.value)}
@@ -173,8 +174,9 @@ const RecepcionDmForm = ({formData, handleChange, setter}) => {
             name = 'estado embalaje'
             label = 'estado de embalaje'
             options = {[
-                {value: 'NC', label: 'NC'},
-                {value: 'C', label: 'C'},
+                {value: 'Cumple', label: 'Cumple'},
+                {value: 'No cumple', label: 'No cumple'},
+                {value: 'N/A', label: 'N/A'}
             ]}
             value = {formData.estado_embalaje}
             onChange = {(e)=> handleChange('estado_embalaje', e.target.value)}
@@ -187,6 +189,7 @@ const RecepcionDmForm = ({formData, handleChange, setter}) => {
             options = {[
                 {value: 'Carro', label: 'Carro'},
                 {value: 'Moto', label: 'Moto'},
+                {value: 'N/A', label: 'N/A'}
             ]}
             value = {formData.condicion_transporte}
             onChange = {(e)=> handleChange('condicion_transporte', e.target.value)}

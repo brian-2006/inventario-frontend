@@ -17,13 +17,13 @@ const useRequestByUserAndStatus = () => {
 
     const exCuteUserRequestList = async (id_user, status) => {
         setLoading(true)
-        const data ={
-            id_user: id_user,
-            status: status
-        }
+        // const data ={
+        //     id_user: id_user,
+        //     status: status
+        // }
         try {
-            const response = await axios.get(`${baseURL}request/getRequestListByUserAndStatus/`, {data});
-            notification.show(`peticiones ${status} de ${user.userInformation.fullName}`, {
+            const response = await axios.get(`${baseURL}request/getRequestListByUserAndStatus/${status}/${id_user}/`);
+            notification.show(`peticiones ${JSON.stringify(status)} de ${JSON.stringify(user.userInformation.fullName)}`, {
                 severity: 'success',
                 autoHideDuration: 3000,
             })

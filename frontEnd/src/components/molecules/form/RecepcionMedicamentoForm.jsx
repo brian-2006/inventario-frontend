@@ -187,7 +187,8 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
             label = 'estado registro invima'
             options={[
                 {value: 'vigente', label: 'vigente'},
-                {value: 'no vigente', label: 'no vigente'}
+                {value: 'no vigente', label: 'no vigente'},
+                {value: 'N/A', label: 'N/A'}
             ]}
             value ={formData.estado_registro_invima}
             onChange = {(e)=> handleChange('estado_registro_invima', e.target.value)}

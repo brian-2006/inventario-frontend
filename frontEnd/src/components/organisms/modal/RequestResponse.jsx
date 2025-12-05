@@ -15,6 +15,8 @@ import TypeActionChip from '../../molecules/chips/ActionType'
 import {useState} from 'react'
 //importamos modal que amplia la informacion
 import InfoModal from './Info';
+//se importan provider para acceder a datos delusuario
+import {useAuth} from '../../../providers/AuthProvider'
 
 const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, loadingValidate, loadingDeny}) => {
   if (!request) return null;
@@ -29,7 +31,7 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, loadin
   const handleInfoOpen = () => setInfoOpen(true);
   const handleInfoClose = () => setInfoOpen(false);
 
-  console.log(request.requestPayload)
+  const {user} = useAuth()
 
 
   return (
@@ -109,7 +111,7 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, loadin
           </Box>
       </DialogContent>
 
-      {request.status == "PENDIENTE"?(
+      {request.status == "PENDIENTE" && user.permissions == 2?(
         <DialogActions sx={{ p: 2, justifyContent: 'space-between' }}>
         <Button 
           variant="contained" 

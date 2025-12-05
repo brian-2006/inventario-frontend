@@ -12,11 +12,10 @@ import {useAuth} from '../../../providers/AuthProvider'
 import RequestGrid from '../../molecules/screen/ScreenCard'
 
 import { Grid } from '@mui/material';
-import SignalWifiBadIcon from '@mui/icons-material/SignalWifiBad';
 import PortableWifiOffIcon from '@mui/icons-material/PortableWifiOff';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-const RequestAuxiliar = (status)=>{
+const RequestAuxiliar = ({status})=>{
 
   //datos del usuario
   const {user} = useAuth()
@@ -26,10 +25,13 @@ const RequestAuxiliar = (status)=>{
   let response = null
 
   useEffect(()=>{
+
     const RequestListByuser= async ()=>{
       const response = await exCuteUserRequestList(user.userInformation.idUser, status)
-      setData(response)
-      console.log(`data: ${data}`)
+      console.log(status)
+      console.log(user.userInformation.idUser)
+      setData(response.data)
+      console.log(` respuesta del servidor: ${JSON.stringify(data)}`)
       console.log(data.requester)
     }
     RequestListByuser()

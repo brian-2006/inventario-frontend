@@ -56,7 +56,7 @@ const RequestAuxiliarPage = () =>{
             label: "Negado",
             value: "Negado",
             content: (
-            <RequestAuxiliar status = {TypeState.validado}/>
+            <RequestAuxiliar status = {TypeState.negado}/>
             ),
             // toolbar: (
             //     <ToolbarReposicion
@@ -78,7 +78,7 @@ const RequestAuxiliarPage = () =>{
 
     return(
         <RrquestLayout
-            title ="Gestion de solicitudes"
+            title ="Mis solicitudes"
             tabsData = {tabsData}            
         />
     )
