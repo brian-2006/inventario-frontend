@@ -9,7 +9,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [react()],
     base: env.NODE_ENV === 'production' 
-      ? 'https://api-inventario.angelesalllamado.com.co/'
+      ? 'https://farmacia.angelesalllamado.com.co/'
       : '/',
     server: {
       port: 3000,
