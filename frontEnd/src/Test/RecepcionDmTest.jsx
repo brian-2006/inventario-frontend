@@ -14,17 +14,15 @@ const RecepcionTableTest  = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
     const q = (SearchTerm || '').toLowerCase();
 
-    const GetData = async() =>{
-        await axios.get(`${}recepcionTecnica/getRecpcionList/${acta}/`)
-        .then(response => {
-        setData(response.data);
-        onDownLoad(response.data);
-        //console.log(data);
-        })
-
-        .catch(error => {
-        console.log(error);
-        })
+    const GetData = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}recepcionTecnica/getRecpcionList/${acta}/`);
+            setData(response.data);
+            onDownLoad(response.data);
+            //console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     useEffect(()=>{
