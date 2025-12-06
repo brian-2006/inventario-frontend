@@ -5,6 +5,7 @@ import { useNotifications
   //importa librerias de peticiones
  } from "@toolpad/core/useNotifications";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 //importa componentes
 import { CreateButton } from "../../atoms/Button";
 import RecepcionMedicamentoForm from "../../molecules/form/RecepcionMedicamentoForm";
@@ -61,7 +62,7 @@ const FormRecepcionMedicamentos = () => {
       setLoading(true)
       console.log("payload:", formData);
       const response = await axios.post(
-        "http://127.0.0.1:8000/recepcionTecnica/registrarInsumo/",
+        `${BASE_URL}/recepcionTecnica/registrarInsumo/`,
         formData,
         { headers: { "Content-Type": "application/json" } }
       );

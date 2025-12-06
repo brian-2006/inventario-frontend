@@ -9,6 +9,7 @@ import {useState, useEffect} from 'react'
 
 //importamos librerias de llamados a la api
 import axios from 'axios'
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 const ReposicionControlEspecialPage = ({searchTerm, dateStart, dateEnd, onDownload}) =>{
 
@@ -18,7 +19,7 @@ const ReposicionControlEspecialPage = ({searchTerm, dateStart, dateEnd, onDownlo
     const [data, setData] = useState([])
 
     const GetData = async()=>{
-        await axios.get(`http://127.0.0.1:8000/inventarioPrincipal/reposicion/${id_inventory}/`)
+        await axios.get(`${BASE_URL}/inventarioPrincipal/reposicion/${id_inventory}/`)
         .then(response => {
             setRawData(response.data);
             setData(response.data);

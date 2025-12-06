@@ -4,13 +4,15 @@ import axios from 'axios'
 import {useState, useEffect} from 'react'
 import useInventoryFilter from '../utils/hooks/useFilteredInventory'
 
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+
 const  InventarioEquiposBiomedicosTest = ({SearchTerm, startDate, endDate, onDownLoad})=> {
 
     const [rows, setRows] = useState([]);       
     const [loteRows, setLoteRows] = useState([]); 
 
     const GetData = ()=>{
-        axios.get(`http://127.0.0.1:8000/inventarioPrincipal/getInventoryRowsJson/${TypeInventory.EquiposBiomedicos}/`)
+        axios.get(`${BASE_URL}inventarioPrincipal/getInventoryRowsJson/${TypeInventory.EquiposBiomedicos}/`)
         .then(response => {
         const {rows, loteRows} = response.data;
         setRows(rows);

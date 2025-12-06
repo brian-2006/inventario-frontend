@@ -1,5 +1,6 @@
 import axios from 'axios';
 const baseURL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 const CreateRequest = async ({
     payload, 
@@ -25,7 +26,7 @@ const CreateRequest = async ({
         module: module
     }
     console.log(body)
-    const response = await axios.post(`${baseURL}request/createRequest/`, body);
+    const response = await axios.post(`${BASE_URL}request/createRequest/`, body);
     return response;
 
 

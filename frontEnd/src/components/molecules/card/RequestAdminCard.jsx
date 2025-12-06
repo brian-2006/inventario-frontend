@@ -1,5 +1,6 @@
 // components/RequestCard.jsx
 import React, { useState } from 'react';
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 import { 
   Card, CardContent, Typography, Button, Box, Stack, Paper
 } from '@mui/material';
@@ -38,7 +39,7 @@ const RequestResponseCard = ({ request }) => {
     
     try {
       setLoadingValidate(true)
-      const response = await axios.delete('http://localhost:8000/request/ValidateRequest/', {
+      const response = await axios.delete(`${BASE_URL}request/ValidateRequest/`, {
         data: {
           id_request: request.id,
           reviewed_by: user.userInformation.fullName,

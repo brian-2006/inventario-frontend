@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useNotifications } from '@toolpad/core/useNotifications';
 import {useState} from 'react'
 const baseURL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 
 const useRequestDeny = () => {
@@ -13,7 +14,7 @@ const useRequestDeny = () => {
     const executeDeny = async (id_request, admin_user, note) => {
         setLoadingDeny(true)
         try {
-            const response = await axios.post(`${baseURL}request/DenyRequest/`, {
+            const response = await axios.post(`${BASE_URL}request/DenyRequest/`, {
                 data: {
                     id_request: id_request,
                     admin_user: admin_user,

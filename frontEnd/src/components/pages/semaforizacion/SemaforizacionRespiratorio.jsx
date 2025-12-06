@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 import SemaforizacionDmTable from '../../organisms/table/SemaforizacionTableDM'
 import { SemaforizacionMedicamentosColumns } from '../../../json/TestData'
@@ -12,7 +13,7 @@ const SemaforizacionRespiratorioPage = ({ searchTerm, onDownload }) => {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/inventarioPrincipal/semaforizacion/${id_inventory}/`)
+      .get(`${BASE_URL}/inventarioPrincipal/semaforizacion/${id_inventory}/`)
       .then((response) => {
         setInfo(response.data);
 

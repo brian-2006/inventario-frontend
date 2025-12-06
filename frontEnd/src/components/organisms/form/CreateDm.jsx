@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useNotifications } from '@toolpad/core/useNotifications';
 //libreria para llamados http
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 //Botones
 import { CreateButton } from "../../atoms/Button";
 //Importacion de otros modulos que se usaran
@@ -36,7 +37,7 @@ const FormCreateDm = () => {
     try {
       console.log("payload:", formData);
       const response = await axios.post(
-        "http://127.0.0.1:8000/insumo/dm/",
+        `${BASE_URL}/insumo/dm/`,
         formData,
         { headers: { "Content-Type": "application/json" } }
       );

@@ -5,6 +5,8 @@ import axios from 'axios'
 //importamos custom hook para rangos de fechas seleccionados
 import useFilterDate from '../utils/hooks/useFilterDate'
 
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+
 const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
     const [data, setData] = useState([]);
@@ -17,7 +19,7 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
 
     const GetData =  () =>{
-        axios.get(`http://127.0.0.1:8000/recepcionTecnica/getRecpcionList/${acta}/`)
+        axios.get(`${BASE_URL}recepcionTecnica/getRecpcionList/${acta}/`)
         .then(response => {
         setData(response.data || []);
         onDownLoad(response.data || []);

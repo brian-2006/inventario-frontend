@@ -5,6 +5,8 @@ import ToolBarRecepcion from '../../organisms/toolbar/ToolBarRecepcionTecnica'
 import RecepcionTableTest from '../../../Test/RecepcionMedicamentosTest'
 import handleDownLoad from '../../../utils/functions/DowloadExcel'
 
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+
 const RecepcionMedicamentosPage = () =>{
 
     const [search, setSearch] = useState('')
@@ -31,7 +33,7 @@ const RecepcionMedicamentosPage = () =>{
                     onDateStart = {setStartDate}
                     onDateEnd = {setEndDate}
                     downLoad = {()=> handleDownLoad(
-                        'http://127.0.0.1:8000/recepcionTecnica/exportExcel/', 
+                        `${BASE_URL}/recepcionTecnica/exportExcel/`, 
                         startDate, 
                         endDate,
                         search, 

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useNotifications } from "@toolpad/core/useNotifications";
 //importa libreria para peticiones
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 //importa componentes
 import { CreateButton } from "../../atoms/Button";
 import CreateMedicine from "../../molecules/form/CreateMedicine";
@@ -37,7 +38,7 @@ const CreateMedicineForm = () => {
     try {
       console.log("payload:", formData);
       const response = await axios.post(
-        "http://127.0.0.1:8000/insumo/medicamentos/",
+        `${BASE_URL}/insumo/medicamentos/`,
         formData,
         { headers: { "Content-Type": "application/json" } }
       );

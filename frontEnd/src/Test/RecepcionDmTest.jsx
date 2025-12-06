@@ -4,6 +4,8 @@ import {useState,  useEffect} from 'react'
 import axios from 'axios'
 import useFilterDate from '../utils/hooks/useFilterDate'
 
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+
 const RecepcionTableTest  = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
     const [data, setData] = useState([])
@@ -13,7 +15,7 @@ const RecepcionTableTest  = ({SearchTerm, startDate, endDate, onDownLoad }) => {
     const q = (SearchTerm || '').toLowerCase();
 
     const GetData = async() =>{
-        await axios.get(`http://127.0.0.1:8000/recepcionTecnica/getRecpcionList/${acta}/`)
+        await axios.get(`${}recepcionTecnica/getRecpcionList/${acta}/`)
         .then(response => {
         setData(response.data);
         onDownLoad(response.data);

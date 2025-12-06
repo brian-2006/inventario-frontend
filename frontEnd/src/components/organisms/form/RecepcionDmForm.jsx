@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useNotifications } from "@toolpad/core/useNotifications";
 //importar libreria de peticiones
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 //importar componentes
 import { CreateButton } from "../../atoms/Button";
 import RecepcionDmForm from "../../molecules/form/RecepcionDmForm";
@@ -61,7 +62,7 @@ const FormRecepcionDm = () => {
       setLoading(true)
       console.log("payload:", formData);
       const response = await axios.post(
-        "http://127.0.0.1:8000/recepcionTecnica/registrarInsumo/",
+        `${BASE_URL}/recepcionTecnica/registrarInsumo/`,
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
