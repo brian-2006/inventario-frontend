@@ -13,7 +13,7 @@ const SemaforizacionAseoPage = ({ searchTerm, onDownload }) => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/inventarioPrincipal/semaforizacion/${id_inventory}/`)
+      .get(`${BASE_URL}inventarioPrincipal/semaforizacion/${id_inventory}/`)
       .then((response) => {
         setInfo(response.data);
 

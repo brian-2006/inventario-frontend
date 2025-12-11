@@ -37,7 +37,7 @@ const FormCreateDm = () => {
     try {
       console.log("payload:", formData);
       const response = await axios.post(
-        `${BASE_URL}/insumo/dm/`,
+        `${BASE_URL}insumo/dm/`,
         formData,
         { headers: { "Content-Type": "application/json" } }
       );

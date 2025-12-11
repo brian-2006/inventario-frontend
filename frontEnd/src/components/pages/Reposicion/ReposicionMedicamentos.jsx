@@ -19,7 +19,7 @@ const ReposicionMedicamentosPage = ({searchTerm, dateStart, dateEnd, onDownload}
     const [data, setData] = useState([])
 
     const GetData = async()=>{
-        await axios.get(`${BASE_URL}/inventarioPrincipal/reposicion/${id_inventory}/`)
+        await axios.get(`${BASE_URL}inventarioPrincipal/reposicion/${id_inventory}/`)
         .then(response => {
             setRawData(response.data);
             setData(response.data);

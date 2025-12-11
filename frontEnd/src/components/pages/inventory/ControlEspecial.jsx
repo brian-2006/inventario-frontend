@@ -1,3 +1,6 @@
+//url de prodcuccion
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+
 //plantilla base de estructura
 import InventarioLayout from '../../templates/inventory/MainInventory'
 
@@ -58,7 +61,7 @@ const InventarioControlEspecialPage = () =>{
                 onDateEnd={setEndDate}
                 downLoad={() =>
                 handleDownLoadInventory(
-                    "http://127.0.0.1:8000/inventarioPrincipal/exportarExcelInventario/",
+                    `${BASE_URL}inventarioPrincipal/exportarExcelInventario/`,
                     startDate,
                     endDate,
                     `reporte_inventario_control_especial_${startDate}_${endDate}.xlsx`,
@@ -81,7 +84,7 @@ const InventarioControlEspecialPage = () =>{
             <ToolBarSemaforizacion
                         onSearch={setSearchSemaforizacion}
                         downLoad={()=>handleDownLoadSemaforizacion(
-                            'http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacion/',
+                            `${BASE_URL}inventarioPrincipal/reporteSemaforizacion/`,
                             downloadSemaforizacion,
                             'reporte_vencimientos_control_especial.xlsx'
                         )}
@@ -104,7 +107,7 @@ const InventarioControlEspecialPage = () =>{
                 onSearch={setSearchReposicion}
                 onDateStart={setStartDateReposicion}
                 onDateEnd={setEndDateReposicion}
-                download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
+                download={()=> handleDownLoadSemaforizacion(`${BASE_URL}inventarioPrincipal/reporteReposicion/`,
                     downloadReposicion,
                     'reporte_reposicion_control_especial.xlsx'
                 )}

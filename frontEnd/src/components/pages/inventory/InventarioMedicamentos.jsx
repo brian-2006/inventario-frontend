@@ -1,3 +1,6 @@
+//url de prodcuccion
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+
 //plantilla de intefaz
 import InventarioLayout from '../../templates/inventory/MainInventory';
 
@@ -58,7 +61,7 @@ const InventarioMedicamentosPage = () =>{
                 onDateEnd={setEndDate}
                 downLoad={() =>
                     handleDownLoadInventory(
-                        "http://127.0.0.1:8000/inventarioPrincipal/exportarExcelInventario/",
+                        `${BASE_URL}inventarioPrincipal/exportarExcelInventario/`,
                         startDate,
                         endDate,
                         `reporte_inventario_medicamentos_${startDate}_${endDate}.xlsx`,
@@ -83,7 +86,7 @@ const InventarioMedicamentosPage = () =>{
                 <ToolBarSemaforizacion
                     onSearch={setSearchSemaforizacion}
                     downLoad={()=> handleDownLoadSemaforizacion(
-                        "http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacion/", 
+                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacion/`, 
                         downLoadSemaforizacion, 
                         "reporte_semaforizacion_medicamentos.xlsx"
                     )}
@@ -106,7 +109,7 @@ const InventarioMedicamentosPage = () =>{
                     onDateStart={setStartDateReposicion}
                     onDateEnd={setEndDateReposicion}
                     download={()=> handleDownLoadSemaforizacion(
-                        'http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
+                        `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
                         downloadReposicion,
                         "reporte_reposicion_medicamentos.xlsx"
                     )}

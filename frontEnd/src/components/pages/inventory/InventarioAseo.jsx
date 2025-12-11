@@ -1,3 +1,6 @@
+//url de prodcuccion
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+
 //plantilla del layout
 import InventarioLayout from '../../templates/inventory/MainInventory'
 
@@ -54,7 +57,8 @@ const InventarioAseoPage = () =>{
                     onDateStart={setStartDate}
                     onDateEnd={setEndDate}
                     downLoad = {()=> 
-                        handleDownLoadInventory('http://127.0.0.1:8000/inventarioPrincipal/exportarExcelInventarioDM/', 
+                        handleDownLoadInventory(
+                        `${BASE_URL}inventarioPrincipal/exportarExcelInventarioDM/`, 
                         startDate, 
                         endDate, 
                         `reporte_inventario_dispositivos_medicos_${startDate}_${endDate}.xlsx`, 
@@ -73,7 +77,7 @@ const InventarioAseoPage = () =>{
             toolbar: <ToolBarSemaforizacion
                     onSearch={setSearchSemaforizacion}
                     downLoad={()=>handleDownLoadSemaforizacion(
-                        'http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacionDM/',
+                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/`,
                         downloadSemaforizacion,
                         'reporte_vencimientos_aseo.xlsx'
                     )}/>,
@@ -94,7 +98,8 @@ const InventarioAseoPage = () =>{
                     onSearch={setSearchReposicion}
                     onDateStart={setStartDateReposicion}
                     onDateEnd={setEndDateReposicion}
-                    download={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
+                    download={()=> handleDownLoadSemaforizacion(
+                        `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
                         downloadReposicion,
                         'reporte_reposicion_aseo.xlsx'
                     )}

@@ -62,7 +62,7 @@ const FormRecepcionDm = () => {
       setLoading(true)
       console.log("payload:", formData);
       const response = await axios.post(
-        `${BASE_URL}/recepcionTecnica/registrarInsumo/`,
+        `${BASE_URL}recepcionTecnica/registrarInsumo/`,
         formData,
         { headers: { "Content-Type": "application/json" } }
       );

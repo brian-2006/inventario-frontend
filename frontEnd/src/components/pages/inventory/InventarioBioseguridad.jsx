@@ -1,3 +1,6 @@
+//url de prodcuccion
+const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+
 //plantilla de interfaz
 import InventarioLayout from '../../templates/inventory/MainInventory'
 
@@ -58,7 +61,7 @@ const InventarioBioseguridadPage = () =>{
                 onDateEnd={setEndDate}
                 downLoad={() =>
                 handleDownLoadInventory(
-                    "http://127.0.0.1:8000/inventarioPrincipal/exportarExcelInventarioDM/",
+                    `${BASE_URL}inventarioPrincipal/exportarExcelInventarioDM/`,
                     startDate,
                     endDate,
                     `reporte_inventario_dispositivos_medicos_${startDate}_${endDate}.xlsx`,
@@ -79,7 +82,7 @@ const InventarioBioseguridadPage = () =>{
             toolbar: <ToolBarSemaforizacion
                     onSearch={setSearchSemaforizacion}
                     downLoad={()=>handleDownLoadSemaforizacion(
-                        'http://127.0.0.1:8000/inventarioPrincipal/reporteSemaforizacionDM/',
+                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/`,
                         downloadSemaforizacion,
                         'reporte_vencimientos_bioseguridad.xlsx'
                     )}
@@ -102,7 +105,8 @@ const InventarioBioseguridadPage = () =>{
                         onSearch={setSearchReposicion}
                         onDateStart={setStartDateReposicion}
                         onDateEnd={setEndDateReposicion}
-                        downLoad={()=> handleDownLoadSemaforizacion('http://127.0.0.1:8000/inventarioPrincipal/reporteReposicion/',
+                        downLoad={()=> handleDownLoadSemaforizacion(
+                            `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
                             downloadReposicion,
                             'reporte_reposicion_bioseguridad.xlsx'
                         )}

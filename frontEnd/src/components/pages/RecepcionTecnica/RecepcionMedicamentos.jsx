@@ -33,7 +33,7 @@ const RecepcionMedicamentosPage = () =>{
                     onDateStart = {setStartDate}
                     onDateEnd = {setEndDate}
                     downLoad = {()=> handleDownLoad(
-                        `${BASE_URL}/recepcionTecnica/exportExcel/`, 
+                        `${BASE_URL}recepcionTecnica/exportExcel/`, 
                         startDate, 
                         endDate,
                         search, 

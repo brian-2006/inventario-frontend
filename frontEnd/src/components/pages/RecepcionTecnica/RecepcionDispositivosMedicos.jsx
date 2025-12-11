@@ -28,7 +28,7 @@ const RecepcionDispositivosMedicosPage = () =>{
                     onDateStart = {setStartDate}
                     onDateEnd = {setEndDate}
                     downLoad = {()=> handleDownLoad(
-                        `${BASE_URL}/recepcionTecnica/exportExcelDispositivosMedicos/`, 
+                        `${BASE_URL}recepcionTecnica/exportExcelDispositivosMedicos/`, 
                         startDate, 
                         endDate, 
                         search, 

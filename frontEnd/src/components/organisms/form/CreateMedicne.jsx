@@ -38,7 +38,7 @@ const CreateMedicineForm = () => {
     try {
       console.log("payload:", formData);
       const response = await axios.post(
-        `${BASE_URL}/insumo/medicamentos/`,
+        `${BASE_URL}insumo/medicamentos/`,
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
