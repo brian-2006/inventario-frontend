@@ -40,7 +40,7 @@ const RecepcionTableTest  = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
     // 3️ Guardamos los datos filtrados
     setFilteredData(result);
-    GetData()
+    //GetData()
     }, [q, startDate, endDate, data])
 
     useEffect(() => {

@@ -74,7 +74,7 @@ const FormRecepcionDm = () => {
       })
     } catch (error) {
       console.error("Error al enviar formulario:", error);
-      notifications.show(error.response.data,{
+      notifications.show(error.response?.data?.error,{
         severity: 'error',
         autoHideDuration: 3000,
       })

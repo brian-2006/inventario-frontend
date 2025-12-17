@@ -177,7 +177,7 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
             name = 'fecha vecimiento invima'
             label = 'fecha vecimiento invima'
             type = 'date'
-            required
+            // required
             value = {formData.fecha_vencimiento_invima}
             onChange = {(e) => handleChange('fecha_vencimiento_invima', e.target.value)}
             />

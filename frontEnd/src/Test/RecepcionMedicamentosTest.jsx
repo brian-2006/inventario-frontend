@@ -9,6 +9,8 @@ const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
+  const [loading, setLoading] = useState(false)
+
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
 
@@ -23,7 +25,7 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
         .then(response => {
         setData(response.data || []);
         onDownLoad(response.data || []);
-        console.log(data);
+        //console.log(data);
         // console.log(typeof (data));
         })
 
@@ -49,7 +51,7 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
     // 3️⃣ Guardamos los datos filtrados
     setFilteredData(result);
-    GetData()
+    
   }, [q, startDate, endDate, data]);
 
   // Cargar datos al montar el componente
