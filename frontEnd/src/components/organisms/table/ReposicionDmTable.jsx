@@ -25,6 +25,9 @@ const ReposicionDmTable = ({data}) =>{
                                         {item.lote}
                                     </TableCellAtom>
                                     <TableCellAtom>
+                                        {item["fecha"]}
+                                    </TableCellAtom>
+                                    <TableCellAtom>
                                         {item["fecha de vencimiento"]}
                                     </TableCellAtom>
                                     <TableCellAtom>

@@ -46,10 +46,10 @@ export const RecepcionTencinaRows = {
 }
 
 export const SemaforizacionMedicamentosColumns = ["Estado", "Lote", "Fecha vencimiento", "Nombre","Presentacion", "Concentracion",  "Forma Farmaceutica",  "Laboratorio", "Cantidad total", "Precio unitario", "Precio total", "Invima", "Vencimiento invima" ]
-export const SemaforizacionDmColumns = ["Estado", "Lote", "Fecha vencimiento", "Nombre", "Laboratorio", "Cantidad total", "Precio unitario", "Precio total", "Invima", "Vencimiento invima", "clasificacion", "vida util"]
+export const SemaforizacionDmColumns = ["Estado", "Lote", "Fecha vencimiento", "Nombre Dm", "Laboratorio", "Cantidad total", "Precio unitario", "Precio total", "Invima", "Vencimiento invima", "clasificacion", "vida util"]
 
 export const ReposicionMedicamentosColumns = ["fecha","Nombre medicamento", "lote", "fecha de vencimiento", "precio unitario", "cantidad total", "precio total","registro Invima", "fecha vencimiento invima", "fabricante"]
-export const ReposicionDmColumns = ["fecha","Nombre dm", "lote", "fecha de vencimiento", "precio unitario", "cantidad total", "precio total","registro Invima", "fecha vencimiento invima", "fabricante", "vida util", "clasificaion riesgo" ]
+export const ReposicionDmColumns = ["Nombre dm", "lote","fecha", "fecha de vencimiento", "precio unitario", "cantidad total", "precio total","registro Invima", "fecha vencimiento invima", "fabricante", "vida util", "clasificaion riesgo" ]
 
 
 

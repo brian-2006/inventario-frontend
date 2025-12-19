@@ -3,7 +3,7 @@ import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 import SemaforizacionDmTable from '../../organisms/table/SemaforizacionTableDM'
-import { SemaforizacionMedicamentosColumns } from '../../../json/TestData'
+import { SemaforizacionDmColumns } from '../../../json/TestData'
 import useFilterTermDM from '../../../utils/hooks/useFilterTermDM'
 
 const SemaforizacionBioseguridadPage = ({ searchTerm, onDownload }) => {
@@ -48,7 +48,7 @@ const SemaforizacionBioseguridadPage = ({ searchTerm, onDownload }) => {
     <>
       {info && (
         <SemaforizacionDmTable
-          headers={SemaforizacionMedicamentosColumns}
+          headers={SemaforizacionDmColumns}
           vencidos={vencidos}
           menor_15_dias={menos15}
           de_15_dias_3_meses={menos3}

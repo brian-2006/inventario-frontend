@@ -220,8 +220,8 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
             name = 'estado embalaje'
             label = 'estado de embalaje'
             options = {[
-                {value: 'NC', label: 'NC'},
-                {value: 'C', label: 'C'},
+                {value: 'No Cumple', label: 'No Cumple'},
+                {value: 'Cumple', label: 'Cumple'},
             ]}
             value = {formData.estado_embalaje}
             onChange = {(e)=> handleChange('estado_embalaje', e.target.value)}
@@ -231,8 +231,8 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
             name = 'condicion de transporte'
             label = 'condicion de transporte'
             options = {[
-                {value: 'Carro', label: 'Carro'},
-                {value: 'Moto', label: 'Moto'},
+                {value: 'Cumple', label: 'Cumple'},
+                {value: 'No cumple', label: 'No cumple'},
             ]}
             value = {formData.condicion_transporte}
             onChange = {(e)=> handleChange('condicion_transporte', e.target.value)}
