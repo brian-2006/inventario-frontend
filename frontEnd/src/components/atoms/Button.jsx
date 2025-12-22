@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import {DeleteIcon, UpdateIcon, MenuIcon, UserIcon, ShopCarIcon, Notification, EyeIcon} from '../protons/Icon.jsx'
+import {DeleteIcon, UpdateIcon, MenuIcon, UserIcon, ShopCarIcon, Notification, EyeIcon, DiscountIcon} from '../protons/Icon.jsx'
 import CircularProgress from '@mui/material/CircularProgress';
 
 
@@ -74,6 +74,15 @@ export const MenuButton = ({size, onClick = {}}) => {
   )
        
     
+}
+
+export const DiscountButton = ({size, onClick = {}, ...props}) => {
+  return(
+    <IconButton aria-label='descontar' color="warning" size = {size} onClick = {onClick} {...props} >
+      <DiscountIcon/>
+    </IconButton>
+  )
+       
 }
 
 //botones de texto con iconos

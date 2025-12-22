@@ -1,48 +1,23 @@
-import useCreateRequest from '../../utils/CustomHooks/useRequestList' 
-import {useState, useEffect} from 'react';
-import { TypeState } from '../../json/TestData';
-
-import RequestGrid from '../molecules/screen/ScreenCard'
-
-import EmptyStatePage from '../molecules/EmptyState'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import TypeActionChip from '../molecules/chips/ActionType'
+import DiscountRequestButtom from '../organisms/modal/DiscountRequest'
+import {useState} from 'react'
 
 const Home = ()=>{
 
-  const {GetList, loading, error} = useCreateRequest()
-  const [data, setData] = useState([])
-  let response = null
+  const [open, setOpen] = useState(false)
 
-  useEffect(()=>{
-    const RequestList= async ()=>{
-      const response = await GetList(TypeState.pendiente)
-      setData(response)
-      console.log(data)
-    }
-    RequestList()
-  },[])
-
-  console.log(error? `error: ${error}` : "no hay error" )
-  console.log(response?? "esperando respuesta")
+  const handleOpen = ()=>{
+    setOpen(!open)
+  }
 
   return(
     <>
-    <h1>datos de prueba</h1>
+    <h1>Chip de prueba para descontar</h1>
 
-      {loading?(
-  
-        `cargando lista de peticiones de ${TypeState.pendiente}`
-      ):data.length > 0?(
-            <RequestGrid Card={data} />
-      ):(
-        <EmptyStatePage
-          icon = {<ErrorOutlineIcon sx ={{fontSzie : "inherent"}}/>}
-          color = "#F8FA64"
-          description = "no hay peticiones aún" 
-        />
-      )
-      
-    }
+    <TypeActionChip action = "DISCOUNT"/>
+    <DiscountRequestButtom
+    on
+    />
 
     </>
   )

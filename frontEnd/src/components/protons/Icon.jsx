@@ -386,3 +386,23 @@ export const Notification = ({ className = '', color, fontSize }) => {
     />
   );
 };
+
+export const DiscountIcon = ({ className = '', color, fontSize }) => {
+  return (
+    <i
+      className={`pi pi-cart-minus ${className}`}
+      aria-hidden="true"
+      style={{ color: color, fontSize: fontSize }}
+    />
+  );
+};
+
+export const DiscountChipIcon = ({ className = '', color, fontSize }) => {
+  return (
+    <i
+      className={`pi pi-minus-circle ${className}`}
+      aria-hidden="true"
+      style={{ color: color, fontSize: fontSize }}
+    />
+  );
+};

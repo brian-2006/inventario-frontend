@@ -18,14 +18,16 @@ import TableContainerAtom from '../../atoms/table/TableContainer'
 import TableAtom from '../../atoms/table/Table'
 import TableHeaderRow from './TableHeaderRow'
 //botonos de accion con funcionalidad
-import { AssignButton} from '../../atoms/Button'
+import { AssignButton, DiscountButton} from '../../atoms/Button'
 import DeleteRequestButton from '../../organisms/modal/Request'
+import DiscountRequestButtom from '../../organisms/modal/DiscountRequest'
 
 const CollapsibleRow  = ({rows, lote_rows, lote_rows_data, module}) => {
     //estado para desplegar lotes asociados boton de eliminación
     const [open, setOpen] = useState(false);
     //estado para abrir 
     const [openDeleteIndex, setOpenDeleteIndex] = useState(null)
+    const [openDiscountIndex, setOpenDiscountIndex] = useState(null)
     //estado de prueba para validar el usuario
     const [Authenticated, setAuthenticated] =useState(false)
 
@@ -52,6 +54,10 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data, module}) => {
 
     const handleDelte =(index) =>{
         setOpenDeleteIndex((prev) => (prev === index ? null : index))
+    }
+
+    const handleDiscount = (index) =>{
+        setOpenDiscountIndex((prev)=>(prev === index? null: index))
     }
     //console.log(Authenticated)
     return(
@@ -92,6 +98,14 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data, module}) => {
                                                     ) : null
                                                 )}
                                                 <TableCellAtom>
+                                                    <DiscountRequestButtom
+                                                        onclose={()=> handleDiscount(index)}
+                                                        estado = {openDiscountIndex === index}
+                                                        tittle= "peticion de descontar"
+                                                        data = {data}
+                                                        module = {module}
+                                                    />
+                                                    <AssignButton size="small" disabled = {isExpired(data["fecha vencimiento"])}/>
                                                     {user.permissions == 2 || user.permissions == 1?(
                                                         <DeleteRequestButton 
                                                             onclose={() => handleDelte(index)} 
@@ -100,15 +114,14 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data, module}) => {
                                                             data = {data}
                                                             module = {module}
                                                         />
-                                                    ): <DeleteRequestButton 
+                                                    ): <DeleteRequestButton
                                                             onclose={() => handleDelte(index)} 
                                                             estado = {openDeleteIndex === index} 
                                                             tittle = "peticion de eliminar" 
                                                             data = {data}
                                                             module = {module}
-                                                        />}
-
-                                                    <AssignButton size="small" disabled = {isExpired(data["fecha vencimiento"])}/>
+                                                        />}                                              
+                                                
                                                 </TableCellAtom>
                                                 </TableRow>
                                             ))}

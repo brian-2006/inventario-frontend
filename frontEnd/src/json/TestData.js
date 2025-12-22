@@ -10,7 +10,8 @@ export const TableRequested = {
 export const TyptRequest = {
   eliminar: "DELETE",
   actualizar: "UPDATE",
-  crear: "CREATE"
+  crear: "CREATE",
+  descontar: "DISCOUNT"
 }
 
 export const TypeState = {
