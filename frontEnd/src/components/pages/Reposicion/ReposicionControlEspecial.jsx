@@ -62,7 +62,7 @@ const ReposicionControlEspecialPage = ({searchTerm, dateStart, dateEnd, onDownlo
 
     return(
         <>
-        <h1>Reposicion control especial</h1>
+        <h1>REPOSICIÓN CONTROL ESPECIAL</h1>
         <ReposicionMedicamentosTable data = {data}/>
         </>
     )

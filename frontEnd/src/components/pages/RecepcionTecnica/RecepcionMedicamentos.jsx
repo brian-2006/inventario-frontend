@@ -26,7 +26,7 @@ const RecepcionMedicamentosPage = () =>{
 
     return(
         <RecepcionLayout
-        title ="Recepcion tecnica de medicamentos"
+        title ="RECEPCIÓN TECNICA DE MEDICAMENTOS"
         toolbar = {<ToolBarRecepcion textButton = "registrar nuevo medicamento" 
                     onClick={openForm} 
                     onSearch={setSearch} 

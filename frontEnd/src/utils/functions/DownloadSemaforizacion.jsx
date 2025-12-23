@@ -1,14 +1,10 @@
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 
-const handleDownLoadSemaforizacion = async (endpoint, data, nombre_archivo) => {
+const handleDownLoadSemaforizacion = async (endpoint, nombre_archivo) => {
   try {
-    const params = {
-      data: JSON.stringify(data),
-    };
-
+    
     const response = await axios.get(`${endpoint}`, {
-      params,
       responseType: 'blob', 
     });
     

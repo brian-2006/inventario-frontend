@@ -4,7 +4,7 @@ import InventarioEquiposBiomedicosTest from '../../../Test/InventarioEquiposBiom
 //url de prodcuccion
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 //nombre del inventario
-import {TypeInventory} from '../../../json/TestData'
+import {TypeInventory,IdInventory} from '../../../json/TestData'
 
 //componentes de la semaforizacióm
 import SemaforizacionEquiposBiomedicosPage from '../semaforizacion/SemaforizacionEquiposBiomedicos'
@@ -79,8 +79,7 @@ const InventarioEquiposBiomedicosPage = () =>{
             toolbar: <ToolBarSemaforizacion
                     onSearch={setSearchSemaforizacion}
                     downLoad={()=>handleDownLoadSemaforizacion(
-                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/`,
-                        downloadSemaforizacion,
+                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/${IdInventory.EquiposBiomedicos}`,
                         'reporte_vencimientos_equipos_biomedicos.xlsx'
                     )}
                 />,
@@ -102,7 +101,7 @@ const InventarioEquiposBiomedicosPage = () =>{
                 onDateStart={setStartDateReposicion}
                 onDateEnd={setEndDateReposicion}
                 download={()=> handleDownLoadSemaforizacion(
-                    `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
+                    `${BASE_URL}inventarioPrincipal/reporteReposicionDM/${IdInventory.EquiposBiomedicos}`,
                     downloadReposicion,
                     'reporte_reposicion_euipos_biomedicos.xlsx'
                 )}
@@ -120,7 +119,7 @@ const InventarioEquiposBiomedicosPage = () =>{
 
     return(
         <InventarioLayout
-        title ="Inventario equipos biomedicos"
+        title ="INVENTARIO EQUIPOS BIOMEDICOS"
         tabsData={tabsData}
         />
     )

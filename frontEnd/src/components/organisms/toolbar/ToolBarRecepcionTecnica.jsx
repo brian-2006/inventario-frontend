@@ -5,7 +5,7 @@ import DateRangePickerAtom from '../../molecules/search/DateRangePicker'
 import FormRecepcionMedicamentos from '../../organisms/form/RecepcionMedicamentos'
 
 
-const ToolBarRecepcion = ({ title = "filtro de busqueda", 
+const ToolBarRecepcion = ({ title = "FILTROS DE BUSQUEDA", 
     textButton = "registrar nuevo insumo", 
     onClick = {}, 
     onSearch = {},
@@ -27,7 +27,7 @@ const ToolBarRecepcion = ({ title = "filtro de busqueda",
             sx={{ maxWidth: 400 }}
             />
             <FormRecepcionMedicamentos/>
-            <DownloadButton text = "descargar reporte"
+            <DownloadButton text = "DESCARGAR REPORTE"
             onClick={downLoad}
             />
         </ToolBarWrapper>

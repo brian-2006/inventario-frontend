@@ -35,28 +35,44 @@ const RequestResponseCard = ({ request }) => {
   console.log('Request data:', request);
 
   // Manejadores de lógica (Aquí conectarías con tu hook useRequest)
-  const handleAccept = async() => {
-    
+  const handleAccept = async () => {
     try {
-      setLoadingValidate(true)
-      const response = await axios.delete(`${BASE_URL}request/ValidateRequest/`, {
-        data: {
+      setLoadingValidate(true);
+
+      // Si la solicitud es de tipo DESCUENTO, usamos el endpoint específico
+      if (request.actiontype === "DISCOUNT") {
+        const cantidad =
+          request.requestpayload &&
+          (request.requestpayload["cantidad descontar"] ?? request.requestpayload["cantidad"]);
+
+        const response = await axios.post(`${BASE_URL}request/discountRequest/`, {
           id_request: request.id,
           reviewed_by: user.userInformation.fullName,
-          admin_response: request.adminresponse
+          admin_response: request.adminresponse,
+          cantidad: cantidad,
+        });
 
-        }
-      });
-      
-      console.log("Eliminada:", response.data);
+        console.log("Descuento aplicado:", response.data);
+      } else {
+        // Comportamiento actual para el resto de tipos de solicitud
+        const response = await axios.delete(`${BASE_URL}request/ValidateRequest/`, {
+          data: {
+            id_request: request.id,
+            reviewed_by: user.userInformation.fullName,
+            admin_response: request.adminresponse,
+          },
+        });
+
+        console.log("Eliminada:", response.data);
+      }
     } catch (error) {
-      console.error("Error:", error.response?.data);
-      setLoadingValidate(false)
-    }finally{
-      setLoadingValidate(false)
+      console.error("Error:", error.response?.data ?? error);
+      setLoadingValidate(false);
+    } finally {
+      setLoadingValidate(false);
     }
-    setOpenModal(false);
 
+    setOpenModal(false);
   };
 
   const handleDeny = async () => {

@@ -62,7 +62,7 @@ const ReposicionRespiratorioPage = ({searchTerm, dateStart, dateEnd, onDownload}
 
     return(
         <>
-        <h1>Reposicion Respiratorio</h1>
+        <h1>REPOSICIÓN RESPIRATORIO</h1>
         <ReposicionDmTable data = {data}/>
         </>
     )

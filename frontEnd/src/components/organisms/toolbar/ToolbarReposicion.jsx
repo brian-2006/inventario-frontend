@@ -5,7 +5,7 @@ import DateRangePickerAtom from '../../molecules/search/DateRangePicker'
 
 
 const ToolbarReposicion = ({ 
-    title = "filtro de busqueda",
+    title = "FILTRO DE BUSQUEDA",
     onSearch = {},
     onDateStart = {},
     onDateEnd = {},
@@ -20,7 +20,7 @@ const ToolbarReposicion = ({
             onDateEnd={onDateEnd}
             sx={{ maxWidth: 400 }}
             />
-            <DownloadButton text = "descargar reporte"
+            <DownloadButton text = "DESCARGAR REPORTE"
             onClick={download}/>
         </ToolBarWrapper>
         </>

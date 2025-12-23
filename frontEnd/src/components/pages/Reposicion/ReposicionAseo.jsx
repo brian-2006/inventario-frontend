@@ -62,7 +62,7 @@ const ReposicionAseoPage = ({searchTerm, dateStart, dateEnd, onDownload}) =>{
 
     return(
         <>
-        <h1>Reposicion Aseo</h1>
+        <h1>REPOSICION ASEO</h1>
         <ReposicionDmTable data = {data}/>
         </>
     )

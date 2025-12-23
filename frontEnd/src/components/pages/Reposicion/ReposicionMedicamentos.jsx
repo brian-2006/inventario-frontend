@@ -62,7 +62,7 @@ const ReposicionMedicamentosPage = ({searchTerm, dateStart, dateEnd, onDownload}
 
     return(
         <>
-        <h1>Reposicion medicamentos</h1>
+        <h1>REPOSICIÓN MEDICAMENTOS</h1>
         <ReposicionMedicamentosTable data = {data}/>
         </>
     )

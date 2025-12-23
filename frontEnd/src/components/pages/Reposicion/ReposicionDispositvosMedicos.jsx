@@ -62,7 +62,7 @@ const ReposicionDmPage = ({searchTerm, dateStart, dateEnd, onDownload}) =>{
 
     return(
         <>
-        <h1>Reposicion Dispositivos medicos</h1>
+        <h1>REPOSICION DISPOSITIVOS MEDICOS</h1>
         <ReposicionDmTable data = {data}/>
         </>
     )

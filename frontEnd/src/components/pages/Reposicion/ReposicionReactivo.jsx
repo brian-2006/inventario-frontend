@@ -62,7 +62,7 @@ const ReposicionReactivoPage = ({searchTerm, dateStart, dateEnd, onDownload}) =>
 
     return(
         <>
-        <h1>Reposicion reactivos</h1>
+        <h1>REPOSICIÓN REACTIVOS</h1>
         <ReposicionDmTable data = {data}/>
         </>
     )

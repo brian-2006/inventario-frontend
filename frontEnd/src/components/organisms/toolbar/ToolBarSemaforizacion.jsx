@@ -4,7 +4,7 @@ import SearchBar from '../../molecules/search/SearchBar'
 
 const ToolBarSemaforizacion = ({
 
-    title = "filtro de busqueda",
+    title = "FILTROS DE BUSQEUDA",
     onSearch = {},
     downLoad = null
     
@@ -15,7 +15,7 @@ const ToolBarSemaforizacion = ({
     
         <ToolBarWrapper>
             <SearchBar onSearch ={onSearch}/>
-            <DownloadButton text = "descargar reporte vencimientos"
+            <DownloadButton text = "DESCARGAR REPORTE VENCIMIENTOS"
                 onClick={downLoad}
             />
         </ToolBarWrapper>

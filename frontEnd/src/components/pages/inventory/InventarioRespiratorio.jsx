@@ -2,7 +2,7 @@
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 //nombre del inventario
-import {TypeInventory} from '../../../json/TestData'
+import {TypeInventory, IdInventory} from '../../../json/TestData'
 
 //plantilla de interfaz
 import InventarioLayout from '../../templates/inventory/MainInventory'
@@ -88,8 +88,7 @@ const InventarioRespiratorioPage = () =>{
                 <ToolBarSemaforizacion
                 onSearch={setSearchSemaforizacion}
                 downLoad = {()=> handleDownLoadSemaforizacion(
-                    `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM`,
-                    downloadSemaforizacion,
+                    `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/${IdInventory.Respiratorio}`,
                     'reporte_vencimientos_respiratorios.xlsx'
                 )}
                 />
@@ -112,8 +111,8 @@ const InventarioRespiratorioPage = () =>{
                 onDateStart={setStartDate}
                 onDateEnd={setEndDateReposicion}
                 download={()=> handleDownLoadSemaforizacion(
-                    `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
-                    downloadReposicion,
+                    `${BASE_URL}inventarioPrincipal/reporteReposicionDM/${IdInventory.Respiratorio}`,
+
                     "reporte_reposicion_respiratorio.xlsx"
                 )}
                 />
@@ -131,7 +130,7 @@ const InventarioRespiratorioPage = () =>{
 
     return(
         <InventarioLayout
-            title ="Inventario respiratorio"
+            title ="INVENTARIO RESPIRATORIO"
             tabsData={tabsData}
         
         />

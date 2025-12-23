@@ -1,7 +1,7 @@
 // src/organisms/ToolBarWrapper.jsx
 import { Container, Typography, Paper, Stack, Box } from "@mui/material";
 
-const ToolBarWrapper = ({ title = "filtros busqueda", children, maxWidth = "xl" }) => {
+const ToolBarWrapper = ({ title = "FILTROS DE BUSQUEDA", children, maxWidth = "xl" }) => {
   return (
     <Container
       maxWidth={maxWidth}

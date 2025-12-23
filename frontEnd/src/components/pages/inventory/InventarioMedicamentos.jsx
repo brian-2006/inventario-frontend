@@ -1,7 +1,7 @@
 //url de prodcuccion
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 //nombres de los inventarios
-import {TypeInventory} from '../../../json/TestData'
+import {TypeInventory, IdInventory} from '../../../json/TestData'
 
 //plantilla de intefaz
 import InventarioLayout from '../../templates/inventory/MainInventory';
@@ -89,8 +89,7 @@ const InventarioMedicamentosPage = () =>{
                 <ToolBarSemaforizacion
                     onSearch={setSearchSemaforizacion}
                     downLoad={()=> handleDownLoadSemaforizacion(
-                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacion/`, 
-                        downLoadSemaforizacion, 
+                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacion/${IdInventory.Medicamentos}`, 
                         "reporte_semaforizacion_medicamentos.xlsx"
                     )}
                 />),
@@ -112,8 +111,7 @@ const InventarioMedicamentosPage = () =>{
                     onDateStart={setStartDateReposicion}
                     onDateEnd={setEndDateReposicion}
                     download={()=> handleDownLoadSemaforizacion(
-                        `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
-                        downloadReposicion,
+                        `${BASE_URL}inventarioPrincipal/reporteReposicionMedicamento/${IdInventory.Medicamentos}`,
                         "reporte_reposicion_medicamentos.xlsx"
                     )}
                 />
@@ -130,7 +128,7 @@ const InventarioMedicamentosPage = () =>{
 
     return(
         <InventarioLayout
-            title ="inventario de medicamentos"
+            title ="INVENTARIO MEDICAMENTOS"
             tabsData = {tabsData}
             
         />

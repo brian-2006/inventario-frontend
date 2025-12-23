@@ -33,6 +33,25 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, loadin
 
   const {user} = useAuth()
 
+  const formatDateToBogota = (dateString) => {
+    if (!dateString) return "";
+
+    // Muchas APIs Django/DRF envían la fecha en UTC sin sufijo de zona (sin "Z").
+    // Si no viene información de zona horaria, asumimos que es UTC y le agregamos 'Z'.
+    const normalized = /[zZ]|[+-]\d{2}:?\d{2}$/.test(dateString)
+      ? dateString
+      : `${dateString}Z`;
+
+    const date = new Date(normalized);
+    if (Number.isNaN(date.getTime())) return dateString;
+
+    return date.toLocaleString("es-CO", {
+      timeZone: "America/Bogota",
+      dateStyle: "short",
+      timeStyle: "short",
+    });
+  };
+
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
@@ -60,12 +79,12 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, loadin
           {/* Fila 2 */}
           <Grid item xs={6}>
             <Typography variant="caption" color="text.secondary" display="block">Fecha:</Typography>
-            <Typography variant="body1">{request.created_at}</Typography>
+            <Typography variant="body1">{formatDateToBogota(request.created_at)}</Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="caption" color="text.secondary" display="block">Tipo solicitud:</Typography>
 
-            <TypeActionChip action={request.actionType} />
+            <TypeActionChip action={request.actiontype} />
           </Grid>
           <Grid item xs={6}>
             <Typography variant="caption" color="text.secondary" display="block">Estado solicitud:</Typography>

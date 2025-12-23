@@ -2,7 +2,7 @@
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 //nombre del inventario
-import {TypeInventory} from '../../../json/TestData'
+import {TypeInventory, IdInventory} from '../../../json/TestData'
 
 //plantilla de interfaz
 import InventarioLayout from '../../templates/inventory/MainInventory'
@@ -86,8 +86,7 @@ const InventarioBioseguridadPage = () =>{
             toolbar: <ToolBarSemaforizacion
                     onSearch={setSearchSemaforizacion}
                     downLoad={()=>handleDownLoadSemaforizacion(
-                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/`,
-                        downloadSemaforizacion,
+                        `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/${IdInventory.Bioseguridad}`,
                         'reporte_vencimientos_bioseguridad.xlsx'
                     )}
                 />,
@@ -110,8 +109,7 @@ const InventarioBioseguridadPage = () =>{
                         onDateStart={setStartDateReposicion}
                         onDateEnd={setEndDateReposicion}
                         downLoad={()=> handleDownLoadSemaforizacion(
-                            `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
-                            downloadReposicion,
+                            `${BASE_URL}inventarioPrincipal/reporteReposicionDM/${IdInventory.Bioseguridad}`,
                             'reporte_reposicion_bioseguridad.xlsx'
                         )}
                     />
@@ -128,7 +126,7 @@ const InventarioBioseguridadPage = () =>{
 
     return(
         <InventarioLayout
-            title ="Inventario bioseguridad"
+            title ="INVENTARIO BIOSEGURIDAD"
             tabsData={tabsData}
             
         />

@@ -1,27 +1,22 @@
-import { RowingTwoTone } from '@mui/icons-material';
-import {useState, useEffect} from 'react'
+import { useMemo } from 'react';
 
-const useFilterTerm = ({SearchTerm, data}) =>{
-    const [filteredData, setFilteredData] = useState(data);
-    
-    const q = (SearchTerm || '').toLowerCase();
-    
+const useFilterTerm = ({ SearchTerm, data }) => {
+  const q = (SearchTerm || '').toLowerCase();
 
-    useEffect(() => {
-        const filtered = data.filter((row)=>{
-            const nombre = (row.id_presentacion__id_medicamento__nombregenerico || '').toLowerCase() 
-            const presentacion = (row.id_presentacion__presentacioncomercial || '').toLowerCase()
-            const concentracion =( row.id_presentacion__concentracion || '').toLowerCase()
-            const formaFarmaceutica = (row.id_presentacion__formulafarmaceutica || '').toLowerCase()
+  const filteredData = useMemo(() => {
+    return data.filter((row) => {
+      const nombre = (row.id_presentacion__id_medicamento__nombregenerico || '').toLowerCase();
+      const presentacion = (row.id_presentacion__presentacioncomercial || '').toLowerCase();
+      const concentracion = (row.id_presentacion__concentracion || '').toLowerCase();
+      const formaFarmaceutica = (row.id_presentacion__formulafarmaceutica || '').toLowerCase();
 
-            let nombreCompleto = `${nombre} ${presentacion} ${concentracion} ${formaFarmaceutica}`;
+      const nombreCompleto = `${nombre} ${presentacion} ${concentracion} ${formaFarmaceutica}`;
 
-            return nombreCompleto.toLowerCase().startsWith(q)
-        })
-        setFilteredData(filtered);
-    }, [data, SearchTerm])
+      return nombreCompleto.startsWith(q);
+    });
+  }, [data, q]);
 
-    return filteredData;
-}
+  return filteredData;
+};
 
 export default useFilterTerm;

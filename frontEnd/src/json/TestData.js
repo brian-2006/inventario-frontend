@@ -32,6 +32,18 @@ export const TypeInventory = {
     EquiposBiomedicos: 'equipos biomedicos'
 }
 
+export const IdInventory = {
+  Medicamentos: 9,
+  Dm: 10,
+  ControlEspecial: 11,
+  Aseo: 12,
+  Bioseguridad: 13,
+  Varios: 14,
+  Respiratorio: 15,
+  EquiposBiomedicos: 16,
+  Reactivos: 17,
+}
+
 export const LoteRowsColums = ["lote", "cantidad total", "Fecha vencimiento", "Precio unitario", "Precio total", "Fabricante", "Registro Invima", "Fecha vencimiento invima", "acciones" ];
 
 export const RecepcionTencinaRows = {

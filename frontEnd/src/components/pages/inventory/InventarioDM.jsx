@@ -2,7 +2,7 @@
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 //nombres de los inventarios
-import {TypeInventory} from '../../../json/TestData'
+import {TypeInventory,IdInventory} from '../../../json/TestData'
 
 //plantilla layout
 import InventarioLayout from '../../templates/inventory/MainInventory'
@@ -87,8 +87,7 @@ const InventarioDMPage = () =>{
             <ToolBarSemaforizacion
                         onSearch={setSearchSemaforizacion}
                         downLoad={()=>handleDownLoadSemaforizacion(
-                            `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/`,
-                            downloadSemaforizacion,
+                            `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/${IdInventory.Dm}`,
                             'reporte_vencimientos_dispositivos_medicos.xlsx'
                         )}
             />
@@ -111,8 +110,7 @@ const InventarioDMPage = () =>{
                     onDateStart={setStartDateReposicion}
                     onDateEnd={setEndDateReposicion}
                     download={()=> handleDownLoadSemaforizacion(
-                        `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
-                        downloadReposicion,
+                        `${BASE_URL}inventarioPrincipal/reporteReposicionDM/${IdInventory.Dm}`,
                         'reporte_reposicion_dispositivos_medicos.xlsx'
                     )}
                 />
@@ -128,7 +126,7 @@ const InventarioDMPage = () =>{
 
     return(
         <InventarioLayout
-            title ="inventario de Dispositivos Medicos"
+            title ="INVENTARIO DISPOSITIVOS MEDICOS"
             tabsData={tabsData}
             
         />

@@ -63,7 +63,7 @@ const ReposicionBioseguridadPage = ({searchTerm, dateStart, dateEnd, onDownload}
 
     return(
         <>
-        <h1>Reposicion bioseguridad</h1>
+        <h1>REPOSICIÓN BIOSEGURIUDAD</h1>
         <ReposicionDmTable data = {data}/>
         </>
     )

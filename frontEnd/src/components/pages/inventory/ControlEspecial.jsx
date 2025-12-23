@@ -1,7 +1,7 @@
 //url de prodcuccion
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 //nombre del inventario
-import {TypeInventory} from '../../../json/TestData'
+import {TypeInventory, IdInventory} from '../../../json/TestData'
 
 //plantilla base de estructura
 import InventarioLayout from '../../templates/inventory/MainInventory'
@@ -87,8 +87,7 @@ const InventarioControlEspecialPage = () =>{
             <ToolBarSemaforizacion
                         onSearch={setSearchSemaforizacion}
                         downLoad={()=>handleDownLoadSemaforizacion(
-                            `${BASE_URL}inventarioPrincipal/reporteSemaforizacion/`,
-                            downloadSemaforizacion,
+                            `${BASE_URL}inventarioPrincipal/reporteSemaforizacion/${IdInventory.ControlEspecial}`,
                             'reporte_vencimientos_control_especial.xlsx'
                         )}
             />
@@ -110,8 +109,7 @@ const InventarioControlEspecialPage = () =>{
                 onSearch={setSearchReposicion}
                 onDateStart={setStartDateReposicion}
                 onDateEnd={setEndDateReposicion}
-                download={()=> handleDownLoadSemaforizacion(`${BASE_URL}inventarioPrincipal/reporteReposicion/`,
-                    downloadReposicion,
+                download={()=> handleDownLoadSemaforizacion(`${BASE_URL}inventarioPrincipal/reporteReposicionMedicamento/${IdInventory.ControlEspecial}`,
                     'reporte_reposicion_control_especial.xlsx'
                 )}
             />
@@ -128,7 +126,7 @@ const InventarioControlEspecialPage = () =>{
 
     return(
         <InventarioLayout
-        title ="Inventario Control Especial"
+        title ="INVENTARIO CONTROL ESPECIAL"
         tabsData={tabsData}
         
         />

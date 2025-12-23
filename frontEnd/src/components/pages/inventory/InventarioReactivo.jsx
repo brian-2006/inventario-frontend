@@ -2,7 +2,7 @@
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 //nombre del inventario
-import {TypeInventory} from '../../../json/TestData'
+import {TypeInventory,IdInventory} from '../../../json/TestData'
 
 //template de layout
 import InventarioLayout from '../../templates/inventory/MainInventory'
@@ -88,8 +88,7 @@ const InventarioReactivoPage = () =>{
                 <ToolBarSemaforizacion
                 onSearch={setSearchSemaforizacion}
                 downLoad = {()=> handleDownLoadSemaforizacion(
-                    `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/`,
-                    downloadSemaforizacion,
+                    `${BASE_URL}inventarioPrincipal/reporteSemaforizacionDM/${IdInventory.Reactivos}`,
                     'reporte_vencimientos_reactivos.xlsx'
                 )}
                 />
@@ -113,7 +112,7 @@ const InventarioReactivoPage = () =>{
                     onDateEnd={setEndDateReposicion}
                     download={()=> 
                         handleDownLoadSemaforizacion(
-                        `${BASE_URL}inventarioPrincipal/reporteReposicion/`,
+                        `${BASE_URL}inventarioPrincipal/reporteReposicionDM/${IdInventory.Reactivos}`,
                         downloadReposicion,
                         'reporte_reposicion_reactivos.xlsx'
                     )}
@@ -131,7 +130,7 @@ const InventarioReactivoPage = () =>{
 
     return(
         <InventarioLayout
-        title ="Inventario reactivos"
+        title ="INVENTARIO REACTIVOS"
         tabsData={tabsData}
         />
     )

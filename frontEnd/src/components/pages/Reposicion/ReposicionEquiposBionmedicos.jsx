@@ -62,7 +62,7 @@ const ReposicionEquiposBionmedicosPage = ({searchTerm, dateStart, dateEnd, onDow
 
     return(
         <>
-        <h1>Reposicion Equipios biomedicos</h1>
+        <h1>REPOSICION EQUIPOS BIOMEDICOS</h1>
         <ReposicionDmTable data = {data}/>
         </>
     )
