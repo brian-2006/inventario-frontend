@@ -1,6 +1,9 @@
 //url de prodcuccion
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
+//nombres de los inventarios
+import {TypeInventory} from '../../../json/TestData'
+
 //plantilla layout
 import InventarioLayout from '../../templates/inventory/MainInventory'
 
@@ -64,7 +67,8 @@ const InventarioDMPage = () =>{
                     startDate,
                     endDate,
                     `reporte_inventario_dispositivos_medicos_${startDate}_${endDate}.xlsx`,
-                    downLoad
+                    downLoad,
+                    TypeInventory.Dm
                 )
                 }
             />

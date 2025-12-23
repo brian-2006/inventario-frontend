@@ -3,6 +3,8 @@ import ToolBarInventory from '../../organisms/toolbar/ToolBarInventory'
 import InventarioEquiposBiomedicosTest from '../../../Test/InventarioEquiposBiomedicos'
 //url de prodcuccion
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+//nombre del inventario
+import {TypeInventory} from '../../../json/TestData'
 
 //componentes de la semaforizacióm
 import SemaforizacionEquiposBiomedicosPage from '../semaforizacion/SemaforizacionEquiposBiomedicos'
@@ -59,7 +61,8 @@ const InventarioEquiposBiomedicosPage = () =>{
                     startDate,
                     endDate,
                     `reporte_inventario_dispositivos_medicos_${startDate}_${endDate}.xlsx`,
-                    downLoad
+                    downLoad,
+                    TypeInventory.EquiposBiomedicos
                 )
                 }
             />

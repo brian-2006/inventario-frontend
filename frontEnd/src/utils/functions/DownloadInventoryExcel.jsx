@@ -1,12 +1,13 @@
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 
-const handleDownLoadInventory = async (endpoint, startDate, endDate, nombre_archivo, lotNumbers) => {
+const handleDownLoadInventory = async (endpoint, startDate, endDate, nombre_archivo, q, inventory) => {
   try {
     const params = {
       start: startDate, 
       end: endDate,
-      lotNumbers: JSON.stringify(lotNumbers),
+      searchTerm: q,
+      inventory: inventory,
     };
 
     const response = await axios.get(`${endpoint}`, {

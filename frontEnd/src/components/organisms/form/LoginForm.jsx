@@ -27,13 +27,13 @@ const FormLogin = () =>{
     try{
       
         const payload = { email: formData.user, password: encode(formData.password) };
-        console.log(`contraseña limpia: ${payload.password}, contraseña codificada: ${encode(payload.password )}`)
-        console.log(login)
+        //console.log(`contraseña limpia: ${payload.password}, contraseña codificada: ${encode(payload.password )}`)
+        //console.log(login)
         const response = await axios.post('https://api.angelesalllamado.com.co/angeles-application-service/api/v1/users/login', 
             payload,
             { headers: { 'Content-Type': 'application/json' } }
         ).then((response) => {
-            console.log(response)
+            //console.log(response)
             if (response.status === 200){
                 const { token, refreshToken } = response.data || {}
                 if (token) {

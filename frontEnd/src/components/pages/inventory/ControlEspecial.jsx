@@ -1,5 +1,7 @@
 //url de prodcuccion
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
+//nombre del inventario
+import {TypeInventory} from '../../../json/TestData'
 
 //plantilla base de estructura
 import InventarioLayout from '../../templates/inventory/MainInventory'
@@ -65,7 +67,8 @@ const InventarioControlEspecialPage = () =>{
                     startDate,
                     endDate,
                     `reporte_inventario_control_especial_${startDate}_${endDate}.xlsx`,
-                    downLoad
+                    downLoad,
+                    TypeInventory.ControlEspecial,
                 )
                 }
             />

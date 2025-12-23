@@ -17,7 +17,7 @@ const  InventarioBioseguridadTest = ({SearchTerm, startDate, endDate, onDownLoad
         const {rows, loteRows} = response.data;
         setRows(rows);
         setLoteRows(loteRows);
-        onDownLoad(loteRows);
+        onDownLoad(SearchTerm);
         console.log(loteRows);
 
         // console.log(rows);

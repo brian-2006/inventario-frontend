@@ -17,7 +17,8 @@ const  InventarioControlEspecialTest = ({SearchTerm, startDate, endDate, onDownL
         const {rows, loteRows} = response.data;
         setRows(rows);
         setLoteRows(loteRows);
-        onDownLoad(loteRows);
+        //onDownLoad(loteRows);
+        onDownLoad(SearchTerm)
         console.log(loteRows);
 
         // console.log(rows);

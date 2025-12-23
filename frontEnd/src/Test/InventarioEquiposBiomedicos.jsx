@@ -17,7 +17,7 @@ const  InventarioEquiposBiomedicosTest = ({SearchTerm, startDate, endDate, onDow
         const {rows, loteRows} = response.data;
         setRows(rows);
         setLoteRows(loteRows);
-        onDownLoad(loteRows);
+        onDownLoad(SearchTerm);
         console.log(loteRows);
 
         // console.log(rows);

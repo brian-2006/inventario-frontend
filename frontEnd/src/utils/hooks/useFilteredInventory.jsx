@@ -58,8 +58,8 @@ const useInventoryFilter = ({ rows = [], loteRows = [], searchTerm = "", startDa
     setFilteredData(filteredFinalData);
     setFilteredLotRows(filteredFinalLotes);
 
-    // callback
-    onDownLoad(filteredFinalLotes);
+    // callback: enviar solo el término de búsqueda (string)
+    onDownLoad(searchTerm);
   }, [rows, loteRows, searchTerm, startDate, endDate]);
 
   return { filteredData, filteredLotRows };

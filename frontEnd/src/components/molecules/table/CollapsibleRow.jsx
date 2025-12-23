@@ -35,11 +35,11 @@ const CollapsibleRow  = ({rows, lote_rows, lote_rows_data, module}) => {
     const { user, isAuthenticated, token } = useAuth();
 
     // Muestra información del usuario si está autenticado
-    console.log('Usuario autenticado:', user);
+    //console.log('Usuario autenticado:', user);
     // console.log('Token:', token);
     // console.log('¿Está autenticado?', isAuthenticated);
-    console.log(`permisos del usuario: ${user.permissions}`)
-    console.log(`nombre de usuario: ${user.userInformation.fullName??"no tiene nombre"}`)
+    //console.log(`permisos del usuario: ${user.permissions}`)
+    //console.log(`nombre de usuario: ${user.userInformation.fullName??"no tiene nombre"}`)
 
     //funcion para activar o desactivar el boton de asignar 
     const isExpired = (date) => {
