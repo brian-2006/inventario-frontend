@@ -18,6 +18,7 @@ import { useAuth } from '../../../providers/AuthProvider'
 
 //importamos custom hooks que traen los estados de los llamados https
 import useRequestDeny from '../../../utils/CustomHooks/useRequestDeny'
+import { useNotifications } from '@toolpad/core/useNotifications';
 
 const RequestResponseCard = ({ request }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -27,6 +28,9 @@ const RequestResponseCard = ({ request }) => {
 
   //traemos los estados de el endpont para denegar peticion
   const {executeDeny, loadingDeny, error} = useRequestDeny()
+
+  //notificaciones para validación
+  const notification = useNotifications()
 
   // Configuraciones visuales basadas en props
   const status = <RequestStateChip estado={request.status} />
@@ -53,6 +57,10 @@ const RequestResponseCard = ({ request }) => {
         });
 
         console.log("Descuento aplicado:", response.data);
+        notification.show('peticion de descuento validada exitosamente', {
+          severity: 'success',
+          autoHideDuration: 3000,
+        })
       } else {
         // Comportamiento actual para el resto de tipos de solicitud
         const response = await axios.delete(`${BASE_URL}request/ValidateRequest/`, {
@@ -64,10 +72,19 @@ const RequestResponseCard = ({ request }) => {
         });
 
         console.log("Eliminada:", response.data);
+        notification.show('peticion validada exitosamente', {
+          severity: 'success',
+          autoHideDuration: 3000,
+        })
       }
     } catch (error) {
       console.error("Error:", error.response?.data ?? error);
+      notification.show('error al validar la peticion', {
+        severity: 'error',
+        autoHideDuration: 3000,
+      })
       setLoadingValidate(false);
+
     } finally {
       setLoadingValidate(false);
     }

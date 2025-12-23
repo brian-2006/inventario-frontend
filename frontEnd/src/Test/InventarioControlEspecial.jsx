@@ -7,13 +7,15 @@ import useInventoryFilter from '../utils/hooks/useFilteredInventory'
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 const  InventarioControlEspecialTest = ({SearchTerm, startDate, endDate, onDownLoad})=> {
-
+    const [loading, setLoading] = useState(false)
     const [rows, setRows] = useState([]);       
     const [loteRows, setLoteRows] = useState([]); 
 
     const GetData = ()=>{
+        setLoading(true)
         axios.get(`${BASE_URL}inventarioPrincipal/getInventoryRowsJson/${TypeInventory.ControlEspecial}/`)
         .then(response => {
+        setLoading(false)
         const {rows, loteRows} = response.data;
         setRows(rows);
         setLoteRows(loteRows);
@@ -27,6 +29,7 @@ const  InventarioControlEspecialTest = ({SearchTerm, startDate, endDate, onDownL
 
         .catch(error => {
         console.log(error);
+        setLoading(false);
         })
     }
 
@@ -49,6 +52,9 @@ const  InventarioControlEspecialTest = ({SearchTerm, startDate, endDate, onDownL
 
     return (
         <>
+            {loading ? (
+                <h1>Cargando...</h1>
+            ): (
             <CollapsibleTable
             mainHeaders={MedicineMainInventoryColumns}
             mainRows={filteredData}
@@ -56,6 +62,8 @@ const  InventarioControlEspecialTest = ({SearchTerm, startDate, endDate, onDownL
             lotRows = {filteredLotRows}
             module= {TypeInventory.ControlEspecial}
             />
+            )
+            }
         </>
     )
 }
