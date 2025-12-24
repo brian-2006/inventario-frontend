@@ -8,6 +8,9 @@ import useInventoryFilter from '../utils/hooks/useFilteredInventory'
 import EmptyStatePage from '../components/molecules/EmptyState'
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
+//componene para estado de carga
+import GenericTableSkeleton from '../components/molecules/LoadingStateTable'
+
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 const  InventarioMedicamentos = ({SearchTerm, startDate, endDate, onDownLoad})=> {
@@ -57,7 +60,7 @@ const  InventarioMedicamentos = ({SearchTerm, startDate, endDate, onDownLoad})=>
     return (
         <>
             {loading? (
-                <h1>Cargando...</h1>
+                <GenericTableSkeleton/>
             ):(
             <CollapsibleTable
             mainHeaders={MedicineMainInventoryColumns}

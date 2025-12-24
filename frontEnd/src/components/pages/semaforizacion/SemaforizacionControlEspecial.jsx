@@ -6,20 +6,27 @@ import SemaforizacionTable from '../../organisms/table/SemaforizacionTable'
 import { SemaforizacionMedicamentosColumns } from '../../../json/TestData'
 import useFilterTerm from '../../../utils/hooks/useFilterTerm'
 
+//se importa el skeleton
+import GenericTableSkeleton from '../../molecules/LoadingStateTable'
+
 const SemaforizacionControlEspecialPage = ({ searchTerm, onDownload }) => {
+  const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState(null);
 
   const id_inventory = 11;
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get(`${BASE_URL}inventarioPrincipal/semaforizacion/${id_inventory}/`)
       .then((response) => {
         setInfo(response.data);
+        setLoading(false)
 
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false)
       });
   }, []);
 
@@ -46,7 +53,10 @@ const SemaforizacionControlEspecialPage = ({ searchTerm, onDownload }) => {
 
   return (
     <>
-      {info && (
+      {loading?(
+        <GenericTableSkeleton/>
+      ):
+      info && (
         <SemaforizacionTable
           headers={SemaforizacionMedicamentosColumns}
           vencidos={vencidos}
@@ -54,7 +64,9 @@ const SemaforizacionControlEspecialPage = ({ searchTerm, onDownload }) => {
           de_15_dias_3_meses={menos3}
           entre_3_meses_1_ano={tresMesesUnAno}
         />
-      )}
+      )
+      
+      }
     </>
   );
 };

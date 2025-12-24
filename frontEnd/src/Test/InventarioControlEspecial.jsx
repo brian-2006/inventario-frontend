@@ -4,6 +4,9 @@ import axios from 'axios'
 import {useState, useEffect} from 'react'
 import useInventoryFilter from '../utils/hooks/useFilteredInventory'
 
+//componene para estado de carga
+import GenericTableSkeleton from '../components/molecules/LoadingStateTable'
+
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 const  InventarioControlEspecialTest = ({SearchTerm, startDate, endDate, onDownLoad})=> {
@@ -53,7 +56,7 @@ const  InventarioControlEspecialTest = ({SearchTerm, startDate, endDate, onDownL
     return (
         <>
             {loading ? (
-                <h1>Cargando...</h1>
+                <GenericTableSkeleton/>
             ): (
             <CollapsibleTable
             mainHeaders={MedicineMainInventoryColumns}

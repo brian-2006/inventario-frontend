@@ -4,12 +4,14 @@ import {useState,  useEffect} from 'react'
 import axios from 'axios'
 //importamos custom hook para rangos de fechas seleccionados
 import useFilterDate from '../utils/hooks/useFilterDate'
+//importamos skeleton de carga
+import GenericTableSkeleton from '../components/molecules/LoadingStateTable'
 
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
-  const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -21,16 +23,19 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
 
     const GetData =  () =>{
+        setLoading(true)
         axios.get(`${BASE_URL}recepcionTecnica/getRecpcionList/${acta}/`)
         .then(response => {
         setData(response.data || []);
         onDownLoad(response.data || []);
+        setLoading(false)
         //console.log(data);
         // console.log(typeof (data));
         })
 
         .catch(error => {
         console.log(error);
+        setLoading(false)
         })
     }
 
@@ -62,7 +67,14 @@ const RecepcionTableTest = ({SearchTerm, startDate, endDate, onDownLoad }) => {
     
 
     return (
+    <>
+      {loading? (
+        <GenericTableSkeleton/>
+      ):(
         <RecepcionTable headers={RecepcionTencinaRows.Medicamento} items={filteredData}/>
+      )
+      }
+    </>
     )
 }
 

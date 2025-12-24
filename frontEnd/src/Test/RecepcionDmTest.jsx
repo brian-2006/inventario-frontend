@@ -3,10 +3,14 @@ import {RecepcionTencinaRows} from '../json/TestData';
 import {useState,  useEffect} from 'react'
 import axios from 'axios'
 import useFilterDate from '../utils/hooks/useFilterDate'
+//importamos skeleton de carga
+import GenericTableSkeleton from '../components/molecules/LoadingStateTable'
 
 const BASE_URL = import.meta.env.VITE_PRODUCTION_URL
 
 const RecepcionTableTest  = ({SearchTerm, startDate, endDate, onDownLoad }) => {
+    //definimos estado de carga
+    const[loading, setLoading] = useState(false)
 
     const [data, setData] = useState([])
     const [filteredData, setFilteredData] = useState([])
@@ -16,12 +20,16 @@ const RecepcionTableTest  = ({SearchTerm, startDate, endDate, onDownLoad }) => {
 
     const GetData = async () => {
         try {
+            setLoading(true)
             const response = await axios.get(`${BASE_URL}recepcionTecnica/getRecpcionList/${acta}/`);
             setData(response.data);
             onDownLoad(response.data);
+            //response? setLoading(false): setLoading(true)
+            setLoading(false)
             //console.log(response.data);
         } catch (error) {
             console.log(error);
+            setLoading(false)
         }
     }
 
@@ -49,7 +57,14 @@ const RecepcionTableTest  = ({SearchTerm, startDate, endDate, onDownLoad }) => {
     
 
     return (
-        <RecepcionTable headers={RecepcionTencinaRows.Dm} items={filteredData}/>
+    <>
+        {loading? (
+            <GenericTableSkeleton/>
+        ):(
+            <RecepcionTable headers={RecepcionTencinaRows.Dm} items={filteredData}/>
+        )
+        }
+    </>
     )
 }
 

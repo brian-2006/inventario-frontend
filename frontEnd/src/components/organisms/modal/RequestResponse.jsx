@@ -113,7 +113,7 @@ const RequestResponseModal = ({ open, onClose, request, onAccept, onDeny, loadin
             </Grid>
             <Grid item xs={6}>
               <Typography variant="caption" color="text.secondary" display="block">fecha de revision:</Typography>
-              <Typography variant="subtitle1">{request.updated_at}</Typography>
+              <Typography variant="subtitle1">{formatDateToBogota(request.updated_at)}</Typography>
             </Grid>
           </Grid>
         )}
