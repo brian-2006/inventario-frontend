@@ -11,6 +11,7 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
     const [concentraciones, setConcentracion] = useState([])
     const [presentacionesComerciales, setPresentacionesComerciales] = useState([])
     const [formasFarmaceuticas, setFormaFarmaceutica] = useState([])
+    const [unidadesmedida, setUnidadesMedidas] = useState([])
     
     //se traen todas las opciones estandar para registrar medicamento
     useEffect(() => {
@@ -20,6 +21,7 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
         handleGet('insumo/concentracion/', setConcentracion)
         handleGet('insumo/presentacioncomercial/', setPresentacionesComerciales)
         handleGet('insumo/formafarmaceutica/', setFormaFarmaceutica)
+        handleGet('insumo/unidadmedida', setUnidadesMedidas)
     }, [])
 
     const handleAutocompleteChange = (fieldName) => (event, newValue) => {
@@ -50,6 +52,15 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
                         nombre_generico: medicamentos.find(m=> m.id === newValue)?.nombregenerico ?? ""
                     }))
                 }}
+            />
+
+            <TextInputAtom
+            name = 'principio activo'
+            label = 'principio activo'
+            type='text'
+            required
+            value = {formData.principio_activo}
+            onChange = {(e)=> handleChange('principio_activo', e.target.value)}
             />
 
             <AutoCompleteAtom
@@ -100,6 +111,21 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
             }
             value = {formData.formula_farmaceutica}
             onChange = {handleAutocompleteChange('formula_farmaceutica')}
+            />
+
+            <AutoCompleteAtom
+            name = 'unidad de medida'
+            label = 'Unidad de medida'
+            options = {
+                unidadesmedida.map(uni =>(
+                    {
+                        value: uni.unidad,
+                        label: uni.unidad
+                    }
+                ))
+            }
+            value = {formData.unidad_medida}
+            onChange = {handleAutocompleteChange('unidad_medida')}
             />
 
             {/* <SelectInputAtom
@@ -171,15 +197,6 @@ const RecepcionMedicamentoForm = ({formData, handleChange, setter}) => {
             required
             value = {formData.registro_invima}
             onChange = {(e) => handleChange('registro_invima', e.target.value)}
-            />
-
-            <TextInputAtom
-            name = 'fecha vecimiento invima'
-            label = 'fecha vecimiento invima'
-            type = 'date'
-            // required
-            value = {formData.fecha_vencimiento_invima}
-            onChange = {(e) => handleChange('fecha_vencimiento_invima', e.target.value)}
             />
 
             <SelectInputAtom

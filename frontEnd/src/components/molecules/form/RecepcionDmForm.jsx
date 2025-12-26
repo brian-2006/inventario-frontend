@@ -9,12 +9,14 @@ const RecepcionDmForm = ({formData, handleChange, setter}) => {
     const [dms, setDms] = useState([])
     const [proveedores, setProveedores] = useState([])
     const [laboratorios, setLaboratorios] = useState([])
+    const [presentacionDm, setPresentacionDm] = useState([])
 
     useEffect(() => {
         
         handleGet('insumo/dm/', setDms)
         handleGet('insumo/proveedor/', setProveedores)
         handleGet('insumo/laboratorio/', setLaboratorios)
+        handleGet('insumo/presentaciondm/', setPresentacionDm)
      }, [])
 
     const handleAutocompleteChange = (fieldName) => (event, newValue) => {
@@ -52,6 +54,26 @@ const RecepcionDmForm = ({formData, handleChange, setter}) => {
             required
             value = {formData.vida_util}
             onChange = {(e)=> handleChange('vida_util', e.target.value)}
+            />
+
+            <TextInputAtom
+            name = 'serie'
+            label= 'Serie'
+            type = 'text'
+            required
+            value = {formData.serie}
+            onChange = {(e)=> handleChange('serie', e.target.value)}
+            />
+            <AutoCompleteAtom
+                name='presentacion comercial'
+                label='Presentación comercial'
+                options={presentacionDm.map(presentacion => ({
+                    value: presentacion.nombrepresentaciondm,
+                    label: presentacion.nombrepresentaciondm
+                }))}
+                value={formData.presentacion_comercial_dm}
+                onChange={handleAutocompleteChange('presentacion_comercial_dm')}
+                required
             />
 
             <TextInputAtom

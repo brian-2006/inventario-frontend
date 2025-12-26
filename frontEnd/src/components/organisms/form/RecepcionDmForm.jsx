@@ -25,6 +25,8 @@ const FormRecepcionDm = () => {
     nombre_generico: "",
     estado_registro_invima: "",
     vida_util: "",
+    serie: "",
+    presentacion_comercial_dm: "",
     numero_lote: "",
     cantidad: "",
     fecha_vencimiento: "",
