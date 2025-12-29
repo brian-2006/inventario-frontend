@@ -47,12 +47,12 @@ export const IdInventory = {
 export const LoteRowsColums = ["lote", "cantidad total", "Fecha vencimiento", "Precio unitario", "Precio total", "Fabricante", "Registro Invima", "Fecha vencimiento invima", "acciones" ];
 
 export const RecepcionTencinaRows = {
-    Medicamento: ['Fecha', 'Hora', 'Número de factura', 'Proveedor','Nombre generico', 
-        'Presentacion comercial', 'concentracion', 'Forma Farmaceutica', 'Laboratorio', 'Lote', 'Fecha de vencimiento',
+    Medicamento: ['Fecha', 'Hora', 'Número de factura', 'Proveedor','Nombre generico', 'Principio activo',
+        'Presentacion comercial', 'concentracion', 'Forma Farmaceutica', 'Unidad medida','Laboratorio', 'Lote', 'Fecha de vencimiento',
         'Registro Invima', 'Fecha vencimiento registro invima', 'Estado de registro invima', 'Cantidad', 
         'Precio unitario', 'Estado de embalaje', 'Condiciones de transporte', 'Quien realiza', 'Observaciones', 'inventario', 'Tipo acta'],
     
-    Dm: ['Fecha', 'Hora', 'Número de factura', 'Proveedor', 'Laboratorio', 'Nombre dm', 'vida util', 'Clasificacion riesgo',
+    Dm: ['Fecha', 'Hora', 'Número de factura', 'Proveedor', 'Serie', 'Laboratorio', 'Nombre dm', 'vida util', 'Clasificacion riesgo', 'Presentación comercial',
         'Lote', 'Fecha de vencimiento','Registro Invima', 'Fecha vencimiento de registro invima', 
         'Cantidad', 'Precio unitario', 'Estado de embalaje', 
         'Condiciones de transporte', 'Quien realiza', 'Observaciones', 'inventario', 'Tipo acta']

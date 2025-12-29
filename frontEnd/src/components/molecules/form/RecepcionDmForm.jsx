@@ -11,6 +11,10 @@ const RecepcionDmForm = ({formData, handleChange, setter}) => {
     const [laboratorios, setLaboratorios] = useState([])
     const [presentacionDm, setPresentacionDm] = useState([])
 
+
+    const [vidaUtilCantidad, setVidaUtilCantidad] = useState('')
+    const [vidaUtilUnidad, setVidaUtilUnidad] = useState('MESES')
+
     useEffect(() => {
         
         handleGet('insumo/dm/', setDms)
@@ -19,11 +23,47 @@ const RecepcionDmForm = ({formData, handleChange, setter}) => {
         handleGet('insumo/presentaciondm/', setPresentacionDm)
      }, [])
 
+    useEffect(() => {
+        if (formData.vida_util) {
+            const partes = formData.vida_util.split(' '); // Divide por el espacio
+            if (partes.length >= 2) {
+                setVidaUtilCantidad(partes[0]); // "5"
+                setVidaUtilUnidad(partes[1]);   // "AÑOS"
+            }
+        }
+    }, [formData.vida_util]);
+
     const handleAutocompleteChange = (fieldName) => (event, newValue) => {
         setter(prevData => ({
           ...prevData,
           [fieldName]: newValue // Ya es solo el ID o null
         }));
+    };
+
+
+// 3. FUNCIÓN CLAVE: Une los valores y manda el string completo
+    const handleVidaUtilChange = (tipo, valorNuevo) => {
+        // Calculamos cuáles serán los nuevos valores ANTES de actualizar el estado
+        // (porque el estado de React es asíncrono y no se actualiza de inmediato)
+        const nuevaCantidad = tipo === 'cantidad' ? valorNuevo : vidaUtilCantidad;
+        const nuevaUnidad = tipo === 'unidad' ? valorNuevo : vidaUtilUnidad;
+
+        // Actualizamos los estados visuales
+        if (tipo === 'cantidad') setVidaUtilCantidad(valorNuevo);
+        if (tipo === 'unidad') setVidaUtilUnidad(valorNuevo);
+
+        // 4. Construimos el string compuesto
+        // Si el usuario borró el número, mandamos vacío para que salte el "required"
+        if (!nuevaCantidad) {
+            handleChange('vida_util', ''); 
+            return;
+        }
+
+        // Creamos el valor final: Ej. "10 MESES"
+        const valorCompuesto = `${nuevaCantidad} ${nuevaUnidad}`;
+
+        // 5. Enviamos AHORA MISMO el valor compuesto al formulario principal
+        handleChange('vida_util', valorCompuesto);
     };
 
     console.log(formData)
@@ -47,14 +87,43 @@ const RecepcionDmForm = ({formData, handleChange, setter}) => {
                 }}
             />
 
-            <TextInputAtom
-            name = 'vida util'
-            label= 'Vida util'
-            type = 'text'
-            required
-            value = {formData.vida_util}
-            onChange = {(e)=> handleChange('vida_util', e.target.value)}
-            />
+            {/* SECCIÓN DE VIDA ÚTIL COMPUESTA */}
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                
+                {/* Campo Numérico */}
+                <div style={{ flex: 1 }}>
+                    <TextInputAtom
+                        name='vida util cantidad' // Nombre visual, no afecta el submit
+                        label='Vida Útil (Cantidad)'
+                        type='number'
+                        required
+                        inputProps={{ min: 0 }}
+                        // El valor viene del estado local
+                        value={vidaUtilCantidad}
+                        // Al cambiar, llamamos a nuestra función lógica
+                        onChange={(e) => handleVidaUtilChange('cantidad', e.target.value)}
+                    />
+                </div>
+
+                {/* Campo Selector de Unidad */}
+                <div style={{ flex: 1 }}>
+                    <SelectInputAtom
+                        name='vida util unidad' // Nombre visual
+                        label='Unidad'
+                        required
+                        // El valor viene del estado local
+                        value={vidaUtilUnidad} 
+                        options={[
+                            { value: 'MESES', label: 'MESES' },
+                            { value: 'AÑOS', label: 'AÑOS' },
+                            { value: 'DIAS', label: 'DÍAS' },
+                            { value: 'N/A', label: 'N/A' }
+                        ]}
+                        // Al cambiar, llamamos a la misma función lógica pero con tipo 'unidad'
+                        onChange={(e) => handleVidaUtilChange('unidad', e.target.value)}
+                    />
+                </div>
+            </div>
 
             <TextInputAtom
             name = 'serie'
